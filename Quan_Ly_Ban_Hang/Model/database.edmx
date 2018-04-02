@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLBHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHITIETDONDATHANG">
+          <Key>
+            <PropertyRef Name="MACHITIETDONDATHANG" />
+          </Key>
+          <Property Name="MACHITIETDONDATHANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MADONDATHANG" Type="int" />
+          <Property Name="MAHANG" Type="varchar" MaxLength="8" />
+          <Property Name="SOLUONGNHAP" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUAHANG">
+          <Key>
+            <PropertyRef Name="MACUAHANG" />
+          </Key>
+          <Property Name="MACUAHANG" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="DIACHI" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DONDATHANG">
+          <Key>
+            <PropertyRef Name="MADONDATHANG" />
+          </Key>
+          <Property Name="MADONDATHANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MANHACUNGCAP" Type="char" MaxLength="8" />
+          <Property Name="MACUAHANG" Type="char" MaxLength="6" />
+          <Property Name="NGAYDATHANG" Type="smalldatetime" />
+          <Property Name="NGAYGIAOHANG" Type="smalldatetime" />
+          <Property Name="MAHINHTHUCTHANHTOAN" Type="int" />
+        </EntityType>
+        <EntityType Name="HANG">
+          <Key>
+            <PropertyRef Name="MAHANG" />
+          </Key>
+          <Property Name="MAHANG" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="TENHANG" Type="varchar" MaxLength="15" />
+          <Property Name="DONGIA" Type="money" />
+          <Property Name="SOLUONGTON" Type="int" />
+        </EntityType>
+        <EntityType Name="HINHTHUCTHANHTOAN">
+          <Key>
+            <PropertyRef Name="MAHINHTHUCTHANHTOAN" />
+          </Key>
+          <Property Name="MAHINHTHUCTHANHTOAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENHINHTHUCTHANHTOAN" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="NHACUNGCAP">
+          <Key>
+            <PropertyRef Name="MANHACUNGCAP" />
+          </Key>
+          <Property Name="MANHACUNGCAP" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="TENNHACUNGCAP" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="MATHAMSO" />
+          </Key>
+          <Property Name="MATHAMSO" Type="int" Nullable="false" />
+          <Property Name="SOLUONGNHAPTOITHIEU" Type="int" />
+          <Property Name="SOLUONGNHAPTOIDA" Type="int" />
+        </EntityType>
+        <Association Name="fk01_CTDDH">
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
+          <End Role="CHITIETDONDATHANG" Type="Self.CHITIETDONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONDATHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Principal>
+            <Dependent Role="CHITIETDONDATHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_DDH">
+          <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACUNGCAP">
+              <PropertyRef Name="MANHACUNGCAP" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MANHACUNGCAP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_CTDDH">
+          <End Role="HANG" Type="Self.HANG" Multiplicity="0..1" />
+          <End Role="CHITIETDONDATHANG" Type="Self.CHITIETDONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HANG">
+              <PropertyRef Name="MAHANG" />
+            </Principal>
+            <Dependent Role="CHITIETDONDATHANG">
+              <PropertyRef Name="MAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_DDH">
+          <End Role="CUAHANG" Type="Self.CUAHANG" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUAHANG">
+              <PropertyRef Name="MACUAHANG" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MACUAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk03_DDH">
+          <End Role="HINHTHUCTHANHTOAN" Type="Self.HINHTHUCTHANHTOAN" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HINHTHUCTHANHTOAN">
+              <PropertyRef Name="MAHINHTHUCTHANHTOAN" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MAHINHTHUCTHANHTOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBHModelStoreContainer">
+          <EntitySet Name="CHITIETDONDATHANG" EntityType="Self.CHITIETDONDATHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUAHANG" EntityType="Self.CUAHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONDATHANG" EntityType="Self.DONDATHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HANG" EntityType="Self.HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HINHTHUCTHANHTOAN" EntityType="Self.HINHTHUCTHANHTOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk01_CTDDH" Association="Self.fk01_CTDDH">
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+            <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_DDH" Association="Self.fk01_DDH">
+            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_CTDDH" Association="Self.fk02_CTDDH">
+            <End Role="HANG" EntitySet="HANG" />
+            <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_DDH" Association="Self.fk02_DDH">
+            <End Role="CUAHANG" EntitySet="CUAHANG" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk03_DDH" Association="Self.fk03_DDH">
+            <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOAN" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLBHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CHITIETDONDATHANG">
+          <Key>
+            <PropertyRef Name="MACHITIETDONDATHANG" />
+          </Key>
+          <Property Name="MACHITIETDONDATHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MADONDATHANG" Type="Int32" />
+          <Property Name="MAHANG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="SOLUONGNHAP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DONDATHANG" Relationship="Self.fk01_CTDDH" FromRole="CHITIETDONDATHANG" ToRole="DONDATHANG" />
+          <NavigationProperty Name="HANG" Relationship="Self.fk02_CTDDH" FromRole="CHITIETDONDATHANG" ToRole="HANG" />
+        </EntityType>
+        <EntityType Name="CUAHANG">
+          <Key>
+            <PropertyRef Name="MACUAHANG" />
+          </Key>
+          <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="Self.fk02_DDH" FromRole="CUAHANG" ToRole="DONDATHANG" />
+        </EntityType>
+        <EntityType Name="DONDATHANG">
+          <Key>
+            <PropertyRef Name="MADONDATHANG" />
+          </Key>
+          <Property Name="MADONDATHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MANHACUNGCAP" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="NGAYDATHANG" Type="DateTime" Precision="0" />
+          <Property Name="NGAYGIAOHANG" Type="DateTime" Precision="0" />
+          <Property Name="MAHINHTHUCTHANHTOAN" Type="Int32" />
+          <NavigationProperty Name="CHITIETDONDATHANGs" Relationship="Self.fk01_CTDDH" FromRole="DONDATHANG" ToRole="CHITIETDONDATHANG" />
+          <NavigationProperty Name="CUAHANG" Relationship="Self.fk02_DDH" FromRole="DONDATHANG" ToRole="CUAHANG" />
+          <NavigationProperty Name="NHACUNGCAP" Relationship="Self.fk01_DDH" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
+          <NavigationProperty Name="HINHTHUCTHANHTOAN" Relationship="Self.fk03_DDH" FromRole="DONDATHANG" ToRole="HINHTHUCTHANHTOAN" />
+        </EntityType>
+        <EntityType Name="HANG">
+          <Key>
+            <PropertyRef Name="MAHANG" />
+          </Key>
+          <Property Name="MAHANG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENHANG" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SOLUONGTON" Type="Int32" />
+          <NavigationProperty Name="CHITIETDONDATHANGs" Relationship="Self.fk02_CTDDH" FromRole="HANG" ToRole="CHITIETDONDATHANG" />
+        </EntityType>
+        <EntityType Name="HINHTHUCTHANHTOAN">
+          <Key>
+            <PropertyRef Name="MAHINHTHUCTHANHTOAN" />
+          </Key>
+          <Property Name="MAHINHTHUCTHANHTOAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENHINHTHUCTHANHTOAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="Self.fk03_DDH" FromRole="HINHTHUCTHANHTOAN" ToRole="DONDATHANG" />
+        </EntityType>
+        <EntityType Name="NHACUNGCAP">
+          <Key>
+            <PropertyRef Name="MANHACUNGCAP" />
+          </Key>
+          <Property Name="MANHACUNGCAP" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENNHACUNGCAP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DONDATHANGs" Relationship="Self.fk01_DDH" FromRole="NHACUNGCAP" ToRole="DONDATHANG" />
+        </EntityType>
+        <EntityType Name="THAMSO">
+          <Key>
+            <PropertyRef Name="MATHAMSO" />
+          </Key>
+          <Property Name="MATHAMSO" Type="Int32" Nullable="false" />
+          <Property Name="SOLUONGNHAPTOITHIEU" Type="Int32" />
+          <Property Name="SOLUONGNHAPTOIDA" Type="Int32" />
+        </EntityType>
+        <Association Name="fk01_CTDDH">
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
+          <End Role="CHITIETDONDATHANG" Type="Self.CHITIETDONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONDATHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Principal>
+            <Dependent Role="CHITIETDONDATHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_CTDDH">
+          <End Role="HANG" Type="Self.HANG" Multiplicity="0..1" />
+          <End Role="CHITIETDONDATHANG" Type="Self.CHITIETDONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HANG">
+              <PropertyRef Name="MAHANG" />
+            </Principal>
+            <Dependent Role="CHITIETDONDATHANG">
+              <PropertyRef Name="MAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_DDH">
+          <End Role="CUAHANG" Type="Self.CUAHANG" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUAHANG">
+              <PropertyRef Name="MACUAHANG" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MACUAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_DDH">
+          <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACUNGCAP">
+              <PropertyRef Name="MANHACUNGCAP" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MANHACUNGCAP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk03_DDH">
+          <End Role="HINHTHUCTHANHTOAN" Type="Self.HINHTHUCTHANHTOAN" Multiplicity="0..1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HINHTHUCTHANHTOAN">
+              <PropertyRef Name="MAHINHTHUCTHANHTOAN" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MAHINHTHUCTHANHTOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLBHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHITIETDONDATHANGs" EntityType="Self.CHITIETDONDATHANG" />
+          <EntitySet Name="CUAHANGs" EntityType="Self.CUAHANG" />
+          <EntitySet Name="DONDATHANGs" EntityType="Self.DONDATHANG" />
+          <EntitySet Name="HANGs" EntityType="Self.HANG" />
+          <EntitySet Name="HINHTHUCTHANHTOANs" EntityType="Self.HINHTHUCTHANHTOAN" />
+          <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
+          <EntitySet Name="THAMSOes" EntityType="Self.THAMSO" />
+          <AssociationSet Name="fk01_CTDDH" Association="Self.fk01_CTDDH">
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+            <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_CTDDH" Association="Self.fk02_CTDDH">
+            <End Role="HANG" EntitySet="HANGs" />
+            <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_DDH" Association="Self.fk02_DDH">
+            <End Role="CUAHANG" EntitySet="CUAHANGs" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_DDH" Association="Self.fk01_DDH">
+            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk03_DDH" Association="Self.fk03_DDH">
+            <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOANs" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLBHModelStoreContainer" CdmEntityContainer="QLBHEntities">
+          <EntitySetMapping Name="CHITIETDONDATHANGs">
+            <EntityTypeMapping TypeName="QLBHModel.CHITIETDONDATHANG">
+              <MappingFragment StoreEntitySet="CHITIETDONDATHANG">
+                <ScalarProperty Name="MACHITIETDONDATHANG" ColumnName="MACHITIETDONDATHANG" />
+                <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
+                <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
+                <ScalarProperty Name="SOLUONGNHAP" ColumnName="SOLUONGNHAP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUAHANGs">
+            <EntityTypeMapping TypeName="QLBHModel.CUAHANG">
+              <MappingFragment StoreEntitySet="CUAHANG">
+                <ScalarProperty Name="MACUAHANG" ColumnName="MACUAHANG" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONDATHANGs">
+            <EntityTypeMapping TypeName="QLBHModel.DONDATHANG">
+              <MappingFragment StoreEntitySet="DONDATHANG">
+                <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
+                <ScalarProperty Name="MANHACUNGCAP" ColumnName="MANHACUNGCAP" />
+                <ScalarProperty Name="MACUAHANG" ColumnName="MACUAHANG" />
+                <ScalarProperty Name="NGAYDATHANG" ColumnName="NGAYDATHANG" />
+                <ScalarProperty Name="NGAYGIAOHANG" ColumnName="NGAYGIAOHANG" />
+                <ScalarProperty Name="MAHINHTHUCTHANHTOAN" ColumnName="MAHINHTHUCTHANHTOAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HANGs">
+            <EntityTypeMapping TypeName="QLBHModel.HANG">
+              <MappingFragment StoreEntitySet="HANG">
+                <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
+                <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="SOLUONGTON" ColumnName="SOLUONGTON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HINHTHUCTHANHTOANs">
+            <EntityTypeMapping TypeName="QLBHModel.HINHTHUCTHANHTOAN">
+              <MappingFragment StoreEntitySet="HINHTHUCTHANHTOAN">
+                <ScalarProperty Name="MAHINHTHUCTHANHTOAN" ColumnName="MAHINHTHUCTHANHTOAN" />
+                <ScalarProperty Name="TENHINHTHUCTHANHTOAN" ColumnName="TENHINHTHUCTHANHTOAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHACUNGCAPs">
+            <EntityTypeMapping TypeName="QLBHModel.NHACUNGCAP">
+              <MappingFragment StoreEntitySet="NHACUNGCAP">
+                <ScalarProperty Name="MANHACUNGCAP" ColumnName="MANHACUNGCAP" />
+                <ScalarProperty Name="TENNHACUNGCAP" ColumnName="TENNHACUNGCAP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THAMSOes">
+            <EntityTypeMapping TypeName="QLBHModel.THAMSO">
+              <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="MATHAMSO" ColumnName="MATHAMSO" />
+                <ScalarProperty Name="SOLUONGNHAPTOITHIEU" ColumnName="SOLUONGNHAPTOITHIEU" />
+                <ScalarProperty Name="SOLUONGNHAPTOIDA" ColumnName="SOLUONGNHAPTOIDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

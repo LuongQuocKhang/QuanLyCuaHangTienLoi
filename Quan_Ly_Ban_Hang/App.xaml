@@ -1,0 +1,9 @@
+﻿<Application x:Class="Quan_Ly_Ban_Hang.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Quan_Ly_Ban_Hang"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="/Resource/Resource.xaml"></ResourceDictionary>
+    </Application.Resources>
+</Application>
