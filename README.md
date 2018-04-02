@@ -1,6 +1,7 @@
 # QuanLyCuaHangTienLoi
 ứng dụng quản lý cửa hàng tiện lợi
-cài đặt thêm các thư viện :
+
+- cài đặt thêm các thư viện :
 
 - interaction
 Install-Package System.Windows.Interactivity.WPF
