@@ -7,9 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         x:Name="Formnhaphang"
-        DataContext="{StaticResource DataContextDDH}"
-        Title="Don_Dat_Hang" Height="700" Width="1000">
-
+        Title="Đơn đặt hàng" Height="700" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
@@ -198,6 +196,10 @@
                         CommandParameter="{Binding ElementName=listNhapHang}">Xóa</Button>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Width="100"
+                           Text="Tổng tiền" FontSize="20" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Width="100"
+                           Text="{Binding TongTien}" VerticalAlignment="Center" FontSize="20"></TextBlock>
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding SaveToDatabaseCommand}">Lưu</Button>
                 <Button Width="100" Margin="20 0 0 0"

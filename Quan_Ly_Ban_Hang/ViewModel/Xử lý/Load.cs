@@ -12,6 +12,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
         private static Load _instance;
         public static Load Instance { get { if (_instance == null) _instance = new Load(); return _instance; } set => _instance = value; }
 
+        /// <summary>
+        /// load số hóa đơn của đơn đặt hàng
+        /// </summary>
+        /// <returns></returns>
         public string Load_So_Hoa_Don()
         {
             var temp = DataProvider.Instance.DB.DONDATHANGs.ToList();

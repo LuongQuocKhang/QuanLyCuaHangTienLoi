@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
+namespace Quan_Ly_Ban_Hang.ViewModel
 {
     class Update
     {

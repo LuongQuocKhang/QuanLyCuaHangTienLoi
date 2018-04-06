@@ -52,6 +52,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public DateTime NgayGiaoHang { get => ngayGiaoHang; set { if (ngayGiaoHang != value) { ngayGiaoHang = value; OnPropertyChanged(); } } }
         private int hinhThucThanhToan;
         public int HinhThucThanhToan { get => hinhThucThanhToan; set { if (hinhThucThanhToan != value) { hinhThucThanhToan = value; OnPropertyChanged(); } } }
+        private int tongTien;
+        public int TongTien { get => tongTien; set { if (tongTien != value) { tongTien = value; OnPropertyChanged(); } } }
         #endregion
 
         #region commands
@@ -80,6 +82,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             DeleteCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 int selectedindex = (p as ListView).SelectedIndex;
+                TongTien -= ListHang[selectedindex].DONGIA;
                 ListHang.RemoveAt(selectedindex);
             });
             ExitCommand = new RelayCommand<object>((p) => true, (p) =>
@@ -114,6 +117,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     }
                     dongia = Convert.ToInt32(DataProvider.Instance.DB.HANGs.ToList().Where((h) => h.MAHANG == mahang).Select((h) => h.DONGIA).SingleOrDefault());
                 }
+                int? sln = DataProvider.Instance.DB.THAMSOes.SingleOrDefault().SOLUONGNHAPTOITHIEU;
+                if (soluongnhap < sln)
+                {
+                    MessageBox.Show("Số lượng nhập nhỏ hơn quy định số lượng nhập tối thiểu " + sln);
+                    return;
+                }
                 if (string.IsNullOrEmpty(mahang) || string.IsNullOrEmpty(tenhang) || ListHang.Where((a) => a.MAHANG == mahang).ToList().Count > 0 ) return;
 
                 NHAPHANG hang = new NHAPHANG()
@@ -125,6 +134,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 };
                 hang.TONGITEN = hang.DONGIA * hang.SOLUONGNHAP;
                 hang.SOLUONGTON = hang.SOLUONGTON + hang.SOLUONGNHAP;
+                TongTien += hang.TONGITEN;
                 ListHang.Add(hang);
             });
             SelectedProductCommand = new RelayCommand<object>((p) => true, (p) =>
@@ -133,16 +143,17 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             HinhThucThanhToanCommand = new RelayCommand<object>((p) => true, (p) =>
             {
-                HinhThucThanhToan = (p as ComboBox).SelectedIndex;
+                HinhThucThanhToan = (p as ComboBox).SelectedIndex + 1;
             });
             SaveToDatabaseCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn đơn đặt hàng không ?","", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
                 if ( result == MessageBoxResult.Yes)
                 {
                     // thêm đơn đặt hàng
                     DONDATHANG dondathang = new DONDATHANG();
-                    dondathang.MADONDATHANG = sodonhang;
+                    //dondathang.MADONDATHANG = sodonhang;
                     dondathang.MANHACUNGCAP = Manhacungcap.Trim();
                     dondathang.MACUAHANG = MaCuaHang.Trim();
                     dondathang.NGAYDATHANG = NgayDatHang;
@@ -155,7 +166,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     {
                         // thêm chi tiết hóa đơn
                         CHITIETDONDATHANG chitiethoadon = new CHITIETDONDATHANG();
-                        chitiethoadon.MADONDATHANG = sodonhang;
+                        chitiethoadon.MADONDATHANG = dondathang.MADONDATHANG;
                         chitiethoadon.MAHANG = item.MAHANG.Trim();
                         chitiethoadon.SOLUONGNHAP = item.SOLUONGNHAP;
                         Insert.Instance.ThemChiTietDDH(chitiethoadon);
@@ -163,6 +174,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         // cập nhật hàng hóa
                         Update.Instance.Update_Hang(item.MAHANG, item.SOLUONGNHAP);
                     }
+                    MessageBox.Show("Lưu vào dữ liệu thành công");
                 }
                 else
                 {

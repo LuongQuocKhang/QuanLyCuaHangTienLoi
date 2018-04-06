@@ -18,6 +18,7 @@ namespace Quan_Ly_Ban_Hang.Model
         public HANG()
         {
             this.CHITIETDONDATHANGs = new HashSet<CHITIETDONDATHANG>();
+            this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
         }
     
         public string MAHANG { get; set; }
@@ -27,5 +28,7 @@ namespace Quan_Ly_Ban_Hang.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
     }
 }

@@ -26,10 +26,12 @@ namespace Quan_Ly_Ban_Hang.Model
         }
     
         public virtual DbSet<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
+        public virtual DbSet<CHITIETHOADON> CHITIETHOADONs { get; set; }
         public virtual DbSet<CUAHANG> CUAHANGs { get; set; }
         public virtual DbSet<DONDATHANG> DONDATHANGs { get; set; }
         public virtual DbSet<HANG> HANGs { get; set; }
         public virtual DbSet<HINHTHUCTHANHTOAN> HINHTHUCTHANHTOANs { get; set; }
+        public virtual DbSet<HOADONBH> HOADONBHs { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAPs { get; set; }
         public virtual DbSet<THAMSO> THAMSOes { get; set; }
     }

@@ -3,5 +3,4 @@
                     xmlns:viewmodel="clr-namespace:Quan_Ly_Ban_Hang.ViewModel"
                     xmlns:local="clr-namespace:Quan_Ly_Ban_Hang">
     <viewmodel:DataContext x:Key="DataContextVM"></viewmodel:DataContext>
-    <viewmodel:DataContextDDH x:Key="DataContextDDH"></viewmodel:DataContextDDH>
 </ResourceDictionary>

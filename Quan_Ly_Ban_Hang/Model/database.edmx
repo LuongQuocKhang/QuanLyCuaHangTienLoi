@@ -14,6 +14,15 @@
           <Property Name="MAHANG" Type="varchar" MaxLength="8" />
           <Property Name="SOLUONGNHAP" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CHITIETHOADON">
+          <Key>
+            <PropertyRef Name="MACHITIETHOADON" />
+          </Key>
+          <Property Name="MACHITIETHOADON" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="MAHOADONBH" Type="char" MaxLength="8" />
+          <Property Name="MAHANG" Type="varchar" MaxLength="8" />
+          <Property Name="SOLUONGBAN" Type="int" />
+        </EntityType>
         <EntityType Name="CUAHANG">
           <Key>
             <PropertyRef Name="MACUAHANG" />
@@ -48,6 +57,14 @@
           <Property Name="MAHINHTHUCTHANHTOAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TENHINHTHUCTHANHTOAN" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="HOADONBH">
+          <Key>
+            <PropertyRef Name="MAHOADONBH" />
+          </Key>
+          <Property Name="MAHOADONBH" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="NGAYLAPHOADON" Type="smalldatetime" />
+          <Property Name="MACUAHANG" Type="char" MaxLength="6" />
+        </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
             <PropertyRef Name="MANHACUNGCAP" />
@@ -61,7 +78,8 @@
           </Key>
           <Property Name="MATHAMSO" Type="int" Nullable="false" />
           <Property Name="SOLUONGNHAPTOITHIEU" Type="int" />
-          <Property Name="SOLUONGNHAPTOIDA" Type="int" />
+          <Property Name="SOLUONGTONTOIDADUOCNHAP" Type="int" />
+          <Property Name="SOLUONGTONTOITHIEUDUOCBAN" Type="int" />
         </EntityType>
         <Association Name="fk01_CTDDH">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
@@ -72,6 +90,18 @@
             </Principal>
             <Dependent Role="CHITIETDONDATHANG">
               <PropertyRef Name="MADONDATHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_CTHD">
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="0..1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADONBH">
+              <PropertyRef Name="MAHOADONBH" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHOADONBH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -87,6 +117,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk01_HDBH">
+          <End Role="CUAHANG" Type="Self.CUAHANG" Multiplicity="0..1" />
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUAHANG">
+              <PropertyRef Name="MACUAHANG" />
+            </Principal>
+            <Dependent Role="HOADONBH">
+              <PropertyRef Name="MACUAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk02_CTDDH">
           <End Role="HANG" Type="Self.HANG" Multiplicity="0..1" />
           <End Role="CHITIETDONDATHANG" Type="Self.CHITIETDONDATHANG" Multiplicity="*" />
@@ -95,6 +137,18 @@
               <PropertyRef Name="MAHANG" />
             </Principal>
             <Dependent Role="CHITIETDONDATHANG">
+              <PropertyRef Name="MAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_CTHD">
+          <End Role="HANG" Type="Self.HANG" Multiplicity="0..1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HANG">
+              <PropertyRef Name="MAHANG" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
               <PropertyRef Name="MAHANG" />
             </Dependent>
           </ReferentialConstraint>
@@ -125,23 +179,37 @@
         </Association>
         <EntityContainer Name="QLBHModelStoreContainer">
           <EntitySet Name="CHITIETDONDATHANG" EntityType="Self.CHITIETDONDATHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUAHANG" EntityType="Self.CUAHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONDATHANG" EntityType="Self.DONDATHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HANG" EntityType="Self.HANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HINHTHUCTHANHTOAN" EntityType="Self.HINHTHUCTHANHTOAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOADONBH" EntityType="Self.HOADONBH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk01_CTDDH" Association="Self.fk01_CTDDH">
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANG" />
           </AssociationSet>
+          <AssociationSet Name="fk01_CTHD" Association="Self.fk01_CTHD">
+            <End Role="HOADONBH" EntitySet="HOADONBH" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
           <AssociationSet Name="fk01_DDH" Association="Self.fk01_DDH">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
+          <AssociationSet Name="fk01_HDBH" Association="Self.fk01_HDBH">
+            <End Role="CUAHANG" EntitySet="CUAHANG" />
+            <End Role="HOADONBH" EntitySet="HOADONBH" />
+          </AssociationSet>
           <AssociationSet Name="fk02_CTDDH" Association="Self.fk02_CTDDH">
             <End Role="HANG" EntitySet="HANG" />
             <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_CTHD" Association="Self.fk02_CTHD">
+            <End Role="HANG" EntitySet="HANG" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
           </AssociationSet>
           <AssociationSet Name="fk02_DDH" Association="Self.fk02_DDH">
             <End Role="CUAHANG" EntitySet="CUAHANG" />
@@ -168,12 +236,24 @@
           <NavigationProperty Name="DONDATHANG" Relationship="Self.fk01_CTDDH" FromRole="CHITIETDONDATHANG" ToRole="DONDATHANG" />
           <NavigationProperty Name="HANG" Relationship="Self.fk02_CTDDH" FromRole="CHITIETDONDATHANG" ToRole="HANG" />
         </EntityType>
+        <EntityType Name="CHITIETHOADON">
+          <Key>
+            <PropertyRef Name="MACHITIETHOADON" />
+          </Key>
+          <Property Name="MACHITIETHOADON" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MAHOADONBH" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="MAHANG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="SOLUONGBAN" Type="Int32" />
+          <NavigationProperty Name="HOADONBH" Relationship="Self.fk01_CTHD" FromRole="CHITIETHOADON" ToRole="HOADONBH" />
+          <NavigationProperty Name="HANG" Relationship="Self.fk02_CTHD" FromRole="CHITIETHOADON" ToRole="HANG" />
+        </EntityType>
         <EntityType Name="CUAHANG">
           <Key>
             <PropertyRef Name="MACUAHANG" />
           </Key>
           <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HOADONBHs" Relationship="Self.fk01_HDBH" FromRole="CUAHANG" ToRole="HOADONBH" />
           <NavigationProperty Name="DONDATHANGs" Relationship="Self.fk02_DDH" FromRole="CUAHANG" ToRole="DONDATHANG" />
         </EntityType>
         <EntityType Name="DONDATHANG">
@@ -200,6 +280,7 @@
           <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="SOLUONGTON" Type="Int32" />
           <NavigationProperty Name="CHITIETDONDATHANGs" Relationship="Self.fk02_CTDDH" FromRole="HANG" ToRole="CHITIETDONDATHANG" />
+          <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.fk02_CTHD" FromRole="HANG" ToRole="CHITIETHOADON" />
         </EntityType>
         <EntityType Name="HINHTHUCTHANHTOAN">
           <Key>
@@ -208,6 +289,16 @@
           <Property Name="MAHINHTHUCTHANHTOAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TENHINHTHUCTHANHTOAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DONDATHANGs" Relationship="Self.fk03_DDH" FromRole="HINHTHUCTHANHTOAN" ToRole="DONDATHANG" />
+        </EntityType>
+        <EntityType Name="HOADONBH">
+          <Key>
+            <PropertyRef Name="MAHOADONBH" />
+          </Key>
+          <Property Name="MAHOADONBH" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NGAYLAPHOADON" Type="DateTime" Precision="0" />
+          <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.fk01_CTHD" FromRole="HOADONBH" ToRole="CHITIETHOADON" />
+          <NavigationProperty Name="CUAHANG" Relationship="Self.fk01_HDBH" FromRole="HOADONBH" ToRole="CUAHANG" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -223,7 +314,8 @@
           </Key>
           <Property Name="MATHAMSO" Type="Int32" Nullable="false" />
           <Property Name="SOLUONGNHAPTOITHIEU" Type="Int32" />
-          <Property Name="SOLUONGNHAPTOIDA" Type="Int32" />
+          <Property Name="SOLUONGTONTOIDADUOCNHAP" Type="Int32" />
+          <Property Name="SOLUONGTONTOITHIEUDUOCBAN" Type="Int32" />
         </EntityType>
         <Association Name="fk01_CTDDH">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
@@ -246,6 +338,42 @@
             </Principal>
             <Dependent Role="CHITIETDONDATHANG">
               <PropertyRef Name="MAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_CTHD">
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="0..1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADONBH">
+              <PropertyRef Name="MAHOADONBH" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHOADONBH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_CTHD">
+          <End Role="HANG" Type="Self.HANG" Multiplicity="0..1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HANG">
+              <PropertyRef Name="MAHANG" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_HDBH">
+          <End Role="CUAHANG" Type="Self.CUAHANG" Multiplicity="0..1" />
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUAHANG">
+              <PropertyRef Name="MACUAHANG" />
+            </Principal>
+            <Dependent Role="HOADONBH">
+              <PropertyRef Name="MACUAHANG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -287,10 +415,12 @@
         </Association>
         <EntityContainer Name="QLBHEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHITIETDONDATHANGs" EntityType="Self.CHITIETDONDATHANG" />
+          <EntitySet Name="CHITIETHOADONs" EntityType="Self.CHITIETHOADON" />
           <EntitySet Name="CUAHANGs" EntityType="Self.CUAHANG" />
           <EntitySet Name="DONDATHANGs" EntityType="Self.DONDATHANG" />
           <EntitySet Name="HANGs" EntityType="Self.HANG" />
           <EntitySet Name="HINHTHUCTHANHTOANs" EntityType="Self.HINHTHUCTHANHTOAN" />
+          <EntitySet Name="HOADONBHs" EntityType="Self.HOADONBH" />
           <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
           <EntitySet Name="THAMSOes" EntityType="Self.THAMSO" />
           <AssociationSet Name="fk01_CTDDH" Association="Self.fk01_CTDDH">
@@ -300,6 +430,18 @@
           <AssociationSet Name="fk02_CTDDH" Association="Self.fk02_CTDDH">
             <End Role="HANG" EntitySet="HANGs" />
             <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_CTHD" Association="Self.fk01_CTHD">
+            <End Role="HOADONBH" EntitySet="HOADONBHs" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_CTHD" Association="Self.fk02_CTHD">
+            <End Role="HANG" EntitySet="HANGs" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_HDBH" Association="Self.fk01_HDBH">
+            <End Role="CUAHANG" EntitySet="CUAHANGs" />
+            <End Role="HOADONBH" EntitySet="HOADONBHs" />
           </AssociationSet>
           <AssociationSet Name="fk02_DDH" Association="Self.fk02_DDH">
             <End Role="CUAHANG" EntitySet="CUAHANGs" />
@@ -327,6 +469,16 @@
                 <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
                 <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
                 <ScalarProperty Name="SOLUONGNHAP" ColumnName="SOLUONGNHAP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETHOADONs">
+            <EntityTypeMapping TypeName="QLBHModel.CHITIETHOADON">
+              <MappingFragment StoreEntitySet="CHITIETHOADON">
+                <ScalarProperty Name="MACHITIETHOADON" ColumnName="MACHITIETHOADON" />
+                <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
+                <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
+                <ScalarProperty Name="SOLUONGBAN" ColumnName="SOLUONGBAN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -368,6 +520,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HOADONBHs">
+            <EntityTypeMapping TypeName="QLBHModel.HOADONBH">
+              <MappingFragment StoreEntitySet="HOADONBH">
+                <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
+                <ScalarProperty Name="NGAYLAPHOADON" ColumnName="NGAYLAPHOADON" />
+                <ScalarProperty Name="MACUAHANG" ColumnName="MACUAHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NHACUNGCAPs">
             <EntityTypeMapping TypeName="QLBHModel.NHACUNGCAP">
               <MappingFragment StoreEntitySet="NHACUNGCAP">
@@ -381,7 +542,8 @@
               <MappingFragment StoreEntitySet="THAMSO">
                 <ScalarProperty Name="MATHAMSO" ColumnName="MATHAMSO" />
                 <ScalarProperty Name="SOLUONGNHAPTOITHIEU" ColumnName="SOLUONGNHAPTOITHIEU" />
-                <ScalarProperty Name="SOLUONGNHAPTOIDA" ColumnName="SOLUONGNHAPTOIDA" />
+                <ScalarProperty Name="SOLUONGTONTOIDADUOCNHAP" ColumnName="SOLUONGTONTOIDADUOCNHAP" />
+                <ScalarProperty Name="SOLUONGTONTOITHIEUDUOCBAN" ColumnName="SOLUONGTONTOITHIEUDUOCBAN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

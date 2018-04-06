@@ -8,11 +8,16 @@
         Title="MainWindow" Height="350" Width="525"
         DataContext="{StaticResource DataContextVM}">
     <Grid>
-        <Button Content="Button" 
+        <Button Content="Nhập hàng" 
                 HorizontalAlignment="Left" 
                 Margin="65,108,0,0" 
                 VerticalAlignment="Top" 
+                Width="111" Height="50"        
+                Command="{Binding NhapHangCommand}"/>
+        <Button Content="Bán hàng" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
                 Width="111" Height="50"
-                Command="{Binding LoadCommand}"/>
+                Command="{Binding BanHangCommand}" Margin="219,108,0,0"/>
     </Grid>
 </Window>

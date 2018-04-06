@@ -12,21 +12,20 @@ namespace Quan_Ly_Ban_Hang.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CUAHANG
+    public partial class HOADONBH
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CUAHANG()
+        public HOADONBH()
         {
-            this.HOADONBHs = new HashSet<HOADONBH>();
-            this.DONDATHANGs = new HashSet<DONDATHANG>();
+            this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
         }
     
+        public string MAHOADONBH { get; set; }
+        public Nullable<System.DateTime> NGAYLAPHOADON { get; set; }
         public string MACUAHANG { get; set; }
-        public string DIACHI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOADONBH> HOADONBHs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
+        public virtual CUAHANG CUAHANG { get; set; }
     }
 }

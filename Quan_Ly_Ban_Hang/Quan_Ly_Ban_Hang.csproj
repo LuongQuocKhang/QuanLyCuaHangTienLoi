@@ -74,6 +74,9 @@
     <Compile Include="Model\CHITIETDONDATHANG.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CHITIETHOADON.cs">
+      <DependentUpon>database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CUAHANG.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
@@ -101,6 +104,9 @@
     <Compile Include="Model\HINHTHUCTHANHTOAN.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\HOADONBH.cs">
+      <DependentUpon>database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\NHAPHANG.cs" />
     <Compile Include="Model\NHACUNGCAP.cs">
       <DependentUpon>database.tt</DependentUpon>
@@ -108,17 +114,25 @@
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\DataContext.cs" />
-    <Compile Include="ViewModel\DataContextDDH.cs" />
-    <Compile Include="ViewModel\DataProvider.cs" />
+    <Compile Include="ViewModel\Bán hàng\DataContextHDBH.cs" />
+    <Compile Include="ViewModel\DataContext  - Dataaccess\DatacontextMain\BaseViewModel.cs" />
+    <Compile Include="ViewModel\DataContext  - Dataaccess\DatacontextMain\DataContext.cs" />
+    <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
+    <Compile Include="ViewModel\DataContext  - Dataaccess\Database access\DataProvider.cs" />
     <Compile Include="ViewModel\Xử lý\Insert.cs" />
     <Compile Include="ViewModel\Xử lý\Load.cs" />
     <Compile Include="ViewModel\Xử lý\Update.cs" />
+    <Compile Include="View\Ban_Hang.xaml.cs">
+      <DependentUpon>Ban_Hang.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Don_Dat_Hang.xaml.cs">
       <DependentUpon>Don_Dat_Hang.xaml</DependentUpon>
     </Compile>
     <Page Include="Resource\Resource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ban_Hang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,5 +202,6 @@
       <LastGenOutput>database.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
