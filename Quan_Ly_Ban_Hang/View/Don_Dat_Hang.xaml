@@ -38,7 +38,7 @@
                         <TextBlock FontSize="20">Số đơn đặt hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                        <TextBlock FontSize="20" Padding="20 0 0 0" x:Name="txbSoDonDatHang"
+                        <TextBlock FontSize="25" VerticalAlignment="Center" x:Name="txbSoDonDatHang"
                                    IsEnabled="False" Text="{Binding sodonhang}"></TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
@@ -46,8 +46,7 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayDatHang" VerticalAlignment="Center"
-                                    Text="{Binding NgayDatHang , Mode=TwoWay }" FontSize="25">
-                           
+                                    Text="{Binding NgayDatHang , Mode=TwoWay}" FontSize="25">
                         </DatePicker>
                     </Border>
                 </Grid>
@@ -162,7 +161,7 @@
                 </i:Interaction.Triggers>
             </ComboBox>
             <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Số lượng</TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" Height="auto" Text="25" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" Height="auto" VerticalAlignment="Center"/>
         </Grid>
         
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">

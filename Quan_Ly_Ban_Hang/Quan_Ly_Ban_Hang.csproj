@@ -77,6 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BANHANG.cs" />
     <Compile Include="Model\CHITIETDONDATHANG.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
@@ -120,11 +121,11 @@
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Bán hàng\DataContextHDBH.cs" />
-    <Compile Include="ViewModel\DataContext  - Dataaccess\DatacontextMain\BaseViewModel.cs" />
-    <Compile Include="ViewModel\DataContext  - Dataaccess\DatacontextMain\DataContext.cs" />
+    <Compile Include="ViewModel\DataContext.cs" />
+    <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
-    <Compile Include="ViewModel\DataContext  - Dataaccess\Database access\DataProvider.cs" />
     <Compile Include="ViewModel\Xử lý\Insert.cs" />
     <Compile Include="ViewModel\Xử lý\Load.cs" />
     <Compile Include="ViewModel\Xử lý\Update.cs" />
@@ -203,6 +204,8 @@
     <Resource Include="Images\edit.png" />
     <Resource Include="Images\find.png" />
     <Resource Include="Images\sell.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\database.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>database.edmx</DependentUpon>
@@ -214,6 +217,5 @@
       <LastGenOutput>database.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

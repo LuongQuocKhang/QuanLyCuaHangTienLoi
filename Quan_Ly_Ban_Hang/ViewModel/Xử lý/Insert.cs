@@ -21,5 +21,15 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             DataProvider.Instance.DB.CHITIETDONDATHANGs.Add(chitietDDH);
             DataProvider.Instance.DB.SaveChanges();
         }
+        public void ThemHoaDonBH(HOADONBH hoadon)
+        {
+            DataProvider.Instance.DB.HOADONBHs.Add(hoadon);
+            DataProvider.Instance.DB.SaveChanges();
+        }
+        public void ThemChiTietHoaDonBH(CHITIETHOADON chitiethoadon)
+        {
+            DataProvider.Instance.DB.CHITIETHOADONs.Add(chitiethoadon);
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

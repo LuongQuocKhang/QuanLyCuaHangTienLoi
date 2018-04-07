@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLBHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLBHModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHITIETDONDATHANG">
           <Key>
             <PropertyRef Name="MACHITIETDONDATHANG" />
@@ -18,8 +18,8 @@
           <Key>
             <PropertyRef Name="MACHITIETHOADON" />
           </Key>
-          <Property Name="MACHITIETHOADON" Type="char" MaxLength="8" Nullable="false" />
-          <Property Name="MAHOADONBH" Type="char" MaxLength="8" />
+          <Property Name="MACHITIETHOADON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAHOADONBH" Type="int" />
           <Property Name="MAHANG" Type="varchar" MaxLength="8" />
           <Property Name="SOLUONGBAN" Type="int" />
         </EntityType>
@@ -61,7 +61,7 @@
           <Key>
             <PropertyRef Name="MAHOADONBH" />
           </Key>
-          <Property Name="MAHOADONBH" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="MAHOADONBH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NGAYLAPHOADON" Type="smalldatetime" />
           <Property Name="MACUAHANG" Type="char" MaxLength="6" />
         </EntityType>
@@ -177,7 +177,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QLBHModelStoreContainer">
+        <EntityContainer Name="QLBHModel1StoreContainer">
           <EntitySet Name="CHITIETDONDATHANG" EntityType="Self.CHITIETDONDATHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUAHANG" EntityType="Self.CUAHANG" Schema="dbo" store:Type="Tables" />
@@ -224,7 +224,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QLBHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QLBHModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="CHITIETDONDATHANG">
           <Key>
             <PropertyRef Name="MACHITIETDONDATHANG" />
@@ -240,8 +240,8 @@
           <Key>
             <PropertyRef Name="MACHITIETHOADON" />
           </Key>
-          <Property Name="MACHITIETHOADON" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="MAHOADONBH" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="MACHITIETHOADON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAHOADONBH" Type="Int32" />
           <Property Name="MAHANG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="SOLUONGBAN" Type="Int32" />
           <NavigationProperty Name="HOADONBH" Relationship="Self.fk01_CTHD" FromRole="CHITIETHOADON" ToRole="HOADONBH" />
@@ -294,7 +294,7 @@
           <Key>
             <PropertyRef Name="MAHOADONBH" />
           </Key>
-          <Property Name="MAHOADONBH" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MAHOADONBH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NGAYLAPHOADON" Type="DateTime" Precision="0" />
           <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.fk01_CTHD" FromRole="HOADONBH" ToRole="CHITIETHOADON" />
@@ -461,9 +461,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLBHModelStoreContainer" CdmEntityContainer="QLBHEntities">
+        <EntityContainerMapping StorageEntityContainer="QLBHModel1StoreContainer" CdmEntityContainer="QLBHEntities">
           <EntitySetMapping Name="CHITIETDONDATHANGs">
-            <EntityTypeMapping TypeName="QLBHModel.CHITIETDONDATHANG">
+            <EntityTypeMapping TypeName="QLBHModel1.CHITIETDONDATHANG">
               <MappingFragment StoreEntitySet="CHITIETDONDATHANG">
                 <ScalarProperty Name="MACHITIETDONDATHANG" ColumnName="MACHITIETDONDATHANG" />
                 <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
@@ -473,7 +473,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CHITIETHOADONs">
-            <EntityTypeMapping TypeName="QLBHModel.CHITIETHOADON">
+            <EntityTypeMapping TypeName="QLBHModel1.CHITIETHOADON">
               <MappingFragment StoreEntitySet="CHITIETHOADON">
                 <ScalarProperty Name="MACHITIETHOADON" ColumnName="MACHITIETHOADON" />
                 <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
@@ -483,7 +483,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CUAHANGs">
-            <EntityTypeMapping TypeName="QLBHModel.CUAHANG">
+            <EntityTypeMapping TypeName="QLBHModel1.CUAHANG">
               <MappingFragment StoreEntitySet="CUAHANG">
                 <ScalarProperty Name="MACUAHANG" ColumnName="MACUAHANG" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
@@ -491,7 +491,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DONDATHANGs">
-            <EntityTypeMapping TypeName="QLBHModel.DONDATHANG">
+            <EntityTypeMapping TypeName="QLBHModel1.DONDATHANG">
               <MappingFragment StoreEntitySet="DONDATHANG">
                 <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
                 <ScalarProperty Name="MANHACUNGCAP" ColumnName="MANHACUNGCAP" />
@@ -503,7 +503,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HANGs">
-            <EntityTypeMapping TypeName="QLBHModel.HANG">
+            <EntityTypeMapping TypeName="QLBHModel1.HANG">
               <MappingFragment StoreEntitySet="HANG">
                 <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
                 <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
@@ -513,7 +513,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HINHTHUCTHANHTOANs">
-            <EntityTypeMapping TypeName="QLBHModel.HINHTHUCTHANHTOAN">
+            <EntityTypeMapping TypeName="QLBHModel1.HINHTHUCTHANHTOAN">
               <MappingFragment StoreEntitySet="HINHTHUCTHANHTOAN">
                 <ScalarProperty Name="MAHINHTHUCTHANHTOAN" ColumnName="MAHINHTHUCTHANHTOAN" />
                 <ScalarProperty Name="TENHINHTHUCTHANHTOAN" ColumnName="TENHINHTHUCTHANHTOAN" />
@@ -521,7 +521,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HOADONBHs">
-            <EntityTypeMapping TypeName="QLBHModel.HOADONBH">
+            <EntityTypeMapping TypeName="QLBHModel1.HOADONBH">
               <MappingFragment StoreEntitySet="HOADONBH">
                 <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
                 <ScalarProperty Name="NGAYLAPHOADON" ColumnName="NGAYLAPHOADON" />
@@ -530,7 +530,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NHACUNGCAPs">
-            <EntityTypeMapping TypeName="QLBHModel.NHACUNGCAP">
+            <EntityTypeMapping TypeName="QLBHModel1.NHACUNGCAP">
               <MappingFragment StoreEntitySet="NHACUNGCAP">
                 <ScalarProperty Name="MANHACUNGCAP" ColumnName="MANHACUNGCAP" />
                 <ScalarProperty Name="TENNHACUNGCAP" ColumnName="TENNHACUNGCAP" />
@@ -538,7 +538,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="THAMSOes">
-            <EntityTypeMapping TypeName="QLBHModel.THAMSO">
+            <EntityTypeMapping TypeName="QLBHModel1.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
                 <ScalarProperty Name="MATHAMSO" ColumnName="MATHAMSO" />
                 <ScalarProperty Name="SOLUONGNHAPTOITHIEU" ColumnName="SOLUONGNHAPTOITHIEU" />

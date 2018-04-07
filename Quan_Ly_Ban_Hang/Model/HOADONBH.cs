@@ -20,7 +20,7 @@ namespace Quan_Ly_Ban_Hang.Model
             this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
         }
     
-        public string MAHOADONBH { get; set; }
+        public int MAHOADONBH { get; set; }
         public Nullable<System.DateTime> NGAYLAPHOADON { get; set; }
         public string MACUAHANG { get; set; }
     

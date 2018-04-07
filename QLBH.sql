@@ -16,11 +16,7 @@ NGAYGIAOHANG smalldatetime,
 MAHINHTHUCTHANHTOAN INT
 )
 select * from DONDATHANG
-
 insert into DONDATHANG values('123','FM01','3/10/2018','4/2/2018','1')
-insert into DONDATHANG values('148','FM01','3/20/2018','4/1/2018','2')
-insert into DONDATHANG values('148','FM01','3/30/2018','4/10/2018','2')
-
 
 -- HINHTHUCTHANHTOAN
 CREATE TABLE HINHTHUCTHANHTOAN(
@@ -35,7 +31,7 @@ INSERT INTO HINHTHUCTHANHTOAN VALUES('CARD')
 CREATE TABLE CHITIETDONDATHANG(
 MACHITIETDONDATHANG int identity(1,1) primary key,
 MADONDATHANG int,
-MAHANG char(8),
+MAHANG varchar(8),
 SOLUONGNHAP int NOT NULL
 )
 select * from CHITIETDONDATHANG
@@ -67,30 +63,33 @@ TENHANG varchar(15),
 DONGIA money,
 SOLUONGTON int
 constraint pk_H primary key(MAHANG)
-)
-select * from HANG
+select * from HANG where hang.MAHANG = '0125436'
+
 insert into hang values('0123456','sting',10000,20)
 insert into hang values('0123486','bánh',10000,10)
+insert into hang values('0128647','keo',2000,10)
+insert into hang values('0129542','mi goi',5000,10)
+insert into hang values('0125436','nuoc suoi',6000,10)
+insert into hang values('0121462','banh mi',12000,10)
+insert into hang values('0176581','coffee',12000,10)
 
 
+select * from HOADONBH
 --HOADONBANHANG
 CREATE TABLE HOADONBH(
-MAHOADONBH char(8) not null,
+MAHOADONBH INT identity(1,1) primary key,
 NGAYLAPHOADON smalldatetime,
 MACUAHANG char(6)
-constraint pk_HDBH primary key(MAHOADONBH)
 )
-
-
+insert into HOADONBH values ('4/7/2018','FM01')
 --CHITIETHOADON
 CREATE TABLE CHITIETHOADON(
-MACHITIETHOADON char(8) not null,
-MAHOADONBH char(8),
+MACHITIETHOADON INT identity(1,1) primary key,
+MAHOADONBH INT,
 MAHANG varchar(8),
 SOLUONGBAN int
-constraint pk_CTHD primary key(MACHITIETHOADON)
 )
-
+select* from CHITIETHOADON
 
 --THAMSO
 CREATE TABLE THAMSO(

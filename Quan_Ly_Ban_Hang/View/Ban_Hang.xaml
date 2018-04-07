@@ -51,14 +51,15 @@
                     <TextBlock FontSize="30" Padding="10 10 0 0">Số hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                    <TextBlock FontSize="40" Padding="20 0 0 0"></TextBlock>
+                    <TextBlock FontSize="40" Padding="20 0 0 0"
+                               Text="{Binding sodonhang}"></TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
                     <TextBlock FontSize="30" Padding="10 10 0 0"> Ngày lập hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                     <DatePicker VerticalAlignment="Center" FontSize="25"
-                                 Text="{Binding NgayLapHoaDon , Mode=TwoWay , StringFormat='dd/MM/yyy'}"></DatePicker>
+                                 Text="{Binding NgayLapHoaDon , Mode=TwoWay}"></DatePicker>
                 </Border>
                 
             </Grid>
@@ -81,12 +82,12 @@
                 <ComboBox Grid.Column="3" x:Name="cbTenHang"
                       ItemsSource="{Binding ListTenHang}"
                       DisplayMemberPath="TENHANG">
-                    <!--<i:Interaction.Triggers>
+                    <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction Command="{Binding SelectedProductCommand}"
                                        CommandParameter="{Binding ElementName=cbTenHang}"/>
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>-->
+                    </i:Interaction.Triggers>
                 </ComboBox>
                 <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,16,10.4,16.2" Width="122"> Số lượng bán</TextBlock>
                 <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" VerticalAlignment="Center" Height="55"/>
@@ -95,7 +96,7 @@
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView Height="auto" ItemsSource="{Binding ListHang}" x:Name="listNhapHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView Height="auto" ItemsSource="{Binding ListHang}" x:Name="listBanHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>
@@ -120,7 +121,7 @@
                         CommandParameter="{Binding ElementName=GridThongtin}">Thêm</Button>
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding DeleteCommand}" 
-                        CommandParameter="{Binding ElementName=listNhapHang}">Xóa</Button>
+                        CommandParameter="{Binding ElementName=listBanHang}">Xóa</Button>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Width="100"
@@ -131,7 +132,7 @@
                         Command="{Binding SaveToDatabaseCommand}">Lưu</Button>
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding ExitCommand}"
-                        CommandParameter="{Binding ElementName=Formnhaphang}">Thoát</Button>
+                        CommandParameter="{Binding ElementName=formBanHang}">Thoát</Button>
             </StackPanel>
         </Grid>
     </Grid>

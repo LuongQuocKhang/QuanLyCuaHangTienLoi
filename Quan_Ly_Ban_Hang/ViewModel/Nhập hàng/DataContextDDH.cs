@@ -3,7 +3,9 @@ using Quan_Ly_Ban_Hang.ViewModel.Xử_lý;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -82,7 +84,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             DeleteCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 int selectedindex = (p as ListView).SelectedIndex;
-                TongTien -= ListHang[selectedindex].DONGIA;
+                TongTien -= ListHang[selectedindex].DONGIA * ListHang[selectedindex].SOLUONGNHAP;
                 ListHang.RemoveAt(selectedindex);
             });
             ExitCommand = new RelayCommand<object>((p) => true, (p) =>
@@ -147,34 +149,38 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             SaveToDatabaseCommand = new RelayCommand<object>((p) => true, (p) =>
             {
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn đơn đặt hàng không ?","", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn đặt hàng không ?","", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if ( result == MessageBoxResult.Yes)
                 {
-                    // thêm đơn đặt hàng
-                    DONDATHANG dondathang = new DONDATHANG();
-                    //dondathang.MADONDATHANG = sodonhang;
-                    dondathang.MANHACUNGCAP = Manhacungcap.Trim();
-                    dondathang.MACUAHANG = MaCuaHang.Trim();
-                    dondathang.NGAYDATHANG = NgayDatHang;
-                    dondathang.NGAYGIAOHANG = NgayGiaoHang;
-                    dondathang.MAHINHTHUCTHANHTOAN = HinhThucThanhToan;
-
-                    Insert.Instance.ThemDonDatHang(dondathang);
-
-                    foreach (var item in ListHang)
+                    try
                     {
-                        // thêm chi tiết hóa đơn
-                        CHITIETDONDATHANG chitiethoadon = new CHITIETDONDATHANG();
-                        chitiethoadon.MADONDATHANG = dondathang.MADONDATHANG;
-                        chitiethoadon.MAHANG = item.MAHANG.Trim();
-                        chitiethoadon.SOLUONGNHAP = item.SOLUONGNHAP;
-                        Insert.Instance.ThemChiTietDDH(chitiethoadon);
+                        // thêm đơn đặt hàng
+                        DONDATHANG dondathang = new DONDATHANG();
+                        //dondathang.MADONDATHANG = sodonhang;
+                        dondathang.MANHACUNGCAP = Manhacungcap.Trim();
+                        dondathang.MACUAHANG = MaCuaHang.Trim();
+                        dondathang.NGAYDATHANG = NgayDatHang;
+                        dondathang.NGAYGIAOHANG = NgayGiaoHang;
+                        dondathang.MAHINHTHUCTHANHTOAN = HinhThucThanhToan;
 
-                        // cập nhật hàng hóa
-                        Update.Instance.Update_Hang(item.MAHANG, item.SOLUONGNHAP);
+                        Insert.Instance.ThemDonDatHang(dondathang);
+
+                        foreach (var item in ListHang)
+                        {
+                            // thêm chi tiết hóa đơn
+                            CHITIETDONDATHANG chitiethoadon = new CHITIETDONDATHANG();
+                            chitiethoadon.MADONDATHANG = dondathang.MADONDATHANG;
+                            chitiethoadon.MAHANG = item.MAHANG.Trim();
+                            chitiethoadon.SOLUONGNHAP = item.SOLUONGNHAP;
+                            Insert.Instance.ThemChiTietDDH(chitiethoadon);
+
+                            // cập nhật hàng hóa
+                            Update.Instance.Update_SoLuongTon_NhapHang(item.MAHANG, item.SOLUONGNHAP);
+                        }
+                        MessageBox.Show("Lưu vào dữ liệu thành công");
                     }
-                    MessageBox.Show("Lưu vào dữ liệu thành công");
+                    catch (Exception e) { MessageBox.Show(e.ToString()); }
                 }
                 else
                 {
@@ -189,7 +195,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
             ListHang = new ObservableCollection<NHAPHANG>();
             Listnhacungcap = DataProvider.Instance.DB.NHACUNGCAPs.ToList();
-            sodonhang = Int32.Parse(Load.Instance.Load_So_Hoa_Don());
+            sodonhang = Int32.Parse(Load.Instance.Load_So_Hoa_Don_Nhap_Hang());
             ListTenHang = Load.Instance.Load_Thong_Tin_Hang();
             listHTTT = Load.Instance.Load_HTTT();
 

@@ -14,8 +14,8 @@ namespace Quan_Ly_Ban_Hang.Model
     
     public partial class CHITIETHOADON
     {
-        public string MACHITIETHOADON { get; set; }
-        public string MAHOADONBH { get; set; }
+        public int MACHITIETHOADON { get; set; }
+        public Nullable<int> MAHOADONBH { get; set; }
         public string MAHANG { get; set; }
         public Nullable<int> SOLUONGBAN { get; set; }
     
