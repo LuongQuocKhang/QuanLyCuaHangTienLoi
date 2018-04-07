@@ -1,23 +1,26 @@
 ﻿<Window x:Class="Quan_Ly_Ban_Hang.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="500" Width="800"
         DataContext="{StaticResource DataContextVM}">
     <Grid>
-        <Button Content="Nhập hàng" 
+        <Button Content="Button" 
                 HorizontalAlignment="Left" 
                 Margin="65,108,0,0" 
                 VerticalAlignment="Top" 
-                Width="111" Height="50"        
-                Command="{Binding NhapHangCommand}"/>
-        <Button Content="Bán hàng" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Top" 
                 Width="111" Height="50"
-                Command="{Binding BanHangCommand}" Margin="219,108,0,0"/>
+                Command="{Binding LoadCommand}"/>
     </Grid>
 </Window>
