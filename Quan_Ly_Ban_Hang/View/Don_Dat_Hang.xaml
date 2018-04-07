@@ -46,7 +46,7 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayDatHang" VerticalAlignment="Center"
-                                    Text="{Binding NgayDatHang , Mode=TwoWay , StringFormat='dd/MM/yyy'}">
+                                    Text="{Binding NgayDatHang , Mode=TwoWay }" FontSize="25">
                            
                         </DatePicker>
                     </Border>
@@ -64,7 +64,7 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayGiaoHang" VerticalAlignment="Center"
-                                    Text="{Binding NgayGiaoHang , Mode=TwoWay}"></DatePicker>
+                                    Text="{Binding NgayGiaoHang , Mode=TwoWay}" FontSize="25"></DatePicker>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
                         <TextBlock FontSize="20" Padding="5 0 0 0">Hình thức thanh toán</TextBlock>
@@ -162,7 +162,7 @@
                 </i:Interaction.Triggers>
             </ComboBox>
             <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Số lượng</TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbSoluong" Padding="15" FontSize="18" Height="55"/>
+            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" Height="auto" Text="25" VerticalAlignment="Center"/>
         </Grid>
         
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">

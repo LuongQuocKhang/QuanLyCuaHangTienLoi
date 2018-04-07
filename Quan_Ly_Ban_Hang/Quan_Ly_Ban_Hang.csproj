@@ -134,9 +134,9 @@
     <Compile Include="View\Don_Dat_Hang.xaml.cs">
       <DependentUpon>Don_Dat_Hang.xaml</DependentUpon>
     </Compile>
-    <Page Include="Resource\Resource.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Resource.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Ban_Hang.xaml">
       <SubType>Designer</SubType>
