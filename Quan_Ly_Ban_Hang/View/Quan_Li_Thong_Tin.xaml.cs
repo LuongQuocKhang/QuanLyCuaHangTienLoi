@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Quan_Ly_Ban_Hang
+namespace Quan_Ly_Ban_Hang.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Quan_Li_Thong_Tin.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Quan_Li_Thong_Tin : Window
     {
-        public MainWindow()
+        public Quan_Li_Thong_Tin()
         {
             InitializeComponent();
         }
-
-       
     }
 }

@@ -24,5 +24,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             sanpham.SOLUONGTON = sanpham.SOLUONGTON - soluongban;
             DataProvider.Instance.DB.SaveChanges();
         }
+        public void Update_ThongTinSanPham(HANG hang)
+        {
+            HANG sanpham = DataProvider.Instance.DB.HANGs.Where(h => h.MAHANG == hang.MAHANG).SingleOrDefault();
+            sanpham.TENHANG = hang.TENHANG;
+            sanpham.DONGIA = hang.DONGIA;
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

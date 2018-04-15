@@ -1,0 +1,84 @@
+﻿<Window x:Class="Quan_Ly_Ban_Hang.View.Quan_Li_Thong_Tin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quan_Ly_Ban_Hang.View"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        x:Name="FormQLTT"
+        Title="Quản lí thông tin" Height="700" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" >
+            <Label Content="QUẢN LÍ THÔNG TIN SẢN PHẨM" VerticalAlignment="Center" FontSize="30" FontFamily="Arial" ></Label>
+        </Border>
+        <Grid Grid.Row="1" x:Name="GridThongtin">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Mã hàng:" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBox Grid.Column="1" x:Name="txbMaHang" VerticalAlignment="Center"  Text="{Binding ElementName=listsanpham , Path=SelectedItem.MAHANG,Mode=OneWay}"></TextBox>
+            <TextBlock Grid.Column="2" Text="Tên hàng:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
+            <TextBox Grid.Column="3" x:Name="txbTenHang" VerticalAlignment="Center"  Text="{Binding ElementName=listsanpham, Path=SelectedItem.TENHANG,Mode=OneWay}" ></TextBox>
+            <TextBlock Grid.Column="4" Text="Đơn giá:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
+            <TextBox Grid.Column="5" x:Name="txbDonGia" VerticalAlignment="Center" Text="{Binding ElementName=listsanpham, Path=SelectedItem.DONGIA,Mode=OneWay}" ></TextBox>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView Height="auto" ItemsSource="{Binding ListHang}" x:Name="listsanpham" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView x:Name="data">
+                                <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>
+                                <GridViewColumn Header="Tên hàng" DisplayMemberBinding="{Binding TENHANG}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"
+                                   CommandParameter="{Binding ElementName=listsanpham}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Width="100" Margin="20 0 0 0"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="{Binding ElementName=GridThongtin}">Thêm</Button>
+                <Button Width="100" Margin="20 0 0 0"
+                        Command="{Binding DeleteCommand}" 
+                        CommandParameter="{Binding ElementName=listsanpham}">Xóa</Button>
+              
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        
+                <Button Width="100" Margin="20 0 0 0"
+                        Command="{Binding UpdateCommand}"
+                         CommandParameter="{Binding ElementName=GridThongtin}">Sửa</Button>
+                <Button Width="100" Margin="20 0 0 0"
+                        Command="{Binding ExitCommand}"
+                        CommandParameter="{Binding ElementName=FormQLTT}">Thoát</Button>
+            </StackPanel>
+        </Grid>
+    
+    </Grid>
+</Window>

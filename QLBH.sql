@@ -37,6 +37,7 @@ SOLUONGNHAP int NOT NULL
 select * from CHITIETDONDATHANG
 
 
+
 --NHACUNGCAP
 CREATE TABLE NHACUNGCAP(
 MANHACUNGCAP char(8) not null,
@@ -63,7 +64,8 @@ TENHANG varchar(15),
 DONGIA money,
 SOLUONGTON int
 constraint pk_H primary key(MAHANG)
-select * from HANG where hang.MAHANG = '0125436'
+)
+select *  from HANG where hang.MAHANG = '0123458'
 
 insert into hang values('0123456','sting',10000,20)
 insert into hang values('0123486','bánh',10000,10)

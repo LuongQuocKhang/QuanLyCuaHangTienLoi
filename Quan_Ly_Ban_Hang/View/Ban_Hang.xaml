@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="7*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                    <TextBlock Grid.Column="0" FontSize="40" Padding="70 5 0 0">địa chỉ</TextBlock>
+                    <TextBlock Grid.Column="0" FontSize="40" Padding="70 5 0 0">Địa chỉ</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                     <TextBlock FontSize="30" Padding="15"
@@ -44,7 +44,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">

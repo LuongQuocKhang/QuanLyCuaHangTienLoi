@@ -31,5 +31,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             DataProvider.Instance.DB.CHITIETHOADONs.Add(chitiethoadon);
             DataProvider.Instance.DB.SaveChanges();
         }
+
+        public void ThemThongTinSanPham (HANG sanpham)
+        {
+            DataProvider.Instance.DB.HANGs.Add(sanpham);
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

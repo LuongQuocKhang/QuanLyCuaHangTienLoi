@@ -1,0 +1,65 @@
+﻿<Window x:Class="Quan_Ly_Ban_Hang.View.Tim_Kiem"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quan_Ly_Ban_Hang.View"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        x:Name="FormTK"
+        Title="Tim Kiem" Height="700" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" >
+            <Label Content="TÌM KIẾM SẢN PHẨM" VerticalAlignment="Center" FontSize="30" FontFamily="Arial" ></Label>
+        </Border>
+        <Grid Grid.Row="1" x:Name="GridThongtin">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+               
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Mã hàng:" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBox Grid.Column="1" x:Name="txbMaHang" VerticalAlignment="Center"  Text="{Binding FilterText_MH, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Grid.Column="2" Text="Tên hàng:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
+            <TextBox Grid.Column="3" x:Name="txbTenHang" VerticalAlignment="Center"  Text="{Binding FilterText_TH, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+           
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView Height="auto" ItemsSource="{Binding SourceCollection}" x:Name="listsanpham" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                        <ListView.View>
+                            <GridView x:Name="data">
+                                <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>
+                                <GridViewColumn Header="Tên hàng" DisplayMemberBinding="{Binding TENHANG}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="*TÌM THEO GIÁ TRỊ MÃ HÀNG HOẶC TÊN HÀNG" FontSize="20" VerticalAlignment="Center" FontStyle="Oblique" FontWeight="Bold" FontFamily="Lucida Sans"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="100" Margin="20,26,0,26"
+                        Command="{Binding ExitCommand}"
+                        CommandParameter="{Binding ElementName=FormTK}" Content="Thoát"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

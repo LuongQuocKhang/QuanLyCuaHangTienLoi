@@ -1,6 +1,7 @@
 ﻿using Quan_Ly_Ban_Hang.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,10 +32,19 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
         {
             return DataProvider.Instance.DB.CUAHANGs.SingleOrDefault();
         }
-        public List<HANG> Load_Thong_Tin_Hang()
+
+        public ObservableCollection<HANG> Load_Thong_Tin_Hang()
         {
-            return DataProvider.Instance.DB.HANGs.ToList();
+
+            ObservableCollection<HANG> lists=new ObservableCollection<HANG>();
+            var temp = DataProvider.Instance.DB.HANGs.ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
         }
+
         public List<HINHTHUCTHANHTOAN> Load_HTTT()
         {
             return DataProvider.Instance.DB.HINHTHUCTHANHTOANs.ToList();

@@ -118,14 +118,19 @@
     <Compile Include="Model\NHACUNGCAP.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\QUANLITHONGTIN.cs" />
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TIMKIEM.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Bán hàng\DataContextHDBH.cs" />
     <Compile Include="ViewModel\DataContext.cs" />
     <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
+    <Compile Include="ViewModel\Quản lí sản phẩm\DataContextQLTT.cs" />
+    <Compile Include="ViewModel\Tìm kiếm\DataContextTK.cs" />
+    <Compile Include="ViewModel\Xử lý\Delete.cs" />
     <Compile Include="ViewModel\Xử lý\Insert.cs" />
     <Compile Include="ViewModel\Xử lý\Load.cs" />
     <Compile Include="ViewModel\Xử lý\Update.cs" />
@@ -134,6 +139,12 @@
     </Compile>
     <Compile Include="View\Don_Dat_Hang.xaml.cs">
       <DependentUpon>Don_Dat_Hang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Quan_Li_Thong_Tin.xaml.cs">
+      <DependentUpon>Quan_Li_Thong_Tin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Tim_Kiem.xaml.cs">
+      <DependentUpon>Tim_Kiem.xaml</DependentUpon>
     </Compile>
     <Page Include="Resource.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +170,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Quan_Li_Thong_Tin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Tim_Kiem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -184,6 +203,7 @@
     </EntityDeploy>
     <None Include="Model\database.edmx.diagram">
       <DependentUpon>database.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

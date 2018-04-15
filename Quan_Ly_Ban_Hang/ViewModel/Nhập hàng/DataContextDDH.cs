@@ -19,7 +19,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         #region list 
         public ObservableCollection<NHAPHANG> ListHang { get; set; }
         public List<NHACUNGCAP> Listnhacungcap { get; set; }
-        public List<HANG> ListTenHang { get; set; }
+        public ObservableCollection<HANG> ListTenHang { get; set; }
         public List<HINHTHUCTHANHTOAN> listHTTT { get; set; }
         #endregion
 
@@ -157,7 +157,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     {
                         // thêm đơn đặt hàng
                         DONDATHANG dondathang = new DONDATHANG();
-                        //dondathang.MADONDATHANG = sodonhang;
+                        dondathang.MADONDATHANG = sodonhang;
                         dondathang.MANHACUNGCAP = Manhacungcap.Trim();
                         dondathang.MACUAHANG = MaCuaHang.Trim();
                         dondathang.NGAYDATHANG = NgayDatHang;

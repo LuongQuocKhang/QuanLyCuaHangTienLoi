@@ -16,7 +16,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
     {
         #region list 
         public ObservableCollection<BANHANG> ListHang { get; set; }
-        public List<HANG> ListTenHang { get; set; }
+        public ObservableCollection<HANG> ListTenHang { get; set; }
         #endregion
         #region properties
         public int sodonhang { get; set; }

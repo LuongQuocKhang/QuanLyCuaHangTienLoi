@@ -54,7 +54,8 @@
                 </StackPanel>
             </Button>
 
-            <Button Background="#FF432FFF" Grid.Column="5" Height="auto" >
+            <Button Background="#FF432FFF" Grid.Column="5" Height="auto" 
+                    Command="{Binding TimKiemCommand}" >
                 <StackPanel Orientation="Vertical"  >
                     <Image Source="Images/find.png" Height="84" Width="130"/>
                     <TextBlock Text="Tìm kiếm" FontSize="20" HorizontalAlignment="Center"/>
@@ -65,9 +66,9 @@
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="10"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="30"></ColumnDefinition>
@@ -79,7 +80,7 @@
                 </StackPanel>
             </Button>
 
-            <Button Background="#FFFFBD2F" Grid.Column="3" Height="auto" >
+            <Button Background="#FFFFBD2F" Grid.Column="3" Height="auto" Command="{Binding QuanLiCommand}" >
                 <StackPanel Orientation="Vertical" Width="auto" >
                     <Image Source="Images/management.png" Height="84" Width="130"/>
                     <TextBlock Text="Quản lí sản phẩm" TextWrapping="WrapWithOverflow" FontSize="20" HorizontalAlignment="Center" Width="160" />
