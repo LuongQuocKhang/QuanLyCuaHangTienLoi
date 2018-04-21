@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,13 +15,13 @@ using System.Windows.Input;
 
 namespace Quan_Ly_Ban_Hang.ViewModel
 {
-    public class DataContextTK : BaseViewModel, INotifyPropertyChanged
+    public class DataContextTK : BaseViewModel
     {
         public ObservableCollection<HANG> ListHang { get; set; }
-
-        private string filterText_MH,filterText_TH;
+        private string filterText_MH, filterText_TH;
+        private decimal? filterText_DG;
         private CollectionViewSource usersCollection;
-        public event PropertyChangedEventHandler PropertyChanged;
+
         public ICollectionView SourceCollection
         {
             get
@@ -28,6 +29,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 return this.usersCollection.View;
             }
         }
+
+        private ICommand textChangedCommand;
 
         public string FilterText_MH
         {
@@ -39,7 +42,20 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                 filterText_MH = value;
                 this.usersCollection.View.Refresh();
-                RaisePropertyChanged("FilterText_MH");
+                OnPropertyChanged("FilterText_MH");
+            }
+        }
+        public decimal? FilterText_DG
+        {
+            get
+            {
+                return filterText_DG;
+            }
+            set
+            {
+                filterText_DG = value;
+                this.usersCollection.View.Refresh();
+                OnPropertyChanged("filterText_DG");
             }
         }
         public string FilterText_TH
@@ -52,46 +68,51 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                 filterText_TH = value;
                 this.usersCollection.View.Refresh();
-                RaisePropertyChanged("FilterText_TH");
+                OnPropertyChanged("FilterText_TH");
+            }
+        }
+
+        public ICommand TextChangedCommand
+        {
+            get => textChangedCommand;
+            set
+            {
+                if (textChangedCommand != value)
+                {
+                    textChangedCommand = value;
+                    OnPropertyChanged();
+                }
             }
         }
         public DataContextTK()
         {
             LoadInfo();
+
+            TextChangedCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                TextBox dongia = p as TextBox;
+                if (dongia.Text.Length == 0)
+                {
+                    dongia.Text = "0";
+                }
+            });
+
             usersCollection = new CollectionViewSource();
             usersCollection.Source = ListHang;
             usersCollection.Filter += usersCollection_Filter;
         }
-    
-        public void RaisePropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
         void usersCollection_Filter(object sender, FilterEventArgs e)
         {
-            if (string.IsNullOrEmpty(filterText_MH) && string.IsNullOrEmpty(filterText_TH))
+            if (string.IsNullOrEmpty(FilterText_MH) && string.IsNullOrEmpty(FilterText_TH) && string.IsNullOrEmpty(FilterText_DG.ToString()))
             {
                 e.Accepted = true;
                 return;
             }
 
             HANG usr = e.Item as HANG;
-            if(string.IsNullOrEmpty(filterText_MH))
-            {
-                if((usr.TENHANG.ToUpper().Contains(FilterText_TH.ToUpper())) )
-                {
-                    e.Accepted = true;
-                }
-                else
-                {
-                    e.Accepted = false;
-                }
-            }
-            if (string.IsNullOrEmpty(filterText_TH))
-            {
+            string filter_tenhang = StringUtil.RemoveSign4VietnameseString(FilterText_TH);
+            if (!string.IsNullOrEmpty(FilterText_MH))
+            {    
                 if ((usr.MAHANG.ToUpper().Contains(FilterText_MH.ToUpper())))
                 {
                     e.Accepted = true;
@@ -101,8 +122,29 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     e.Accepted = false;
                 }
             }
-
-         
+            if (!string.IsNullOrEmpty(filter_tenhang))
+            {
+                string tenhang = StringUtil.RemoveSign4VietnameseString(usr.TENHANG);
+                if ((tenhang.ToUpper().Contains(filter_tenhang.ToUpper())))
+                {
+                    e.Accepted = true;
+                }
+                else
+                {
+                    e.Accepted = false;
+                }
+            }
+            if (filterText_DG != null)
+            {
+                if (usr.DONGIA.ToString().Contains(filterText_DG.ToString()))
+                {
+                    e.Accepted = true;
+                }
+                else
+                {
+                    e.Accepted = false;
+                }
+            }
         }
         public void LoadInfo()
         {

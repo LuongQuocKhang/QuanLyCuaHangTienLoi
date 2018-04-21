@@ -118,11 +118,9 @@
     <Compile Include="Model\NHACUNGCAP.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\QUANLITHONGTIN.cs" />
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\TIMKIEM.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Bán hàng\DataContextHDBH.cs" />
     <Compile Include="ViewModel\DataContext.cs" />
@@ -133,6 +131,7 @@
     <Compile Include="ViewModel\Xử lý\Delete.cs" />
     <Compile Include="ViewModel\Xử lý\Insert.cs" />
     <Compile Include="ViewModel\Xử lý\Load.cs" />
+    <Compile Include="ViewModel\Xử lý\StringUtil.cs" />
     <Compile Include="ViewModel\Xử lý\Update.cs" />
     <Compile Include="View\Ban_Hang.xaml.cs">
       <DependentUpon>Ban_Hang.xaml</DependentUpon>

@@ -24,13 +24,24 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
                
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Mã hàng:" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
             <TextBox Grid.Column="1" x:Name="txbMaHang" VerticalAlignment="Center"  Text="{Binding FilterText_MH, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Grid.Column="2" Text="Tên hàng:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
             <TextBox Grid.Column="3" x:Name="txbTenHang" VerticalAlignment="Center"  Text="{Binding FilterText_TH, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-           
+            <TextBlock Grid.Column="4" Text="Đơn giá:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
+            <TextBox Grid.Column="5" x:Name="txbDonGia" VerticalAlignment="Center" 
+                     Text="{Binding FilterText_DG, UpdateSourceTrigger=PropertyChanged,TargetNullValue='0'}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding TextChangedCommand}"
+                                   CommandParameter="{Binding ElementName=txbDonGia}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
             <Grid>
@@ -52,11 +63,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Text="*TÌM THEO GIÁ TRỊ MÃ HÀNG HOẶC TÊN HÀNG" FontSize="20" VerticalAlignment="Center" FontStyle="Oblique" FontWeight="Bold" FontFamily="Lucida Sans"></TextBlock>
-            </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Width="100" Margin="20,26,0,26"
+                <Button Width="100" Margin="20,26,20,26"
                         Command="{Binding ExitCommand}"
                         CommandParameter="{Binding ElementName=FormTK}" Content="Thoát"/>
             </StackPanel>
