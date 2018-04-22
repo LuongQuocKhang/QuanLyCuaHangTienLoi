@@ -16,5 +16,22 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             DataProvider.Instance.DB.HANGs.Remove(sanpham);
             DataProvider.Instance.DB.SaveChanges();
         }
+        public void XoaDonDatHang(DONDATHANG dondathang)
+        {
+            List<CHITIETDONDATHANG> collection = DataProvider.Instance.DB.CHITIETDONDATHANGs.Where((p) => p.MADONDATHANG == dondathang.MADONDATHANG).ToList();
+            foreach (var item in collection)
+            {
+                DataProvider.Instance.DB.CHITIETDONDATHANGs.Remove(item);
+            }
+            DataProvider.Instance.DB.DONDATHANGs.Remove(dondathang);
+            DataProvider.Instance.DB.SaveChanges();
+        }
+        public void XoaChiTietDDH(CHITIETDONDATHANG chitiet)
+        {
+            CHITIETDONDATHANG chitietdonhang = DataProvider.Instance.DB.CHITIETDONDATHANGs.Where(p => p.MADONDATHANG == chitiet.MADONDATHANG)
+                                                .Where(p => p.MACHITIETDONDATHANG == chitiet.MACHITIETDONDATHANG).SingleOrDefault();
+            DataProvider.Instance.DB.CHITIETDONDATHANGs.Remove(chitietdonhang);
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

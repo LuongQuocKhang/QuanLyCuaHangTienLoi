@@ -31,5 +31,19 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             sanpham.DONGIA = hang.DONGIA;
             DataProvider.Instance.DB.SaveChanges();
         }
+        public void Update_DonDatHang(DONDATHANG dondathang)
+        {
+            DONDATHANG temp = DataProvider.Instance.DB.DONDATHANGs.Where(d => d.MADONDATHANG == dondathang.MADONDATHANG).SingleOrDefault();
+            temp.NGAYGIAOHANG = dondathang.NGAYGIAOHANG;
+            temp.MAHINHTHUCTHANHTOAN = dondathang.MAHINHTHUCTHANHTOAN;
+            temp.MANHACUNGCAP = dondathang.MANHACUNGCAP;
+            DataProvider.Instance.DB.SaveChanges();
+        }
+        public void Update_ChiTietDDH(int MachitietDDH , int SoLuong)
+        {
+            CHITIETDONDATHANG chitietdonhang = DataProvider.Instance.DB.CHITIETDONDATHANGs.Where(p => p.MACHITIETDONDATHANG == MachitietDDH).SingleOrDefault();
+            chitietdonhang.SOLUONGNHAP = SoLuong;
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace Quan_Ly_Ban_Hang.Model
         public Nullable<int> MADONDATHANG { get; set; }
         public string MAHANG { get; set; }
         public int SOLUONGNHAP { get; set; }
+        public Nullable<int> TONGTIENCHITIET { get; set; }
     
         public virtual DONDATHANG DONDATHANG { get; set; }
         public virtual HANG HANG { get; set; }

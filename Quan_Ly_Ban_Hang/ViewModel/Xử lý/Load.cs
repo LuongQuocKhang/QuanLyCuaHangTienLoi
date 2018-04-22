@@ -49,5 +49,25 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
         {
             return DataProvider.Instance.DB.HINHTHUCTHANHTOANs.ToList();
         }
+        public ObservableCollection<DONDATHANG> LoadDonDatHang()
+        {
+            ObservableCollection<DONDATHANG> lists = new ObservableCollection<DONDATHANG>();
+            var temp = DataProvider.Instance.DB.DONDATHANGs.ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
+        }
+        public ObservableCollection<CHITIETDONDATHANG> LoadChiTietDonHang()
+        {
+            ObservableCollection<CHITIETDONDATHANG> lists = new ObservableCollection<CHITIETDONDATHANG>();
+            var temp = DataProvider.Instance.DB.CHITIETDONDATHANGs.ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
         #region properties
         public int sodonhang { get; set; }
+
         private string manhacungcap;
         public string Manhacungcap
         {
@@ -41,19 +42,25 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 }
             }
         }
+
         private string diachi;
         public string DiaChi { get => diachi; set { if (diachi != value) { diachi = value;OnPropertyChanged(); } } }
+
         private string maCuaHang;
         public string MaCuaHang { get => maCuaHang; set { if (maCuaHang != value) { maCuaHang = value; OnPropertyChanged(); } } }
 
         private string maHang;
         public string MaHang { get => maHang; set { if (maHang != value) { maHang = value; OnPropertyChanged(); } } }
+
         private DateTime ngayDatHang;
         public DateTime NgayDatHang { get => ngayDatHang; set { if (ngayDatHang != value) { ngayDatHang = value; OnPropertyChanged(); } } }
+
         private DateTime ngayGiaoHang;
         public DateTime NgayGiaoHang { get => ngayGiaoHang; set { if (ngayGiaoHang != value) { ngayGiaoHang = value; OnPropertyChanged(); } } }
+
         private int hinhThucThanhToan;
         public int HinhThucThanhToan { get => hinhThucThanhToan; set { if (hinhThucThanhToan != value) { hinhThucThanhToan = value; OnPropertyChanged(); } } }
+
         private int tongTien;
         public int TongTien { get => tongTien; set { if (tongTien != value) { tongTien = value; OnPropertyChanged(); } } }
         #endregion
@@ -113,6 +120,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                                 mahang = textbox.Text;
                                 break;
                             case "txbSoluong":
+                                if (textbox.Text.Length == 0) return;
                                 soluongnhap = Int32.Parse(textbox.Text.ToString());
                                 break;
                         }
@@ -157,7 +165,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     {
                         // thêm đơn đặt hàng
                         DONDATHANG dondathang = new DONDATHANG();
-                        dondathang.MADONDATHANG = sodonhang;
+                        //dondathang.MADONDATHANG = sodonhang;
                         dondathang.MANHACUNGCAP = Manhacungcap.Trim();
                         dondathang.MACUAHANG = MaCuaHang.Trim();
                         dondathang.NGAYDATHANG = NgayDatHang;
@@ -173,6 +181,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                             chitiethoadon.MADONDATHANG = dondathang.MADONDATHANG;
                             chitiethoadon.MAHANG = item.MAHANG.Trim();
                             chitiethoadon.SOLUONGNHAP = item.SOLUONGNHAP;
+                            chitiethoadon.TONGTIENCHITIET = item.TONGITEN;
                             Insert.Instance.ThemChiTietDDH(chitiethoadon);
 
                             // cập nhật hàng hóa

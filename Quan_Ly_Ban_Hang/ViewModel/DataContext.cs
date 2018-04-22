@@ -19,9 +19,9 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         {
             NhapHangCommand = new RelayCommand<object>((p) => true,(p) => 
             {
-                Don_Dat_Hang dondathang = new Don_Dat_Hang();
-                dondathang.DataContext = new DataContextDDH();
-                dondathang.Show();
+                Quan_Ly_DDH QuanlyDDH = new Quan_Ly_DDH();
+                QuanlyDDH.DataContext = new DataContextQuanLyDDH();
+                QuanlyDDH.Show();
             });
             BanHangCommand = new RelayCommand<object>((p) => true, (p) =>
             {

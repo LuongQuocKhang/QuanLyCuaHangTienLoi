@@ -77,7 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\BANHANG.cs" />
     <Compile Include="Model\CHITIETDONDATHANG.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
@@ -114,6 +113,7 @@
     <Compile Include="Model\HOADONBH.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BANHANG.cs" />
     <Compile Include="Model\NHAPHANG.cs" />
     <Compile Include="Model\NHACUNGCAP.cs">
       <DependentUpon>database.tt</DependentUpon>
@@ -126,6 +126,7 @@
     <Compile Include="ViewModel\DataContext.cs" />
     <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
+    <Compile Include="ViewModel\Nhập hàng\DataContextQuanLyDDH.cs" />
     <Compile Include="ViewModel\Quản lí sản phẩm\DataContextQLTT.cs" />
     <Compile Include="ViewModel\Tìm kiếm\DataContextTK.cs" />
     <Compile Include="ViewModel\Xử lý\Delete.cs" />
@@ -141,6 +142,9 @@
     </Compile>
     <Compile Include="View\Quan_Li_Thong_Tin.xaml.cs">
       <DependentUpon>Quan_Li_Thong_Tin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Quan_Ly_DDH.xaml.cs">
+      <DependentUpon>Quan_Ly_DDH.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Tim_Kiem.xaml.cs">
       <DependentUpon>Tim_Kiem.xaml</DependentUpon>
@@ -173,6 +177,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Quan_Ly_DDH.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Tim_Kiem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,7 +210,6 @@
     </EntityDeploy>
     <None Include="Model\database.edmx.diagram">
       <DependentUpon>database.edmx</DependentUpon>
-      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -225,6 +232,7 @@
     <Resource Include="Images\sell.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\refresh.png" />
     <Content Include="Model\database.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>database.edmx</DependentUpon>

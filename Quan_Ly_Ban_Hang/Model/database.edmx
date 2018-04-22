@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLBHModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLBHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHITIETDONDATHANG">
           <Key>
             <PropertyRef Name="MACHITIETDONDATHANG" />
@@ -13,6 +13,7 @@
           <Property Name="MADONDATHANG" Type="int" />
           <Property Name="MAHANG" Type="varchar" MaxLength="8" />
           <Property Name="SOLUONGNHAP" Type="int" Nullable="false" />
+          <Property Name="TONGTIENCHITIET" Type="int" />
         </EntityType>
         <EntityType Name="CHITIETHOADON">
           <Key>
@@ -177,7 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QLBHModel1StoreContainer">
+        <EntityContainer Name="QLBHModelStoreContainer">
           <EntitySet Name="CHITIETDONDATHANG" EntityType="Self.CHITIETDONDATHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CUAHANG" EntityType="Self.CUAHANG" Schema="dbo" store:Type="Tables" />
@@ -224,7 +225,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QLBHModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QLBHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="CHITIETDONDATHANG">
           <Key>
             <PropertyRef Name="MACHITIETDONDATHANG" />
@@ -233,6 +234,7 @@
           <Property Name="MADONDATHANG" Type="Int32" />
           <Property Name="MAHANG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="SOLUONGNHAP" Type="Int32" Nullable="false" />
+          <Property Name="TONGTIENCHITIET" Type="Int32" />
           <NavigationProperty Name="DONDATHANG" Relationship="Self.fk01_CTDDH" FromRole="CHITIETDONDATHANG" ToRole="DONDATHANG" />
           <NavigationProperty Name="HANG" Relationship="Self.fk02_CTDDH" FromRole="CHITIETDONDATHANG" ToRole="HANG" />
         </EntityType>
@@ -461,19 +463,20 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLBHModel1StoreContainer" CdmEntityContainer="QLBHEntities">
+        <EntityContainerMapping StorageEntityContainer="QLBHModelStoreContainer" CdmEntityContainer="QLBHEntities">
           <EntitySetMapping Name="CHITIETDONDATHANGs">
-            <EntityTypeMapping TypeName="QLBHModel1.CHITIETDONDATHANG">
+            <EntityTypeMapping TypeName="QLBHModel.CHITIETDONDATHANG">
               <MappingFragment StoreEntitySet="CHITIETDONDATHANG">
                 <ScalarProperty Name="MACHITIETDONDATHANG" ColumnName="MACHITIETDONDATHANG" />
                 <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
                 <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
                 <ScalarProperty Name="SOLUONGNHAP" ColumnName="SOLUONGNHAP" />
+                <ScalarProperty Name="TONGTIENCHITIET" ColumnName="TONGTIENCHITIET" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CHITIETHOADONs">
-            <EntityTypeMapping TypeName="QLBHModel1.CHITIETHOADON">
+            <EntityTypeMapping TypeName="QLBHModel.CHITIETHOADON">
               <MappingFragment StoreEntitySet="CHITIETHOADON">
                 <ScalarProperty Name="MACHITIETHOADON" ColumnName="MACHITIETHOADON" />
                 <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
@@ -483,7 +486,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CUAHANGs">
-            <EntityTypeMapping TypeName="QLBHModel1.CUAHANG">
+            <EntityTypeMapping TypeName="QLBHModel.CUAHANG">
               <MappingFragment StoreEntitySet="CUAHANG">
                 <ScalarProperty Name="MACUAHANG" ColumnName="MACUAHANG" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
@@ -491,7 +494,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DONDATHANGs">
-            <EntityTypeMapping TypeName="QLBHModel1.DONDATHANG">
+            <EntityTypeMapping TypeName="QLBHModel.DONDATHANG">
               <MappingFragment StoreEntitySet="DONDATHANG">
                 <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
                 <ScalarProperty Name="MANHACUNGCAP" ColumnName="MANHACUNGCAP" />
@@ -503,7 +506,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HANGs">
-            <EntityTypeMapping TypeName="QLBHModel1.HANG">
+            <EntityTypeMapping TypeName="QLBHModel.HANG">
               <MappingFragment StoreEntitySet="HANG">
                 <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
                 <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
@@ -513,7 +516,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HINHTHUCTHANHTOANs">
-            <EntityTypeMapping TypeName="QLBHModel1.HINHTHUCTHANHTOAN">
+            <EntityTypeMapping TypeName="QLBHModel.HINHTHUCTHANHTOAN">
               <MappingFragment StoreEntitySet="HINHTHUCTHANHTOAN">
                 <ScalarProperty Name="MAHINHTHUCTHANHTOAN" ColumnName="MAHINHTHUCTHANHTOAN" />
                 <ScalarProperty Name="TENHINHTHUCTHANHTOAN" ColumnName="TENHINHTHUCTHANHTOAN" />
@@ -521,7 +524,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HOADONBHs">
-            <EntityTypeMapping TypeName="QLBHModel1.HOADONBH">
+            <EntityTypeMapping TypeName="QLBHModel.HOADONBH">
               <MappingFragment StoreEntitySet="HOADONBH">
                 <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
                 <ScalarProperty Name="NGAYLAPHOADON" ColumnName="NGAYLAPHOADON" />
@@ -530,7 +533,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NHACUNGCAPs">
-            <EntityTypeMapping TypeName="QLBHModel1.NHACUNGCAP">
+            <EntityTypeMapping TypeName="QLBHModel.NHACUNGCAP">
               <MappingFragment StoreEntitySet="NHACUNGCAP">
                 <ScalarProperty Name="MANHACUNGCAP" ColumnName="MANHACUNGCAP" />
                 <ScalarProperty Name="TENNHACUNGCAP" ColumnName="TENNHACUNGCAP" />
@@ -538,7 +541,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="THAMSOes">
-            <EntityTypeMapping TypeName="QLBHModel1.THAMSO">
+            <EntityTypeMapping TypeName="QLBHModel.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
                 <ScalarProperty Name="MATHAMSO" ColumnName="MATHAMSO" />
                 <ScalarProperty Name="SOLUONGNHAPTOITHIEU" ColumnName="SOLUONGNHAPTOITHIEU" />
