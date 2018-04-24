@@ -140,11 +140,11 @@
     <Compile Include="View\Don_Dat_Hang.xaml.cs">
       <DependentUpon>Don_Dat_Hang.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Quan_Li_Thong_Tin.xaml.cs">
-      <DependentUpon>Quan_Li_Thong_Tin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Quan_Ly_DDH.xaml.cs">
       <DependentUpon>Quan_Ly_DDH.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Quan_Ly_Thong_Tin.xaml.cs">
+      <DependentUpon>Quan_Ly_Thong_Tin.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Tim_Kiem.xaml.cs">
       <DependentUpon>Tim_Kiem.xaml</DependentUpon>
@@ -173,13 +173,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Quan_Li_Thong_Tin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Quan_Ly_DDH.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Quan_Ly_Thong_Tin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Tim_Kiem.xaml">
       <SubType>Designer</SubType>

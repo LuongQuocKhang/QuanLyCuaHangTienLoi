@@ -245,7 +245,7 @@
                         CommandParameter="{Binding ElementName=listDonHang}">Xóa đơn hàng</Button>
                 <Button Width="135" Margin="20 0 0 0"
                         Command="{Binding CapNhatDonHang}" 
-                        CommandParameter="{Binding ElementName=listDonHang}">sửa đơn hàng</Button>
+                        CommandParameter="{Binding ElementName=listDonHang}">Sửa đơn hàng</Button>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Width="125" Margin="20 0 0 0"

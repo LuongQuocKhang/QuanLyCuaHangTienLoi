@@ -110,7 +110,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             }
 
             HANG usr = e.Item as HANG;
-            string filter_tenhang = StringUtil.RemoveSign4VietnameseString(FilterText_TH);
             if (!string.IsNullOrEmpty(FilterText_MH))
             {    
                 if ((usr.MAHANG.ToUpper().Contains(FilterText_MH.ToUpper())))
@@ -122,8 +121,9 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     e.Accepted = false;
                 }
             }
-            if (!string.IsNullOrEmpty(filter_tenhang))
+            if (!string.IsNullOrEmpty(FilterText_TH))
             {
+                string filter_tenhang = StringUtil.RemoveSign4VietnameseString(FilterText_TH);
                 string tenhang = StringUtil.RemoveSign4VietnameseString(usr.TENHANG);
                 if ((tenhang.ToUpper().Contains(filter_tenhang.ToUpper())))
                 {

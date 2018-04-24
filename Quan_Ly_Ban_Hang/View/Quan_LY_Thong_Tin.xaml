@@ -7,7 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         x:Name="FormQLTT"
-        Title="Quản lí thông tin" Height="700" Width="1000">
+        Title="Quản lý thông tin" Height="700" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
@@ -16,7 +16,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" >
-            <Label Content="QUẢN LÍ THÔNG TIN SẢN PHẨM" VerticalAlignment="Center" FontSize="30" FontFamily="Arial" ></Label>
+            <Label Content="QUẢN LÝ THÔNG TIN SẢN PHẨM" VerticalAlignment="Center" FontSize="30" FontFamily="Arial" ></Label>
         </Border>
         <Grid Grid.Row="1" x:Name="GridThongtin">
             <Grid.ColumnDefinitions>
