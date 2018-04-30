@@ -10,7 +10,7 @@
             <PropertyRef Name="MACHITIETDONDATHANG" />
           </Key>
           <Property Name="MACHITIETDONDATHANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MADONDATHANG" Type="int" />
+          <Property Name="MADONDATHANG" Type="varchar" MaxLength="6" />
           <Property Name="MAHANG" Type="varchar" MaxLength="8" />
           <Property Name="SOLUONGNHAP" Type="int" Nullable="false" />
           <Property Name="TONGTIENCHITIET" Type="int" />
@@ -20,9 +20,10 @@
             <PropertyRef Name="MACHITIETHOADON" />
           </Key>
           <Property Name="MACHITIETHOADON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MAHOADONBH" Type="int" />
+          <Property Name="MAHOADONBH" Type="varchar" MaxLength="6" />
           <Property Name="MAHANG" Type="varchar" MaxLength="8" />
           <Property Name="SOLUONGBAN" Type="int" />
+          <Property Name="TONGTIEN" Type="int" />
         </EntityType>
         <EntityType Name="CUAHANG">
           <Key>
@@ -35,7 +36,7 @@
           <Key>
             <PropertyRef Name="MADONDATHANG" />
           </Key>
-          <Property Name="MADONDATHANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MADONDATHANG" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="MANHACUNGCAP" Type="char" MaxLength="8" />
           <Property Name="MACUAHANG" Type="char" MaxLength="6" />
           <Property Name="NGAYDATHANG" Type="smalldatetime" />
@@ -62,9 +63,10 @@
           <Key>
             <PropertyRef Name="MAHOADONBH" />
           </Key>
-          <Property Name="MAHOADONBH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAHOADONBH" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="NGAYLAPHOADON" Type="smalldatetime" />
           <Property Name="MACUAHANG" Type="char" MaxLength="6" />
+          <Property Name="MANHANVIEN" Type="varchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -72,6 +74,23 @@
           </Key>
           <Property Name="MANHACUNGCAP" Type="char" MaxLength="8" Nullable="false" />
           <Property Name="TENNHACUNGCAP" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANHANVIEN" />
+          </Key>
+          <Property Name="MANHANVIEN" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TENNHANVIEN" Type="varchar" MaxLength="20" />
+          <Property Name="LOAINHANVIEN" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MATAIKHOAN" />
+          </Key>
+          <Property Name="MATAIKHOAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TAIKHOAN" Type="varchar" MaxLength="10" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="10" />
+          <Property Name="MANHANVIEN" Type="varchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="THAMSO">
           <Key>
@@ -81,6 +100,22 @@
           <Property Name="SOLUONGNHAPTOITHIEU" Type="int" />
           <Property Name="SOLUONGTONTOIDADUOCNHAP" Type="int" />
           <Property Name="SOLUONGTONTOITHIEUDUOCBAN" Type="int" />
+        </EntityType>
+        <EntityType Name="THONGKEDONHANG">
+          <Key>
+            <PropertyRef Name="MATHONGKEDONHANG" />
+          </Key>
+          <Property Name="MATHONGKEDONHANG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MADONDATHANG" Type="varchar" MaxLength="6" />
+          <Property Name="TIENDATHANG" Type="int" />
+        </EntityType>
+        <EntityType Name="THONGKEHOADON">
+          <Key>
+            <PropertyRef Name="MATHONGKEHOADON" />
+          </Key>
+          <Property Name="MATHONGKEHOADON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MAHOADONBH" Type="varchar" MaxLength="6" />
+          <Property Name="TIENBANHANG" Type="int" />
         </EntityType>
         <Association Name="fk01_CTDDH">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
@@ -118,6 +153,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk01_DDH_TK">
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
+          <End Role="THONGKEDONHANG" Type="Self.THONGKEDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONDATHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Principal>
+            <Dependent Role="THONGKEDONHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_HD_TK">
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="0..1" />
+          <End Role="THONGKEHOADON" Type="Self.THONGKEHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADONBH">
+              <PropertyRef Name="MAHOADONBH" />
+            </Principal>
+            <Dependent Role="THONGKEHOADON">
+              <PropertyRef Name="MAHOADONBH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk01_HDBH">
           <End Role="CUAHANG" Type="Self.CUAHANG" Multiplicity="0..1" />
           <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
@@ -127,6 +186,18 @@
             </Principal>
             <Dependent Role="HOADONBH">
               <PropertyRef Name="MACUAHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_NV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANHANVIEN" />
+            </Principal>
+            <Dependent Role="HOADONBH">
+              <PropertyRef Name="MANHANVIEN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -166,6 +237,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk02_NV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANHANVIEN" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MANHANVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk03_DDH">
           <End Role="HINHTHUCTHANHTOAN" Type="Self.HINHTHUCTHANHTOAN" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
@@ -187,7 +270,11 @@
           <EntitySet Name="HINHTHUCTHANHTOAN" EntityType="Self.HINHTHUCTHANHTOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOADONBH" EntityType="Self.HOADONBH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THAMSO" EntityType="Self.THAMSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THONGKEDONHANG" EntityType="Self.THONGKEDONHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THONGKEHOADON" EntityType="Self.THONGKEHOADON" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk01_CTDDH" Association="Self.fk01_CTDDH">
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANG" />
@@ -200,8 +287,20 @@
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
+          <AssociationSet Name="fk01_DDH_TK" Association="Self.fk01_DDH_TK">
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+            <End Role="THONGKEDONHANG" EntitySet="THONGKEDONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_HD_TK" Association="Self.fk01_HD_TK">
+            <End Role="HOADONBH" EntitySet="HOADONBH" />
+            <End Role="THONGKEHOADON" EntitySet="THONGKEHOADON" />
+          </AssociationSet>
           <AssociationSet Name="fk01_HDBH" Association="Self.fk01_HDBH">
             <End Role="CUAHANG" EntitySet="CUAHANG" />
+            <End Role="HOADONBH" EntitySet="HOADONBH" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_NV" Association="Self.fk01_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="HOADONBH" EntitySet="HOADONBH" />
           </AssociationSet>
           <AssociationSet Name="fk02_CTDDH" Association="Self.fk02_CTDDH">
@@ -215,6 +314,10 @@
           <AssociationSet Name="fk02_DDH" Association="Self.fk02_DDH">
             <End Role="CUAHANG" EntitySet="CUAHANG" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_NV" Association="Self.fk02_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
           <AssociationSet Name="fk03_DDH" Association="Self.fk03_DDH">
             <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOAN" />
@@ -231,7 +334,7 @@
             <PropertyRef Name="MACHITIETDONDATHANG" />
           </Key>
           <Property Name="MACHITIETDONDATHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MADONDATHANG" Type="Int32" />
+          <Property Name="MADONDATHANG" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="MAHANG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="SOLUONGNHAP" Type="Int32" Nullable="false" />
           <Property Name="TONGTIENCHITIET" Type="Int32" />
@@ -243,9 +346,10 @@
             <PropertyRef Name="MACHITIETHOADON" />
           </Key>
           <Property Name="MACHITIETHOADON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MAHOADONBH" Type="Int32" />
+          <Property Name="MAHOADONBH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="MAHANG" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="SOLUONGBAN" Type="Int32" />
+          <Property Name="TONGTIEN" Type="Int32" />
           <NavigationProperty Name="HOADONBH" Relationship="Self.fk01_CTHD" FromRole="CHITIETHOADON" ToRole="HOADONBH" />
           <NavigationProperty Name="HANG" Relationship="Self.fk02_CTHD" FromRole="CHITIETHOADON" ToRole="HANG" />
         </EntityType>
@@ -262,7 +366,7 @@
           <Key>
             <PropertyRef Name="MADONDATHANG" />
           </Key>
-          <Property Name="MADONDATHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MADONDATHANG" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MANHACUNGCAP" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
           <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="NGAYDATHANG" Type="DateTime" Precision="0" />
@@ -271,6 +375,7 @@
           <NavigationProperty Name="CHITIETDONDATHANGs" Relationship="Self.fk01_CTDDH" FromRole="DONDATHANG" ToRole="CHITIETDONDATHANG" />
           <NavigationProperty Name="CUAHANG" Relationship="Self.fk02_DDH" FromRole="DONDATHANG" ToRole="CUAHANG" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="Self.fk01_DDH" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
+          <NavigationProperty Name="THONGKEDONHANGs" Relationship="Self.fk01_DDH_TK" FromRole="DONDATHANG" ToRole="THONGKEDONHANG" />
           <NavigationProperty Name="HINHTHUCTHANHTOAN" Relationship="Self.fk03_DDH" FromRole="DONDATHANG" ToRole="HINHTHUCTHANHTOAN" />
         </EntityType>
         <EntityType Name="HANG">
@@ -296,11 +401,14 @@
           <Key>
             <PropertyRef Name="MAHOADONBH" />
           </Key>
-          <Property Name="MAHOADONBH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAHOADONBH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NGAYLAPHOADON" Type="DateTime" Precision="0" />
           <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="MANHANVIEN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.fk01_CTHD" FromRole="HOADONBH" ToRole="CHITIETHOADON" />
           <NavigationProperty Name="CUAHANG" Relationship="Self.fk01_HDBH" FromRole="HOADONBH" ToRole="CUAHANG" />
+          <NavigationProperty Name="THONGKEHOADONs" Relationship="Self.fk01_HD_TK" FromRole="HOADONBH" ToRole="THONGKEHOADON" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.fk01_NV" FromRole="HOADONBH" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -310,6 +418,26 @@
           <Property Name="TENNHACUNGCAP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DONDATHANGs" Relationship="Self.fk01_DDH" FromRole="NHACUNGCAP" ToRole="DONDATHANG" />
         </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="MANHANVIEN" />
+          </Key>
+          <Property Name="MANHANVIEN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENNHANVIEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LOAINHANVIEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HOADONBHs" Relationship="Self.fk01_NV" FromRole="NHANVIEN" ToRole="HOADONBH" />
+          <NavigationProperty Name="TAIKHOANs" Relationship="Self.fk02_NV" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="MATAIKHOAN" />
+          </Key>
+          <Property Name="MATAIKHOAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TAIKHOAN1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MANHANVIEN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.fk02_NV" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
+        </EntityType>
         <EntityType Name="THAMSO">
           <Key>
             <PropertyRef Name="MATHAMSO" />
@@ -318,6 +446,24 @@
           <Property Name="SOLUONGNHAPTOITHIEU" Type="Int32" />
           <Property Name="SOLUONGTONTOIDADUOCNHAP" Type="Int32" />
           <Property Name="SOLUONGTONTOITHIEUDUOCBAN" Type="Int32" />
+        </EntityType>
+        <EntityType Name="THONGKEDONHANG">
+          <Key>
+            <PropertyRef Name="MATHONGKEDONHANG" />
+          </Key>
+          <Property Name="MATHONGKEDONHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MADONDATHANG" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="TIENDATHANG" Type="Int32" />
+          <NavigationProperty Name="DONDATHANG" Relationship="Self.fk01_DDH_TK" FromRole="THONGKEDONHANG" ToRole="DONDATHANG" />
+        </EntityType>
+        <EntityType Name="THONGKEHOADON">
+          <Key>
+            <PropertyRef Name="MATHONGKEHOADON" />
+          </Key>
+          <Property Name="MATHONGKEHOADON" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MAHOADONBH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="TIENBANHANG" Type="Int32" />
+          <NavigationProperty Name="HOADONBH" Relationship="Self.fk01_HD_TK" FromRole="THONGKEHOADON" ToRole="HOADONBH" />
         </EntityType>
         <Association Name="fk01_CTDDH">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
@@ -403,6 +549,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk01_DDH_TK">
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
+          <End Role="THONGKEDONHANG" Type="Self.THONGKEDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONDATHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Principal>
+            <Dependent Role="THONGKEDONHANG">
+              <PropertyRef Name="MADONDATHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk03_DDH">
           <End Role="HINHTHUCTHANHTOAN" Type="Self.HINHTHUCTHANHTOAN" Multiplicity="0..1" />
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
@@ -415,6 +573,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk01_HD_TK">
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="0..1" />
+          <End Role="THONGKEHOADON" Type="Self.THONGKEHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADONBH">
+              <PropertyRef Name="MAHOADONBH" />
+            </Principal>
+            <Dependent Role="THONGKEHOADON">
+              <PropertyRef Name="MAHOADONBH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_NV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANHANVIEN" />
+            </Principal>
+            <Dependent Role="HOADONBH">
+              <PropertyRef Name="MANHANVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_NV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANHANVIEN" />
+            </Principal>
+            <Dependent Role="TAIKHOAN">
+              <PropertyRef Name="MANHANVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLBHEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHITIETDONDATHANGs" EntityType="Self.CHITIETDONDATHANG" />
           <EntitySet Name="CHITIETHOADONs" EntityType="Self.CHITIETHOADON" />
@@ -424,7 +618,11 @@
           <EntitySet Name="HINHTHUCTHANHTOANs" EntityType="Self.HINHTHUCTHANHTOAN" />
           <EntitySet Name="HOADONBHs" EntityType="Self.HOADONBH" />
           <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
+          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
           <EntitySet Name="THAMSOes" EntityType="Self.THAMSO" />
+          <EntitySet Name="THONGKEDONHANGs" EntityType="Self.THONGKEDONHANG" />
+          <EntitySet Name="THONGKEHOADONs" EntityType="Self.THONGKEHOADON" />
           <AssociationSet Name="fk01_CTDDH" Association="Self.fk01_CTDDH">
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
             <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANGs" />
@@ -453,9 +651,25 @@
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
           </AssociationSet>
+          <AssociationSet Name="fk01_DDH_TK" Association="Self.fk01_DDH_TK">
+            <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+            <End Role="THONGKEDONHANG" EntitySet="THONGKEDONHANGs" />
+          </AssociationSet>
           <AssociationSet Name="fk03_DDH" Association="Self.fk03_DDH">
             <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOANs" />
             <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_HD_TK" Association="Self.fk01_HD_TK">
+            <End Role="HOADONBH" EntitySet="HOADONBHs" />
+            <End Role="THONGKEHOADON" EntitySet="THONGKEHOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_NV" Association="Self.fk01_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="HOADONBH" EntitySet="HOADONBHs" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_NV" Association="Self.fk02_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -482,6 +696,7 @@
                 <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
                 <ScalarProperty Name="MAHANG" ColumnName="MAHANG" />
                 <ScalarProperty Name="SOLUONGBAN" ColumnName="SOLUONGBAN" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -529,6 +744,7 @@
                 <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
                 <ScalarProperty Name="NGAYLAPHOADON" ColumnName="NGAYLAPHOADON" />
                 <ScalarProperty Name="MACUAHANG" ColumnName="MACUAHANG" />
+                <ScalarProperty Name="MANHANVIEN" ColumnName="MANHANVIEN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -540,6 +756,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="QLBHModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="MANHANVIEN" ColumnName="MANHANVIEN" />
+                <ScalarProperty Name="TENNHANVIEN" ColumnName="TENNHANVIEN" />
+                <ScalarProperty Name="LOAINHANVIEN" ColumnName="LOAINHANVIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOANs">
+            <EntityTypeMapping TypeName="QLBHModel.TAIKHOAN">
+              <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="MATAIKHOAN" ColumnName="MATAIKHOAN" />
+                <ScalarProperty Name="TAIKHOAN1" ColumnName="TAIKHOAN" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="MANHANVIEN" ColumnName="MANHANVIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="THAMSOes">
             <EntityTypeMapping TypeName="QLBHModel.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
@@ -547,6 +782,24 @@
                 <ScalarProperty Name="SOLUONGNHAPTOITHIEU" ColumnName="SOLUONGNHAPTOITHIEU" />
                 <ScalarProperty Name="SOLUONGTONTOIDADUOCNHAP" ColumnName="SOLUONGTONTOIDADUOCNHAP" />
                 <ScalarProperty Name="SOLUONGTONTOITHIEUDUOCBAN" ColumnName="SOLUONGTONTOITHIEUDUOCBAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THONGKEDONHANGs">
+            <EntityTypeMapping TypeName="QLBHModel.THONGKEDONHANG">
+              <MappingFragment StoreEntitySet="THONGKEDONHANG">
+                <ScalarProperty Name="MATHONGKEDONHANG" ColumnName="MATHONGKEDONHANG" />
+                <ScalarProperty Name="MADONDATHANG" ColumnName="MADONDATHANG" />
+                <ScalarProperty Name="TIENDATHANG" ColumnName="TIENDATHANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THONGKEHOADONs">
+            <EntityTypeMapping TypeName="QLBHModel.THONGKEHOADON">
+              <MappingFragment StoreEntitySet="THONGKEHOADON">
+                <ScalarProperty Name="MATHONGKEHOADON" ColumnName="MATHONGKEHOADON" />
+                <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
+                <ScalarProperty Name="TIENBANHANG" ColumnName="TIENBANHANG" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

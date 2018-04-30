@@ -24,7 +24,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         #endregion
 
         #region properties
-        public int sodonhang { get; set; }
+        public string sodonhang { get; set; }
 
         private string manhacungcap;
         public string Manhacungcap
@@ -80,7 +80,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             new Task(() =>
             {
                 Command();
-            }).Start();
+            }).Start();  
         }
         void Command()
         {
@@ -165,7 +165,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     {
                         // thêm đơn đặt hàng
                         DONDATHANG dondathang = new DONDATHANG();
-                        //dondathang.MADONDATHANG = sodonhang;
+                        dondathang.MADONDATHANG = sodonhang;
                         dondathang.MANHACUNGCAP = Manhacungcap.Trim();
                         dondathang.MACUAHANG = MaCuaHang.Trim();
                         dondathang.NGAYDATHANG = NgayDatHang;
@@ -174,6 +174,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
                         Insert.Instance.ThemDonDatHang(dondathang);
 
+                        int tongtien = 0;
                         foreach (var item in ListHang)
                         {
                             // thêm chi tiết hóa đơn
@@ -184,9 +185,16 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                             chitiethoadon.TONGTIENCHITIET = item.TONGITEN;
                             Insert.Instance.ThemChiTietDDH(chitiethoadon);
 
+                            tongtien += item.TONGITEN;
+
                             // cập nhật hàng hóa
                             Update.Instance.Update_SoLuongTon_NhapHang(item.MAHANG, item.SOLUONGNHAP);
                         }
+                        THONGKEDONHANG thongkedonhang = new THONGKEDONHANG();
+                        thongkedonhang.MADONDATHANG = dondathang.MADONDATHANG;
+                        thongkedonhang.TIENDATHANG = tongtien;
+                        Insert.Instance.ThemThongKeDonHang(thongkedonhang);
+
                         MessageBox.Show("Lưu vào dữ liệu thành công");
                     }
                     catch (Exception e) { MessageBox.Show(e.ToString()); }
@@ -204,13 +212,15 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
             ListHang = new ObservableCollection<NHAPHANG>();
             Listnhacungcap = DataProvider.Instance.DB.NHACUNGCAPs.ToList();
-            sodonhang = Int32.Parse(Load.Instance.Load_So_Hoa_Don_Nhap_Hang());
+            sodonhang = PrimaryKey.Instance.CreatePrimaryKey("DONDATHANG", "DDH", 1);
             ListTenHang = Load.Instance.Load_Thong_Tin_Hang();
             listHTTT = Load.Instance.Load_HTTT();
 
             var cuahang = Load.Instance.Load_Cua_Hang();
             DiaChi = cuahang.DIACHI;
-            MaCuaHang = cuahang.MACUAHANG;     
+            MaCuaHang = cuahang.MACUAHANG;
+
+            
         }
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,8 +26,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         #endregion
 
         #region properties
-        private int sodonhang;
-        public int Sodonhang { get => sodonhang; set { if (sodonhang != value) { sodonhang = value; OnPropertyChanged(); } } }
+        private string sodonhang;
+        public string Sodonhang { get => sodonhang; set { if (sodonhang != value) { sodonhang = value; OnPropertyChanged(); } } }
 
         private string manhacungcap;
         public string Manhacungcap { get => manhacungcap; set { if (manhacungcap != value) { manhacungcap = value; OnPropertyChanged(); } } }
@@ -80,7 +81,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public DataContextQuanLyDDH()
         {
             Loadinfo();
-            LoadCommand();
+            new Task( () =>
+            {
+                LoadCommand();
+            }).Start();
         }
 
         private void LoadCommand()
@@ -89,6 +93,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                Don_Dat_Hang dondathang = new Don_Dat_Hang();
                dondathang.DataContext = new DataContextDDH();
+               dondathang.Closing += (sender, e) =>
+               {
+                    ListDonDatHang = Load.Instance.LoadDonDatHang();
+               };
                dondathang.ShowDialog();
             });
             SelectedItemListViewChangedCommand = new RelayCommand<object>((p) => true, (p) =>
@@ -98,7 +106,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 int index = (p as ListView).SelectedIndex;
                 if ( index >= 0 )
                 {
-                    int madondathang = ListDonDatHang[index].MADONDATHANG;
+                    string madondathang = ListDonDatHang[index].MADONDATHANG;
                     var collection = DataProvider.Instance.DB.CHITIETDONDATHANGs.ToList().Where(d => d.MADONDATHANG == madondathang).ToList();
                     foreach (var item in collection)
                     {
@@ -131,10 +139,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     try
                     {
                         int index = (p as ListView).SelectedIndex;
+
                         Delete.Instance.XoaDonDatHang(ListDonDatHang[index]);
                         (p as ListView).SelectedIndex = 0;
                         ListDonDatHang.RemoveAt(index);
                         MessageBox.Show("Xóa thành công");
+                        ListDonDatHang = Load.Instance.LoadDonDatHang();
                     }
                     catch(Exception e)
                     {
@@ -154,6 +164,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         ListDonDatHang[index].MAHINHTHUCTHANHTOAN = HinhThucThanhToan;
                         Update.Instance.Update_DonDatHang(ListDonDatHang[index]);
                         MessageBox.Show("cập nhật thành công .");
+                        ListDonDatHang = Load.Instance.LoadDonDatHang();
                     }
                     catch(Exception e)
                     {
@@ -181,7 +192,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             ThemChiTietDDH = new RelayCommand<object>((p) => true, (p) =>
             {
-                if ((p as ListView).SelectedIndex < 0) return;
                 if (ListChiTiet.Where(h => h.MAHANG == MaHang).ToList().Count > 0)
                 {
                     MessageBox.Show("Mặt hàng đã tồn tại trong đơn đặt hàng");
@@ -219,6 +229,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         {
                             CHITIETDONDATHANG chitiet = ((p as ListView).SelectedItem as CHITIETDONDATHANG);
                             Delete.Instance.XoaChiTietDDH(chitiet);
+                            (p as ListView).SelectedIndex = 0;
                             ListChiTiet.RemoveAt(index);
                             MessageBox.Show("Xóa thành công");
                         }
@@ -236,6 +247,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 try
                 {  
                     ListChiTiet[index].SOLUONGNHAP = SoLuong;
+                    ListChiTiet[index].TONGTIENCHITIET = ListChiTiet[index].SOLUONGNHAP * (int)ListTenHang.Where(sp => sp.MAHANG == ListChiTiet[index].MAHANG).SingleOrDefault().DONGIA.Value;
                     Update.Instance.Update_ChiTietDDH(ListChiTiet[index].MACHITIETDONDATHANG, SoLuong);
                     MessageBox.Show("Cập nhật thành công");
                 }

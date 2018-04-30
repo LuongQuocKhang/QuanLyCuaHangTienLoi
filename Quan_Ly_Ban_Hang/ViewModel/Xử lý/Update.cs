@@ -43,6 +43,36 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         {
             CHITIETDONDATHANG chitietdonhang = DataProvider.Instance.DB.CHITIETDONDATHANGs.Where(p => p.MACHITIETDONDATHANG == MachitietDDH).SingleOrDefault();
             chitietdonhang.SOLUONGNHAP = SoLuong;
+
+            THONGKEDONHANG thongke = DataProvider.Instance.DB.THONGKEDONHANGs.Where(p => p.MADONDATHANG == chitietdonhang.MADONDATHANG).SingleOrDefault();
+            if (thongke != null)
+            {
+                int? tongtien = 0;
+                foreach (var item in DataProvider.Instance.DB.CHITIETDONDATHANGs.Where(p => p.MADONDATHANG == chitietdonhang.MADONDATHANG))
+                {
+                    tongtien += item.TONGTIENCHITIET;
+                }
+                thongke.TIENDATHANG = tongtien;
+            }
+
+            DataProvider.Instance.DB.SaveChanges();
+        }
+        public void Update_ChiTietHD(int MachitietHD, int SoLuong)
+        {
+            CHITIETHOADON chitietdonhang = DataProvider.Instance.DB.CHITIETHOADONs.Where(p => p.MACHITIETHOADON == MachitietHD).SingleOrDefault();
+            chitietdonhang.SOLUONGBAN = SoLuong;
+
+            THONGKEHOADON thongke = DataProvider.Instance.DB.THONGKEHOADONs.Where(p => p.MAHOADONBH == chitietdonhang.MAHOADONBH).SingleOrDefault();
+            if (thongke != null)
+            {
+                int? tongtien = 0;
+                foreach (var item in DataProvider.Instance.DB.CHITIETHOADONs.Where(p => p.MAHOADONBH == chitietdonhang.MAHOADONBH))
+                {
+                    tongtien += item.TONGTIEN;
+                }
+                thongke.TIENBANHANG = tongtien;
+            }
+
             DataProvider.Instance.DB.SaveChanges();
         }
     }

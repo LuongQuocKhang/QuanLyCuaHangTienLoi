@@ -17,17 +17,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
         /// load số hóa đơn của đơn đặt hàng
         /// </summary>
         /// <returns></returns>
-        public string Load_So_Hoa_Don_Nhap_Hang()
-        {
-            var temp = DataProvider.Instance.DB.DONDATHANGs.ToList();
-            return (temp[temp.Count - 1].MADONDATHANG + 1).ToString();
-        }
-        public string Load_So_Hoa_Don_Ban_Hang()
-        {
-            var temp = DataProvider.Instance.DB.HOADONBHs.ToList();
-            return (temp[temp.Count - 1].MAHOADONBH + 1).ToString();
-        }
-
         public CUAHANG Load_Cua_Hang()
         {
             return DataProvider.Instance.DB.CUAHANGs.SingleOrDefault();
@@ -63,6 +52,26 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
         {
             ObservableCollection<CHITIETDONDATHANG> lists = new ObservableCollection<CHITIETDONDATHANG>();
             var temp = DataProvider.Instance.DB.CHITIETDONDATHANGs.ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
+        }
+        public ObservableCollection<HOADONBH> LoadHoaDonBanHang()
+        {
+            ObservableCollection<HOADONBH> lists = new ObservableCollection<HOADONBH>();
+            var temp = DataProvider.Instance.DB.HOADONBHs.ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
+        }
+        public ObservableCollection<CHITIETHOADON> LoadChiTietHoaDonBanHang()
+        {
+            ObservableCollection<CHITIETHOADON> lists = new ObservableCollection<CHITIETHOADON>();
+            var temp = DataProvider.Instance.DB.CHITIETHOADONs.ToList();
             foreach (var item in temp)
             {
                 lists.Add(item);

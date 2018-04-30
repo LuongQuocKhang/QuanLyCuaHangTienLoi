@@ -13,86 +13,124 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800"
-        DataContext="{StaticResource DataContextVM}">
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="1.5*"></RowDefinition>
-            <RowDefinition Height="10"></RowDefinition>
-            <RowDefinition Height="1.5*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
-        </Grid.RowDefinitions>
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="1.5*"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="CornflowerBlue">
-            <TextBlock Text="ỨNG DỤNG QUẢN LÍ CỬA HÀNG TIỆN LỢI" FontSize="18" Background="CornflowerBlue" FontFamily="Cooper Black" TextAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition Width="1.70*"></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition Width="0.75*"></ColumnDefinition>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Background="#FF673AB7"  Grid.Column="1" Height="Auto" 
+                <Grid Grid.Row="0" Background="CornflowerBlue" x:Name="GridTitle">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown">
+                            <i:InvokeCommandAction Command="{Binding MouseDownCommand}"
+                                   CommandParameter="{Binding ElementName=GridTitle}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <TextBlock Text="ỨNG DỤNG QUẢN LÍ CỬA HÀNG TIỆN LỢI" FontSize="18" Background="CornflowerBlue" FontFamily="Cooper Black" TextAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="1.55*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Background="#FF673AB7"  Grid.Column="1" Height="Auto" 
                     Command="{Binding NhapHangCommand}">
-                <StackPanel Orientation="Vertical"  >
-                    <Image Source="Images/cart.png" Height="84" Width="128" />
-                    <TextBlock Text="Quản lý đơn đặt hàng" FontSize="20" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="Images/cart.png" Height="84" Width="128" />
+                            <TextBlock Text="Quản lý đơn đặt hàng" FontSize="20" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-            <Button Background="#FFFF362F" Grid.Column="3" Height="auto" 
+                    <Button Background="#FFFF362F" Grid.Column="3" Height="auto" 
                     Command="{Binding BanHangCommand}">
-                <StackPanel Orientation="Vertical"  >
-                    <Image Source="Images/sell.png" Height="84" Width="128"/>
-                    <TextBlock Text="Quản lý hóa đơn bán hàng" FontSize="20" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="Images/sell.png" Height="84" Width="128"/>
+                            <TextBlock Text="Quản lý hóa đơn bán hàng" FontSize="20" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-            <Button Background="#FF432FFF" Grid.Column="5" Height="auto" 
+                    <Button Background="#FF432FFF" Grid.Column="5" Height="auto" 
                     Command="{Binding TimKiemCommand}" >
-                <StackPanel Orientation="Vertical"  >
-                    <Image Source="Images/find.png" Height="84" Width="130"/>
-                    <TextBlock Text="Tìm kiếm" FontSize="20" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="Images/find.png" Height="84" Width="130"/>
+                            <TextBlock Text="Tìm kiếm" FontSize="20" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-        </Grid>
-        <Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="30"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Background="#FF58B73A"  Grid.Column="1" Height="Auto" >
-                <StackPanel Orientation="Vertical"  >
-                    <Image Source="Images/report.png" Height="84" Width="130"/>
-                    <TextBlock Text="Báo cáo thống kê" Width="auto" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
-                </StackPanel>
-            </Button>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="1.55*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Background="#FF58B73A"  Grid.Column="1" Height="Auto" >
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="Images/report.png" Height="84" Width="130"/>
+                            <TextBlock Text="Báo cáo thống kê" Width="auto" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                        </StackPanel>
+                    </Button>
 
-            <Button Background="#FFFFBD2F" Grid.Column="3" Height="auto" Command="{Binding QuanLiCommand}" >
-                <StackPanel Orientation="Vertical" Width="auto" >
-                    <Image Source="Images/management.png" Height="84" Width="130"/>
-                    <TextBlock Text="Quản lí sản phẩm" TextWrapping="WrapWithOverflow" FontSize="20" HorizontalAlignment="Center" Width="160" />
-                </StackPanel>
-            </Button>
+                    <Button Background="#FFFFBD2F" Grid.Column="3" Height="auto" Command="{Binding QuanLiCommand}" >
+                        <StackPanel Orientation="Vertical" Width="auto" >
+                            <Image Source="Images/management.png" Height="84" Width="130"/>
+                            <TextBlock Text="Quản lí sản phẩm" TextWrapping="WrapWithOverflow" FontSize="20" HorizontalAlignment="Center" Width="160" />
+                        </StackPanel>
+                    </Button>
 
-            <Button Background="#FF2FCEFF" Grid.Column="5" Height="auto"  >
-                <StackPanel Orientation="Vertical"  >
-                    <Image Source="Images/edit.png" Height="84" Width="130"/>
-                    <TextBlock Text="Thay đổi quy định" TextWrapping="WrapWithOverflow" FontSize="20" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-        </Grid>
+                    <Button Background="#FF2FCEFF" Grid.Column="5" Height="auto"  >
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="Images/edit.png" Height="84" Width="130"/>
+                            <TextBlock Text="Quy định" FontSize="20" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="1.55*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Background="#FF58B73A"  Grid.Column="1" Height="Auto" >
+                        <StackPanel Orientation="Vertical"  >
+                            <Image Source="Images/report.png" Height="84" Width="130"/>
+                            <TextBlock Text="Quản lý nhân viên" Width="auto" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="#FFFFBD2F" Grid.Column="3" Height="auto" Command="{Binding QuanLiCommand}" >
+                        <StackPanel Orientation="Vertical" Width="auto" >
+                            <Image Source="Images/management.png" Height="84" Width="130"/>
+                            <TextBlock Text="Quản lí tài khoản" TextWrapping="WrapWithOverflow" FontSize="20" HorizontalAlignment="Center" Width="160" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>

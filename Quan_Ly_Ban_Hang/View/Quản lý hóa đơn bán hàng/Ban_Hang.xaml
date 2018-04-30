@@ -52,7 +52,7 @@
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                     <TextBlock FontSize="40" Padding="20 0 0 0"
-                               Text="{Binding sodonhang}"></TextBlock>
+                               Text="{Binding sohoadon}"></TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
                     <TextBlock FontSize="30" Padding="10 10 0 0"> Ngày lập hóa đơn</TextBlock>

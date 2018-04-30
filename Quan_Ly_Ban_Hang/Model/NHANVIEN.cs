@@ -12,28 +12,22 @@ namespace Quan_Ly_Ban_Hang.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DONDATHANG
+    public partial class NHANVIEN
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DONDATHANG()
+        public NHANVIEN()
         {
-            this.CHITIETDONDATHANGs = new HashSet<CHITIETDONDATHANG>();
-            this.THONGKEDONHANGs = new HashSet<THONGKEDONHANG>();
+            this.HOADONBHs = new HashSet<HOADONBH>();
+            this.TAIKHOANs = new HashSet<TAIKHOAN>();
         }
     
-        public string MADONDATHANG { get; set; }
-        public string MANHACUNGCAP { get; set; }
-        public string MACUAHANG { get; set; }
-        public Nullable<System.DateTime> NGAYDATHANG { get; set; }
-        public Nullable<System.DateTime> NGAYGIAOHANG { get; set; }
-        public Nullable<int> MAHINHTHUCTHANHTOAN { get; set; }
+        public string MANHANVIEN { get; set; }
+        public string TENNHANVIEN { get; set; }
+        public string LOAINHANVIEN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
-        public virtual CUAHANG CUAHANG { get; set; }
-        public virtual NHACUNGCAP NHACUNGCAP { get; set; }
+        public virtual ICollection<HOADONBH> HOADONBHs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<THONGKEDONHANG> THONGKEDONHANGs { get; set; }
-        public virtual HINHTHUCTHANHTOAN HINHTHUCTHANHTOAN { get; set; }
+        public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
     }
 }

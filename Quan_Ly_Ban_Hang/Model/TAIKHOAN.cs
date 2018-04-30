@@ -12,15 +12,13 @@ namespace Quan_Ly_Ban_Hang.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CHITIETDONDATHANG
+    public partial class TAIKHOAN
     {
-        public int MACHITIETDONDATHANG { get; set; }
-        public string MADONDATHANG { get; set; }
-        public string MAHANG { get; set; }
-        public int SOLUONGNHAP { get; set; }
-        public Nullable<int> TONGTIENCHITIET { get; set; }
+        public int MATAIKHOAN { get; set; }
+        public string TAIKHOAN1 { get; set; }
+        public string MATKHAU { get; set; }
+        public string MANHANVIEN { get; set; }
     
-        public virtual DONDATHANG DONDATHANG { get; set; }
-        public virtual HANG HANG { get; set; }
+        public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

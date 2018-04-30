@@ -43,6 +43,7 @@
                                 <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>
                                 <GridViewColumn Header="Tên hàng" DisplayMemberBinding="{Binding TENHANG}"></GridViewColumn>
                                 <GridViewColumn Header="Đơn giá" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding SOLUONGTON}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

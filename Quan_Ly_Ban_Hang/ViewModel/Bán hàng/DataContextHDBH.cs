@@ -18,8 +18,9 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ObservableCollection<BANHANG> ListHang { get; set; }
         public ObservableCollection<HANG> ListTenHang { get; set; }
         #endregion
+
         #region properties
-        public int sodonhang { get; set; }
+        public string sohoadon { get; set; }
         private string diachi;
         public string DiaChi { get => diachi; set { if (diachi != value) { diachi = value; OnPropertyChanged(); } } }
         private string maHang;
@@ -54,7 +55,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
             DiaChi = Load.Instance.Load_Cua_Hang().DIACHI;
             ListTenHang = Load.Instance.Load_Thong_Tin_Hang();
-            sodonhang = Int32.Parse(Load.Instance.Load_So_Hoa_Don_Ban_Hang());
+            sohoadon = PrimaryKey.Instance.CreatePrimaryKey("HOADONBH", "HD", 1);
         }
         public void Command()
         {
@@ -126,11 +127,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 {
                     // thêm hóa đơn
                     HOADONBH hoadon = new HOADONBH();
+                    hoadon.MAHOADONBH = sohoadon;
                     hoadon.MACUAHANG = Load.Instance.Load_Cua_Hang().MACUAHANG;
                     hoadon.NGAYLAPHOADON = NgayLapHoaDon;
-
+                    hoadon.MANHANVIEN = User.Instance.MaNhanVien;
                     Insert.Instance.ThemHoaDonBH(hoadon);
 
+                    int? tongtien = 0;
                     foreach (var item in ListHang)
                     {
                         // thêm chi tiết hóa đơn
@@ -138,12 +141,18 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         chitiet.MAHOADONBH = hoadon.MAHOADONBH;
                         chitiet.MAHANG = item.MAHANG;
                         chitiet.SOLUONGBAN = item.SOLUONGBAN;
-
+                        chitiet.TONGTIEN = item.TONGITEN;
+                        tongtien += item.TONGITEN;
                         Insert.Instance.ThemChiTietHoaDonBH(chitiet);
                         // cập nhật sản phẩm
                         Update.Instance.Update_SoLuongTon_BanHang(item.MAHANG, item.SOLUONGBAN);
-                        MessageBox.Show("Bán thành công");
                     }
+                    THONGKEHOADON thongke = new THONGKEHOADON();
+                    thongke.MAHOADONBH = hoadon.MAHOADONBH;
+                    thongke.TIENBANHANG = tongtien;
+                    Insert.Instance.ThemThongKeHoaDon(thongke);
+
+                    MessageBox.Show("Bán thành công");
                 }
                 catch (Exception e) { MessageBox.Show(e.ToString()); }
             });
