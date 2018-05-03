@@ -123,7 +123,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Background="#FFFFBD2F" Grid.Column="3" Height="auto" Command="{Binding QuanLiCommand}" >
+                    <Button Background="#FF746A53" Grid.Column="3" Height="auto" Command="{Binding QuanLiTaiKhoanCommand}" >
                         <StackPanel Orientation="Vertical" Width="auto" >
                             <Image Source="Images/management.png" Height="84" Width="130"/>
                             <TextBlock Text="Quản lí tài khoản" TextWrapping="WrapWithOverflow" FontSize="20" HorizontalAlignment="Center" Width="160" />

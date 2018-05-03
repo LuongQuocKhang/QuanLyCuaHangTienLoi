@@ -18,6 +18,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand QuanLiCommand { get; set; }
         public ICommand TimKiemCommand { get; set; }
         public ICommand MouseDownCommand { get; set; }
+        public ICommand QuanLiTaiKhoanCommand { get; set; }
         public DataContext()
         {
             NhapHangCommand = new RelayCommand<object>((p) => true,(p) => 
@@ -43,6 +44,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 Tim_Kiem TimKiem = new Tim_Kiem();
                 TimKiem.DataContext = new DataContextTK();
                 TimKiem.ShowDialog();
+            });
+            QuanLiTaiKhoanCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                Quan_Li_Tai_Khoan QuanLiTaiKhoan = new Quan_Li_Tai_Khoan();
+                QuanLiTaiKhoan.DataContext = new DataContextQLTK();
+                QuanLiTaiKhoan.ShowDialog();
             });
             MouseDownCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {

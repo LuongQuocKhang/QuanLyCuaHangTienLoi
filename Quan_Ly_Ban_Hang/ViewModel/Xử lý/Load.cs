@@ -78,5 +78,29 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             }
             return lists;
         }
+
+        public ObservableCollection<NHANVIEN> Load_Thong_Tin_MaNV()
+        {
+
+            ObservableCollection<NHANVIEN> lists = new ObservableCollection<NHANVIEN>();
+            var temp = DataProvider.Instance.DB.NHANVIENs.ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
+        }
+
+        public ObservableCollection<TAIKHOAN> Load_Thong_Tin_Tai_Khoan()
+        {
+
+            ObservableCollection<TAIKHOAN> lists = new ObservableCollection<TAIKHOAN>();
+            var temp = DataProvider.Instance.DB.TAIKHOANs.ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
+        }
     }
 }

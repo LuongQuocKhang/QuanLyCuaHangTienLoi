@@ -1,0 +1,83 @@
+﻿<Window x:Class="Quan_Ly_Ban_Hang.View.Quan_Li_Tai_Khoan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quan_Ly_Ban_Hang.View"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        x:Name="FormQLTK"
+        Title="Quản lý tài khoản" Height="700" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" >
+            <Label Content="QUẢN LÝ TÀI KHOẢN" VerticalAlignment="Center" FontSize="30" FontFamily="Arial" ></Label>
+        </Border>
+        <Grid Grid.Row="1" x:Name="GridThongtin">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="133*"></ColumnDefinition>
+                <ColumnDefinition Width="198*"></ColumnDefinition>
+                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="198*"></ColumnDefinition>
+                <ColumnDefinition Width="199*"></ColumnDefinition>
+                <ColumnDefinition Width="132*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Tài khoản:" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="1,22,198.2,21.2"></TextBlock>
+            <TextBox Grid.Column="1" x:Name="txbTaiKhoan" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.2,29,79.176,29.2"  ></TextBox>
+            <TextBlock Grid.Column="2" Text="Mật khẩu:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.8,22,0,21.2"></TextBlock>
+            <TextBox Grid.Column="4" x:Name="txbMatKhau" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,29,198.6,29.2"   ></TextBox>
+            <TextBlock Grid.Column="5" Text="Mã nhân viên:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center" Margin="6.6,22,6.6,21.2"></TextBlock>
+            <ComboBox Grid.Column="6" x:Name="cbMaNV"
+                      ItemsSource="{Binding ListMaNV}"
+                      IsEditable="true"  IsReadOnly="true" 
+                      DisplayMemberPath="MANHANVIEN" Margin="0.4,28,-0.4,27.2">
+            </ComboBox>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
+            <Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView Height="auto" ItemsSource="{Binding ListTaiKhoan}" x:Name="listtaikhoan" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView x:Name="data">
+                                <GridViewColumn Header="Mã TK" DisplayMemberBinding="{Binding MATAIKHOAN}"></GridViewColumn>
+                                <GridViewColumn Header="Tài khoản" DisplayMemberBinding="{Binding TAIKHOAN1}"></GridViewColumn>
+                                <GridViewColumn Header="Mật khẩu" DisplayMemberBinding="{Binding MATKHAU}"></GridViewColumn>
+                                <GridViewColumn Header="Mã NV" DisplayMemberBinding="{Binding MANHANVIEN}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Width="100" Margin="20 0 0 0"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="{Binding ElementName=GridThongtin}">Thêm</Button>
+                <Button Width="100" Margin="20 0 0 0"
+                        Command="{Binding DeleteCommand}" 
+                        CommandParameter="{Binding ElementName=listtaikhoan}">Xóa</Button>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+
+
+                <Button Width="100" Margin="20 0 0 0"
+                        Command="{Binding ExitCommand}"
+                        CommandParameter="{Binding ElementName=FormQLTK}">Thoát</Button>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
