@@ -73,5 +73,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             DataProvider.Instance.DB.TAIKHOANs.Add(taikhoan);
             DataProvider.Instance.DB.SaveChanges();
         }
+        public void ThemThongTinNhanVien(NHANVIEN nhanvien)
+        {
+            DataProvider.Instance.DB.NHANVIENs.Add(nhanvien);
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

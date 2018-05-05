@@ -116,7 +116,7 @@
                         <ColumnDefinition Width="0.8*"></ColumnDefinition>
                         <ColumnDefinition Width="30"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Background="#FF58B73A"  Grid.Column="1" Height="Auto" >
+                    <Button Background="#FF191A18"  Grid.Column="1" Height="Auto" Command="{Binding QuanLiNhanVienCommand}">
                         <StackPanel Orientation="Vertical"  >
                             <Image Source="Images/report.png" Height="84" Width="130"/>
                             <TextBlock Text="Quản lý nhân viên" Width="auto" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>

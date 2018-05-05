@@ -89,5 +89,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             DataProvider.Instance.DB.TAIKHOANs.Remove(taikhoan);
             DataProvider.Instance.DB.SaveChanges();
         }
+        public void XoaThongTinNhanVien(NHANVIEN nhanvien)
+        {
+            DataProvider.Instance.DB.NHANVIENs.Remove(nhanvien);
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

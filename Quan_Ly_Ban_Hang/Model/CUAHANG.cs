@@ -7,26 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Quan_Ly_Ban_Hang.Model
+using System;
+using System.Collections.Generic;
+
+public partial class CUAHANG
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class CUAHANG
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public CUAHANG()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CUAHANG()
-        {
-            this.HOADONBHs = new HashSet<HOADONBH>();
-            this.DONDATHANGs = new HashSet<DONDATHANG>();
-        }
-    
-        public string MACUAHANG { get; set; }
-        public string DIACHI { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOADONBH> HOADONBHs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
+        this.HOADONBHs = new HashSet<HOADONBH>();
+        this.DONDATHANGs = new HashSet<DONDATHANG>();
     }
+
+    public string MACUAHANG { get; set; }
+    public string DIACHI { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<HOADONBH> HOADONBHs { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
 }

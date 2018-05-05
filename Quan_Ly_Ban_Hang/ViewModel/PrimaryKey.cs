@@ -16,7 +16,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         {
             get
             {
-               if (instance == null)
+                if (instance == null)
                 {
                     instance = new PrimaryKey();
                 }
@@ -28,6 +28,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public string CreatePrimaryKey(string tenbang, string prefix, int buocnhay)
         {
             int DataRow = 0;
+            int lengthMax = 6;
             List<string> list = null;
             if (tenbang == "DONDATHANG")
             {
@@ -39,10 +40,20 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 DataRow = DataProvider.Instance.DB.HOADONBHs.Count();
                 list = DataProvider.Instance.DB.HOADONBHs.Select(x => x.MAHOADONBH).ToList();
             }
+            else if (tenbang == "NHANVIEN")
+            {
+                DataRow = DataProvider.Instance.DB.NHANVIENs.Count();
+                list = DataProvider.Instance.DB.NHANVIENs.Select(x => x.MANHANVIEN).ToList();
+                lengthMax = 4;
+            }
             string khoa = string.Empty;
-            int lengthMax = 6;
+
             if (DataRow == 0)
             {
+                if (lengthMax == 4)
+                {
+                    khoa = prefix + "00";
+                }
                 if (prefix.Length == 1)
                     khoa = prefix + "00000";
                 if (prefix.Length == 2)

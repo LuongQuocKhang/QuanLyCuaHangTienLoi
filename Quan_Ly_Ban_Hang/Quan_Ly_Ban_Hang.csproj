@@ -114,6 +114,9 @@
     <Compile Include="Model\HOADONBH.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\LOAINHANVIEN.cs">
+      <DependentUpon>database.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\NHACUNGCAP.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
@@ -143,6 +146,7 @@
     <Compile Include="ViewModel\Nhập hàng\DataContextQuanLyDDH.cs" />
     <Compile Include="ViewModel\PrimaryKey.cs" />
     <Compile Include="ViewModel\Quản lí sản phẩm\DataContextQLTT.cs" />
+    <Compile Include="ViewModel\Quản lý nhân viên\DataContextQLNV.cs" />
     <Compile Include="ViewModel\Quản lý tài khoản\DataContextQLTK.cs" />
     <Compile Include="ViewModel\Tìm kiếm\DataContextTK.cs" />
     <Compile Include="ViewModel\Xử lý\Delete.cs" />
@@ -151,6 +155,9 @@
     <Compile Include="ViewModel\Xử lý\StringUtil.cs" />
     <Compile Include="ViewModel\Xử lý\Update.cs" />
     <Compile Include="ViewModel\Đăng nhập\DataContextLogin.cs" />
+    <Compile Include="View\Quản lý nhân viên\Quan_Ly_Nhan_Vien.xaml.cs">
+      <DependentUpon>Quan_Ly_Nhan_Vien.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Quản lý tài khoản\Quan_Ly_Tai_Khoan.xaml.cs">
       <DependentUpon>Quan_Ly_Tai_Khoan.xaml</DependentUpon>
     </Compile>
@@ -178,6 +185,10 @@
     <Page Include="Resource.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Quản lý nhân viên\Quan_Ly_Nhan_Vien.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Quản lý tài khoản\Quan_Ly_Tai_Khoan.xaml">
       <SubType>Designer</SubType>

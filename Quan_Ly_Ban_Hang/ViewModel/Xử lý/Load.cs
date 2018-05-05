@@ -102,5 +102,19 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             }
             return lists;
         }
+        public ObservableCollection<string> Load_Thong_Tin_LoaiNV()
+        {
+
+            ObservableCollection<string> lists = new ObservableCollection<string>();
+            var temp = DataProvider.Instance.DB.LOAINHANVIENs.Select(x => x.TENLOAI).ToList();
+            foreach (var item in temp)
+            {
+                lists.Add(item);
+            }
+            return lists;
+        }
+
+    
+
     }
 }

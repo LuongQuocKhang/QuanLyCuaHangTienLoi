@@ -19,6 +19,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand TimKiemCommand { get; set; }
         public ICommand MouseDownCommand { get; set; }
         public ICommand QuanLiTaiKhoanCommand { get; set; }
+        public ICommand QuanLiNhanVienCommand { get; set; }
         public DataContext()
         {
             NhapHangCommand = new RelayCommand<object>((p) => true,(p) => 
@@ -51,6 +52,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 QuanLiTaiKhoan.DataContext = new DataContextQLTK();
                 QuanLiTaiKhoan.ShowDialog();
             });
+            QuanLiNhanVienCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                Quan_Li_Nhan_Vien QuanLiNhanVien = new Quan_Li_Nhan_Vien();
+                QuanLiNhanVien.DataContext = new DataContextQLNV();
+                QuanLiNhanVien.ShowDialog();
+            });
+
             MouseDownCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {
                 FrameworkElement window = GetWindowParent(p);

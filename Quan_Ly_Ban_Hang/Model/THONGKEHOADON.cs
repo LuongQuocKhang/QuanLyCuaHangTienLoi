@@ -7,17 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Quan_Ly_Ban_Hang.Model
+using System;
+using System.Collections.Generic;
+
+public partial class THONGKEHOADON
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class THONGKEHOADON
-    {
-        public int MATHONGKEHOADON { get; set; }
-        public string MAHOADONBH { get; set; }
-        public Nullable<int> TIENBANHANG { get; set; }
-    
-        public virtual HOADONBH HOADONBH { get; set; }
-    }
+    public int MATHONGKEHOADON { get; set; }
+    public string MAHOADONBH { get; set; }
+    public Nullable<int> TIENBANHANG { get; set; }
+
+    public virtual HOADONBH HOADONBH { get; set; }
 }

@@ -7,27 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Quan_Ly_Ban_Hang.Model
+using System;
+using System.Collections.Generic;
+
+public partial class NHANVIEN
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class NHANVIEN
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public NHANVIEN()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NHANVIEN()
-        {
-            this.HOADONBHs = new HashSet<HOADONBH>();
-            this.TAIKHOANs = new HashSet<TAIKHOAN>();
-        }
-    
-        public string MANHANVIEN { get; set; }
-        public string TENNHANVIEN { get; set; }
-        public string LOAINHANVIEN { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOADONBH> HOADONBHs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
+        this.HOADONBHs = new HashSet<HOADONBH>();
+        this.TAIKHOANs = new HashSet<TAIKHOAN>();
     }
+
+    public string MANHANVIEN { get; set; }
+    public string TENNHANVIEN { get; set; }
+    public string LOAINHANVIEN { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<HOADONBH> HOADONBHs { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
 }

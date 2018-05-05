@@ -30,6 +30,7 @@
         <AssociationConnector Association="QLBHModel.fk01_HD_TK" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHModel.fk01_NV" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHModel.fk02_NV" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBHModel.LOAINHANVIEN" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

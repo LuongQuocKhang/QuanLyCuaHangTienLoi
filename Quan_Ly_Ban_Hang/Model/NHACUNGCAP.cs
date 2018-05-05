@@ -7,23 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Quan_Ly_Ban_Hang.Model
+using System;
+using System.Collections.Generic;
+
+public partial class NHACUNGCAP
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class NHACUNGCAP
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public NHACUNGCAP()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NHACUNGCAP()
-        {
-            this.DONDATHANGs = new HashSet<DONDATHANG>();
-        }
-    
-        public string MANHACUNGCAP { get; set; }
-        public string TENNHACUNGCAP { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
+        this.DONDATHANGs = new HashSet<DONDATHANG>();
     }
+
+    public string MANHACUNGCAP { get; set; }
+    public string TENNHACUNGCAP { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
 }

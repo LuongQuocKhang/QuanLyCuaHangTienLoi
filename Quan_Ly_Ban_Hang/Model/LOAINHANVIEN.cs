@@ -10,12 +10,8 @@
 using System;
 using System.Collections.Generic;
 
-public partial class TAIKHOAN
+public partial class LOAINHANVIEN
 {
-    public int MATAIKHOAN { get; set; }
-    public string TAIKHOAN1 { get; set; }
-    public string MATKHAU { get; set; }
-    public string MANHANVIEN { get; set; }
-
-    public virtual NHANVIEN NHANVIEN { get; set; }
+    public int MALOAI { get; set; }
+    public string TENLOAI { get; set; }
 }
