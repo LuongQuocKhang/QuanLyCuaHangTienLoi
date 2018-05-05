@@ -44,16 +44,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                 DataRow = DataProvider.Instance.DB.NHANVIENs.Count();
                 list = DataProvider.Instance.DB.NHANVIENs.Select(x => x.MANHANVIEN).ToList();
-                lengthMax = 4;
             }
             string khoa = string.Empty;
 
             if (DataRow == 0)
             {
-                if (lengthMax == 4)
-                {
-                    khoa = prefix + "00";
-                }
                 if (prefix.Length == 1)
                     khoa = prefix + "00000";
                 if (prefix.Length == 2)

@@ -7,25 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class HANG
+namespace Quan_Ly_Ban_Hang.Model
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public HANG()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class HANG
     {
-        this.CHITIETDONDATHANGs = new HashSet<CHITIETDONDATHANG>();
-        this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HANG()
+        {
+            this.CHITIETDONDATHANGs = new HashSet<CHITIETDONDATHANG>();
+            this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
+        }
+    
+        public string MAHANG { get; set; }
+        public string TENHANG { get; set; }
+        public Nullable<decimal> DONGIA { get; set; }
+        public Nullable<int> SOLUONGTON { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
     }
-
-    public string MAHANG { get; set; }
-    public string TENHANG { get; set; }
-    public Nullable<decimal> DONGIA { get; set; }
-    public Nullable<int> SOLUONGTON { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
 }

@@ -7,30 +7,33 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class DONDATHANG
+namespace Quan_Ly_Ban_Hang.Model
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public DONDATHANG()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class DONDATHANG
     {
-        this.CHITIETDONDATHANGs = new HashSet<CHITIETDONDATHANG>();
-        this.THONGKEDONHANGs = new HashSet<THONGKEDONHANG>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DONDATHANG()
+        {
+            this.CHITIETDONDATHANGs = new HashSet<CHITIETDONDATHANG>();
+            this.THONGKEDONHANGs = new HashSet<THONGKEDONHANG>();
+        }
+    
+        public string MADONDATHANG { get; set; }
+        public string MANHACUNGCAP { get; set; }
+        public string MACUAHANG { get; set; }
+        public Nullable<System.DateTime> NGAYDATHANG { get; set; }
+        public Nullable<System.DateTime> NGAYGIAOHANG { get; set; }
+        public Nullable<int> MAHINHTHUCTHANHTOAN { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
+        public virtual CUAHANG CUAHANG { get; set; }
+        public virtual NHACUNGCAP NHACUNGCAP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THONGKEDONHANG> THONGKEDONHANGs { get; set; }
+        public virtual HINHTHUCTHANHTOAN HINHTHUCTHANHTOAN { get; set; }
     }
-
-    public string MADONDATHANG { get; set; }
-    public string MANHACUNGCAP { get; set; }
-    public string MACUAHANG { get; set; }
-    public Nullable<System.DateTime> NGAYDATHANG { get; set; }
-    public Nullable<System.DateTime> NGAYGIAOHANG { get; set; }
-    public Nullable<int> MAHINHTHUCTHANHTOAN { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
-    public virtual CUAHANG CUAHANG { get; set; }
-    public virtual NHACUNGCAP NHACUNGCAP { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<THONGKEDONHANG> THONGKEDONHANGs { get; set; }
-    public virtual HINHTHUCTHANHTOAN HINHTHUCTHANHTOAN { get; set; }
 }

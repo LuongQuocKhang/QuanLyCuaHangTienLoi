@@ -1,4 +1,5 @@
 ﻿using Quan_Ly_Ban_Hang.Model;
+using Quan_Ly_Ban_Hang.ViewModel.Xử_lý;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                             }
                         }
                     }
-                    if (DataProvider.Instance.DB.TAIKHOANs.Where(t => t.TAIKHOAN1 == taikhoan && t.MATKHAU == matkhau).Count() > 0)
+                    string encode = Encryptor.EncryptData(matkhau);
+                    if (DataProvider.Instance.DB.TAIKHOANs.Where(t => t.TAIKHOAN1 == taikhoan && t.MATKHAU == encode).Count() > 0)
                     {
                         MainWindow main = new MainWindow();
                         FrameworkElement parent = GetWindowParent(p);

@@ -7,13 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class THAMSO
+namespace Quan_Ly_Ban_Hang.Model
 {
-    public int MATHAMSO { get; set; }
-    public Nullable<int> SOLUONGNHAPTOITHIEU { get; set; }
-    public Nullable<int> SOLUONGTONTOIDADUOCNHAP { get; set; }
-    public Nullable<int> SOLUONGTONTOITHIEUDUOCBAN { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class THAMSO
+    {
+        public int MATHAMSO { get; set; }
+        public Nullable<int> SOLUONGNHAPTOITHIEU { get; set; }
+        public Nullable<int> SOLUONGTONTOIDADUOCNHAP { get; set; }
+        public Nullable<int> SOLUONGTONTOITHIEUDUOCBAN { get; set; }
+    }
 }

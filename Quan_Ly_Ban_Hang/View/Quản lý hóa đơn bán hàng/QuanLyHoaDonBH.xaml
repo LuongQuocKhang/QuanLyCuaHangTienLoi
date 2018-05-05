@@ -22,6 +22,13 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Margin="20 5 0 0" Height="auto" FontFamily="Arial" FontSize="30" HorizontalAlignment="Left">Quản lý hóa đơn bán hàng</Label>
+                <!--<Image Grid.Column="1" Source="/Images/refresh.png">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding RefreshCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>-->
             </Grid>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1">

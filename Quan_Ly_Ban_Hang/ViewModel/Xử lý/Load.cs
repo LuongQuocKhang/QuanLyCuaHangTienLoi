@@ -106,7 +106,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
         {
 
             ObservableCollection<string> lists = new ObservableCollection<string>();
-            var temp = DataProvider.Instance.DB.LOAINHANVIENs.Select(x => x.TENLOAI).ToList();
+            var temp = DataProvider.Instance.DB.LOAINHANVIENs.Select(x => x.TENLOAINV).ToList();
             foreach (var item in temp)
             {
                 lists.Add(item);

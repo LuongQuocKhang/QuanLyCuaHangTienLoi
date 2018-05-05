@@ -137,6 +137,7 @@
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\_NhanVien.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Bán hàng\DataContextHDBH.cs" />
     <Compile Include="ViewModel\Bán hàng\DataContextQuanLyHD.cs" />
@@ -144,7 +145,8 @@
     <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextQuanLyDDH.cs" />
-    <Compile Include="ViewModel\PrimaryKey.cs" />
+    <Compile Include="ViewModel\Xử lý\Encryptor.cs" />
+    <Compile Include="ViewModel\Xử lý\PrimaryKey.cs" />
     <Compile Include="ViewModel\Quản lí sản phẩm\DataContextQLTT.cs" />
     <Compile Include="ViewModel\Quản lý nhân viên\DataContextQLNV.cs" />
     <Compile Include="ViewModel\Quản lý tài khoản\DataContextQLTK.cs" />

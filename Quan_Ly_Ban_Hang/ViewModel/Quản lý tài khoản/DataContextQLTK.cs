@@ -14,17 +14,19 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 {
     class DataContextQLTK:BaseViewModel 
     {
+        private string matKhau;
+        public string MatKhau { get { return matKhau; } set { if (matKhau != value){ matKhau = value;OnPropertyChanged(); }}}
         #region list 
         public ObservableCollection<NHANVIEN> ListMaNV { get; set; }
         public ObservableCollection<TAIKHOAN> ListTaiKhoan { get; set; }
 
         #endregion
         #region command
-   
+
         public ICommand DeleteCommand { get; set; }
         public ICommand ExitCommand { get; set; }
         public ICommand AddCommand { get; set; }
-       
+        public ICommand ShowPasswordCommand { get; set; }
         #endregion
 
         public DataContextQLTK()
@@ -48,7 +50,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 string tentaikhoan = "";
                 string matkhau = "";
                 string manv = "";
-
                 foreach (var item in p.Children)
                 {
 
@@ -84,11 +85,20 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     }
                 }
                 if (string.IsNullOrEmpty(tentaikhoan) || string.IsNullOrEmpty(matkhau) || string.IsNullOrEmpty(manv)) return;
-
+                if (DataProvider.Instance.DB.TAIKHOANs.Where(x => x.TAIKHOAN1.ToLower().Contains(tentaikhoan.ToLower())).ToList().Count > 0)
+                {
+                    MessageBox.Show("Tài khoản đã tồn tại");
+                    return;
+                }
+                if (DataProvider.Instance.DB.TAIKHOANs.Where(x => x.MANHANVIEN == manv).ToList().Count > 0)
+                {
+                    MessageBox.Show("Mã nhân viên đã tồn tại");
+                    return;
+                }
                 TAIKHOAN taikhoan = new TAIKHOAN()
                 {
                     TAIKHOAN1 = tentaikhoan,
-                    MATKHAU = matkhau,
+                    MATKHAU = Encryptor.EncryptData(matkhau),
                     MANHANVIEN = manv,
                 };
                 ListTaiKhoan.Add(taikhoan);
@@ -100,6 +110,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 Delete.Instance.XoaThongTinTaiKhoan(ListTaiKhoan[selectedindex]);
                 ListTaiKhoan.RemoveAt(selectedindex);
             });
+            ShowPasswordCommand = new RelayCommand<ListView>((p) => true, (p) =>
+            {
+                int index = (p as ListView).SelectedIndex;
+                string matkhau = ListTaiKhoan[index].MATKHAU;
+                MatKhau = Encryptor.DecryptString(matkhau);
+            });
         }
-        }
+    }
 }

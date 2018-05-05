@@ -37,6 +37,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
         #region Command
         public ICommand SelectedItemListViewChangedCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
         public ICommand OpenCommand { get; set; }
         public ICommand XoaHoaDon { get; set; }
         public ICommand ThemChiTietHD { get; set; }
@@ -176,6 +177,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 {
                     MessageBox.Show(e.ToString());
                 }
+            });
+            RefreshCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                ListHoaDon = Load.Instance.LoadHoaDonBanHang();
             });
         }
 

@@ -47,7 +47,7 @@
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã nhân viên" DisplayMemberBinding="{Binding MANHANVIEN}"></GridViewColumn>
                                 <GridViewColumn Header="Tên nhân viên" DisplayMemberBinding="{Binding TENNHANVIEN}"></GridViewColumn>
-                                <GridViewColumn Header="Loại" DisplayMemberBinding="{Binding LOAINHANVIEN}"></GridViewColumn>
+                                <GridViewColumn Header="Loại" DisplayMemberBinding="{Binding MALOAINV}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -69,11 +69,20 @@
                         CommandParameter="{Binding ElementName=listnhanvien}">Xóa</Button>
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding RefreshCommand}" 
-                        CommandParameter="{Binding ElementName=GridThongtin}">Làm tươi</Button>
+                        CommandParameter="{Binding ElementName=GridThongtin}">Làm mới</Button>
 
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-
+                <StackPanel Width="300">
+                    <TextBlock Height="40" FontSize="25"
+                               VerticalAlignment="Center"
+                               Text="1 - Quản lý">
+                    </TextBlock>
+                    <TextBlock Height="40" FontSize="25"
+                               VerticalAlignment="Center"
+                               Text="2 - Nhân viên">
+                    </TextBlock>
+                </StackPanel>
 
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding ExitCommand}"

@@ -66,14 +66,14 @@
           <Property Name="MAHOADONBH" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="NGAYLAPHOADON" Type="smalldatetime" />
           <Property Name="MACUAHANG" Type="char" MaxLength="6" />
-          <Property Name="MANHANVIEN" Type="varchar" MaxLength="4" />
+          <Property Name="MANHANVIEN" Type="varchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="LOAINHANVIEN">
           <Key>
-            <PropertyRef Name="MALOAI" />
+            <PropertyRef Name="MALOAINV" />
           </Key>
-          <Property Name="MALOAI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TENLOAI" Type="varchar" MaxLength="20" />
+          <Property Name="MALOAINV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TENLOAINV" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -86,9 +86,9 @@
           <Key>
             <PropertyRef Name="MANHANVIEN" />
           </Key>
-          <Property Name="MANHANVIEN" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="MANHANVIEN" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="TENNHANVIEN" Type="varchar" MaxLength="20" />
-          <Property Name="LOAINHANVIEN" Type="varchar" MaxLength="10" />
+          <Property Name="MALOAINV" Type="int" />
         </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
@@ -96,8 +96,8 @@
           </Key>
           <Property Name="MATAIKHOAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TAIKHOAN" Type="varchar" MaxLength="10" />
-          <Property Name="MATKHAU" Type="varchar" MaxLength="10" />
-          <Property Name="MANHANVIEN" Type="varchar" MaxLength="4" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="30" />
+          <Property Name="MANHANVIEN" Type="varchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="THAMSO">
           <Key>
@@ -196,18 +196,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk01_NV">
-          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
-          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NHANVIEN">
-              <PropertyRef Name="MANHANVIEN" />
-            </Principal>
-            <Dependent Role="HOADONBH">
-              <PropertyRef Name="MANHANVIEN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk02_CTDDH">
           <End Role="HANG" Type="Self.HANG" Multiplicity="0..1" />
           <End Role="CHITIETDONDATHANG" Type="Self.CHITIETDONDATHANG" Multiplicity="*" />
@@ -244,6 +232,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk02_LNV">
+          <End Role="LOAINHANVIEN" Type="Self.LOAINHANVIEN" Multiplicity="0..1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAINHANVIEN">
+              <PropertyRef Name="MALOAINV" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="MALOAINV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk02_NV">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
@@ -265,6 +265,18 @@
             </Principal>
             <Dependent Role="DONDATHANG">
               <PropertyRef Name="MAHINHTHUCTHANHTOAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk03_NV">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MANHANVIEN" />
+            </Principal>
+            <Dependent Role="HOADONBH">
+              <PropertyRef Name="MANHANVIEN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -307,10 +319,6 @@
             <End Role="CUAHANG" EntitySet="CUAHANG" />
             <End Role="HOADONBH" EntitySet="HOADONBH" />
           </AssociationSet>
-          <AssociationSet Name="fk01_NV" Association="Self.fk01_NV">
-            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
-            <End Role="HOADONBH" EntitySet="HOADONBH" />
-          </AssociationSet>
           <AssociationSet Name="fk02_CTDDH" Association="Self.fk02_CTDDH">
             <End Role="HANG" EntitySet="HANG" />
             <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANG" />
@@ -323,6 +331,10 @@
             <End Role="CUAHANG" EntitySet="CUAHANG" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
+          <AssociationSet Name="fk02_LNV" Association="Self.fk02_LNV">
+            <End Role="LOAINHANVIEN" EntitySet="LOAINHANVIEN" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+          </AssociationSet>
           <AssociationSet Name="fk02_NV" Association="Self.fk02_NV">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
@@ -330,6 +342,10 @@
           <AssociationSet Name="fk03_DDH" Association="Self.fk03_DDH">
             <End Role="HINHTHUCTHANHTOAN" EntitySet="HINHTHUCTHANHTOAN" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+          </AssociationSet>
+          <AssociationSet Name="fk03_NV" Association="Self.fk03_NV">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="HOADONBH" EntitySet="HOADONBH" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -411,11 +427,19 @@
           <Property Name="MAHOADONBH" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NGAYLAPHOADON" Type="DateTime" Precision="0" />
           <Property Name="MACUAHANG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
-          <Property Name="MANHANVIEN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MANHANVIEN" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.fk01_CTHD" FromRole="HOADONBH" ToRole="CHITIETHOADON" />
           <NavigationProperty Name="CUAHANG" Relationship="Self.fk01_HDBH" FromRole="HOADONBH" ToRole="CUAHANG" />
           <NavigationProperty Name="THONGKEHOADONs" Relationship="Self.fk01_HD_TK" FromRole="HOADONBH" ToRole="THONGKEHOADON" />
-          <NavigationProperty Name="NHANVIEN" Relationship="Self.fk01_NV" FromRole="HOADONBH" ToRole="NHANVIEN" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.fk03_NV" FromRole="HOADONBH" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="LOAINHANVIEN">
+          <Key>
+            <PropertyRef Name="MALOAINV" />
+          </Key>
+          <Property Name="MALOAINV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TENLOAINV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NHANVIENs" Relationship="Self.fk02_LNV" FromRole="LOAINHANVIEN" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -429,10 +453,11 @@
           <Key>
             <PropertyRef Name="MANHANVIEN" />
           </Key>
-          <Property Name="MANHANVIEN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MANHANVIEN" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TENNHANVIEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="LOAINHANVIEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="HOADONBHs" Relationship="Self.fk01_NV" FromRole="NHANVIEN" ToRole="HOADONBH" />
+          <Property Name="MALOAINV" Type="Int32" />
+          <NavigationProperty Name="HOADONBHs" Relationship="Self.fk03_NV" FromRole="NHANVIEN" ToRole="HOADONBH" />
+          <NavigationProperty Name="LOAINHANVIEN" Relationship="Self.fk02_LNV" FromRole="NHANVIEN" ToRole="LOAINHANVIEN" />
           <NavigationProperty Name="TAIKHOANs" Relationship="Self.fk02_NV" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
         </EntityType>
         <EntityType Name="TAIKHOAN">
@@ -441,8 +466,8 @@
           </Key>
           <Property Name="MATAIKHOAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TAIKHOAN1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MATKHAU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MANHANVIEN" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="MATKHAU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MANHANVIEN" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.fk02_NV" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="THAMSO">
@@ -592,7 +617,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk01_NV">
+        <Association Name="fk03_NV">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="HOADONBH" Type="Self.HOADONBH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -601,6 +626,18 @@
             </Principal>
             <Dependent Role="HOADONBH">
               <PropertyRef Name="MANHANVIEN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_LNV">
+          <End Role="LOAINHANVIEN" Type="Self.LOAINHANVIEN" Multiplicity="0..1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAINHANVIEN">
+              <PropertyRef Name="MALOAINV" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="MALOAINV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -624,6 +661,7 @@
           <EntitySet Name="HANGs" EntityType="Self.HANG" />
           <EntitySet Name="HINHTHUCTHANHTOANs" EntityType="Self.HINHTHUCTHANHTOAN" />
           <EntitySet Name="HOADONBHs" EntityType="Self.HOADONBH" />
+          <EntitySet Name="LOAINHANVIENs" EntityType="Self.LOAINHANVIEN" />
           <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
           <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
           <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
@@ -670,23 +708,19 @@
             <End Role="HOADONBH" EntitySet="HOADONBHs" />
             <End Role="THONGKEHOADON" EntitySet="THONGKEHOADONs" />
           </AssociationSet>
-          <AssociationSet Name="fk01_NV" Association="Self.fk01_NV">
+          <AssociationSet Name="fk03_NV" Association="Self.fk03_NV">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="HOADONBH" EntitySet="HOADONBHs" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_LNV" Association="Self.fk02_LNV">
+            <End Role="LOAINHANVIEN" EntitySet="LOAINHANVIENs" />
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
           </AssociationSet>
           <AssociationSet Name="fk02_NV" Association="Self.fk02_NV">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
           </AssociationSet>
-          <EntitySet Name="LOAINHANVIENs" EntityType="QLBHModel.LOAINHANVIEN" />
         </EntityContainer>
-        <EntityType Name="LOAINHANVIEN">
-          <Key>
-            <PropertyRef Name="MALOAI" />
-          </Key>
-          <Property Name="MALOAI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TENLOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -763,6 +797,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LOAINHANVIENs">
+            <EntityTypeMapping TypeName="QLBHModel.LOAINHANVIEN">
+              <MappingFragment StoreEntitySet="LOAINHANVIEN">
+                <ScalarProperty Name="MALOAINV" ColumnName="MALOAINV" />
+                <ScalarProperty Name="TENLOAINV" ColumnName="TENLOAINV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NHACUNGCAPs">
             <EntityTypeMapping TypeName="QLBHModel.NHACUNGCAP">
               <MappingFragment StoreEntitySet="NHACUNGCAP">
@@ -776,7 +818,7 @@
               <MappingFragment StoreEntitySet="NHANVIEN">
                 <ScalarProperty Name="MANHANVIEN" ColumnName="MANHANVIEN" />
                 <ScalarProperty Name="TENNHANVIEN" ColumnName="TENNHANVIEN" />
-                <ScalarProperty Name="LOAINHANVIEN" ColumnName="LOAINHANVIEN" />
+                <ScalarProperty Name="MALOAINV" ColumnName="MALOAINV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -815,14 +857,6 @@
                 <ScalarProperty Name="MATHONGKEHOADON" ColumnName="MATHONGKEHOADON" />
                 <ScalarProperty Name="MAHOADONBH" ColumnName="MAHOADONBH" />
                 <ScalarProperty Name="TIENBANHANG" ColumnName="TIENBANHANG" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LOAINHANVIENs">
-            <EntityTypeMapping TypeName="QLBHModel.LOAINHANVIEN">
-              <MappingFragment StoreEntitySet="LOAINHANVIEN">
-                <ScalarProperty Name="TENLOAI" ColumnName="TENLOAI" />
-                <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

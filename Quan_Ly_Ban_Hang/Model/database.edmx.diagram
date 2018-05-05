@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="224672a482d44ea5a687efadc71ea696" Name="Diagram1">
+      <Diagram DiagramId="16fc22b5a76a422caea17ff5c8e34e18" Name="Diagram1">
         <EntityTypeShape EntityType="QLBHModel.CHITIETDONDATHANG" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.CHITIETHOADON" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.CUAHANG" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
@@ -12,8 +12,9 @@
         <EntityTypeShape EntityType="QLBHModel.HANG" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.HINHTHUCTHANHTOAN" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.HOADONBH" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.LOAINHANVIEN" Width="1.5" PointX="1.5" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.NHANVIEN" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.NHANVIEN" Width="1.5" PointX="3.75" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.TAIKHOAN" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.THAMSO" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.THONGKEDONHANG" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
@@ -28,9 +29,9 @@
         <AssociationConnector Association="QLBHModel.fk01_DDH_TK" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHModel.fk03_DDH" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHModel.fk01_HD_TK" ManuallyRouted="false" />
-        <AssociationConnector Association="QLBHModel.fk01_NV" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBHModel.fk03_NV" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBHModel.fk02_LNV" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHModel.fk02_NV" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="QLBHModel.LOAINHANVIEN" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

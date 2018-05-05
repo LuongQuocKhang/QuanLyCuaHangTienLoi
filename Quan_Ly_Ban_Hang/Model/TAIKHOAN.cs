@@ -7,15 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class TAIKHOAN
+namespace Quan_Ly_Ban_Hang.Model
 {
-    public int MATAIKHOAN { get; set; }
-    public string TAIKHOAN1 { get; set; }
-    public string MATKHAU { get; set; }
-    public string MANHANVIEN { get; set; }
-
-    public virtual NHANVIEN NHANVIEN { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class TAIKHOAN
+    {
+        public int MATAIKHOAN { get; set; }
+        public string TAIKHOAN1 { get; set; }
+        public string MATKHAU { get; set; }
+        public string MANHANVIEN { get; set; }
+    
+        public virtual NHANVIEN NHANVIEN { get; set; }
+    }
 }

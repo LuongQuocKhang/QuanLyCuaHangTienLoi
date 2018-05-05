@@ -83,12 +83,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     }
                 }
                 if (string.IsNullOrEmpty(tennv) || string.IsNullOrEmpty(loainv)) return;
-
+                int MaloaiNV = DataProvider.Instance.DB.LOAINHANVIENs.Where(x => x.TENLOAINV == loainv).SingleOrDefault().MALOAINV;
                 NHANVIEN nhanvien = new NHANVIEN()
                 {
                     TENNHANVIEN = tennv,
                     MANHANVIEN = manv,
-                    LOAINHANVIEN = loainv,
+                    MALOAINV = MaloaiNV
                 };
                 ListNhanVien.Add(nhanvien);
                 Insert.Instance.ThemThongTinNhanVien(nhanvien);

@@ -75,7 +75,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand ThemChiTietDDH { get; set; }
         public ICommand XoaChiTietDDH { get; set; }
         public ICommand SuaChiTietDDH { get; set; }
-        public ICommand Reloadommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
         #endregion
 
         public DataContextQuanLyDDH()
@@ -255,6 +255,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 {
                     MessageBox.Show(e.ToString());
                 }
+            });
+            RefreshCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                ListDonDatHang = Load.Instance.LoadDonDatHang();
             });
         }
         private void Loadinfo()

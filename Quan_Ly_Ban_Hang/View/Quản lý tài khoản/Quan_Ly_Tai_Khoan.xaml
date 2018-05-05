@@ -58,7 +58,7 @@
         </Border>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
@@ -68,7 +68,14 @@
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding DeleteCommand}" 
                         CommandParameter="{Binding ElementName=listtaikhoan}">Xóa</Button>
-
+                <Button Width="120" Margin="20 0 0 0"
+                        Command="{Binding ShowPasswordCommand}" 
+                        CommandParameter="{Binding ElementName=listtaikhoan}">Hiện mật khẩu</Button>
+                <TextBox Width="120" Margin="20 0 0 0" 
+                         IsReadOnly="True"
+                         VerticalAlignment="Center"
+                         FontSize="20"
+                         Text="{Binding MatKhau}"></TextBox>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
 

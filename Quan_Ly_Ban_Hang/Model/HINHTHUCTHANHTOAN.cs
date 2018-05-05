@@ -7,20 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class HINHTHUCTHANHTOAN
+namespace Quan_Ly_Ban_Hang.Model
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public HINHTHUCTHANHTOAN()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class HINHTHUCTHANHTOAN
     {
-        this.DONDATHANGs = new HashSet<DONDATHANG>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HINHTHUCTHANHTOAN()
+        {
+            this.DONDATHANGs = new HashSet<DONDATHANG>();
+        }
+    
+        public int MAHINHTHUCTHANHTOAN { get; set; }
+        public string TENHINHTHUCTHANHTOAN { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
     }
-
-    public int MAHINHTHUCTHANHTOAN { get; set; }
-    public string TENHINHTHUCTHANHTOAN { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
 }

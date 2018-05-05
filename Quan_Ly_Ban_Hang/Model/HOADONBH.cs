@@ -7,27 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class HOADONBH
+namespace Quan_Ly_Ban_Hang.Model
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public HOADONBH()
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class HOADONBH
     {
-        this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
-        this.THONGKEHOADONs = new HashSet<THONGKEHOADON>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HOADONBH()
+        {
+            this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
+            this.THONGKEHOADONs = new HashSet<THONGKEHOADON>();
+        }
+    
+        public string MAHOADONBH { get; set; }
+        public Nullable<System.DateTime> NGAYLAPHOADON { get; set; }
+        public string MACUAHANG { get; set; }
+        public string MANHANVIEN { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
+        public virtual CUAHANG CUAHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THONGKEHOADON> THONGKEHOADONs { get; set; }
+        public virtual NHANVIEN NHANVIEN { get; set; }
     }
-
-    public string MAHOADONBH { get; set; }
-    public Nullable<System.DateTime> NGAYLAPHOADON { get; set; }
-    public string MACUAHANG { get; set; }
-    public string MANHANVIEN { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
-    public virtual CUAHANG CUAHANG { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<THONGKEHOADON> THONGKEHOADONs { get; set; }
-    public virtual NHANVIEN NHANVIEN { get; set; }
 }

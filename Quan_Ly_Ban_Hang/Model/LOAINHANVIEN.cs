@@ -7,11 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
-public partial class LOAINHANVIEN
+namespace Quan_Ly_Ban_Hang.Model
 {
-    public int MALOAI { get; set; }
-    public string TENLOAI { get; set; }
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class LOAINHANVIEN
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LOAINHANVIEN()
+        {
+            this.NHANVIENs = new HashSet<NHANVIEN>();
+        }
+    
+        public int MALOAINV { get; set; }
+        public string TENLOAINV { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NHANVIEN> NHANVIENs { get; set; }
+    }
 }
