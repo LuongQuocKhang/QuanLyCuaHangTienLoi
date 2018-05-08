@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -51,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -145,6 +149,7 @@
     <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextQuanLyDDH.cs" />
+    <Compile Include="ViewModel\Nhập hàng\GuiEmailDataContext.cs" />
     <Compile Include="ViewModel\Xử lý\Encryptor.cs" />
     <Compile Include="ViewModel\Xử lý\PrimaryKey.cs" />
     <Compile Include="ViewModel\Quản lí sản phẩm\DataContextQLTT.cs" />
@@ -174,6 +179,9 @@
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Quản lý đơn đặt hàng\Gui_Mail.xaml.cs">
+      <DependentUpon>Gui_Mail.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Quản lý đơn đặt hàng\Quan_Ly_DDH.xaml.cs">
       <DependentUpon>Quan_Ly_DDH.xaml</DependentUpon>
@@ -221,6 +229,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Quản lý đơn đặt hàng\Gui_Mail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,5 +312,6 @@
       <LastGenOutput>database.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

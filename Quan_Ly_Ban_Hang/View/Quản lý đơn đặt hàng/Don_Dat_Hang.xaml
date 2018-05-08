@@ -194,6 +194,8 @@
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding DeleteCommand}" 
                         CommandParameter="{Binding ElementName=listNhapHang}">Xóa</Button>
+                <Button Width="150" Margin="20 0 0 0"
+                        Command="{Binding SendCommand}">Gửi nhà cung cấp</Button>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Width="100"

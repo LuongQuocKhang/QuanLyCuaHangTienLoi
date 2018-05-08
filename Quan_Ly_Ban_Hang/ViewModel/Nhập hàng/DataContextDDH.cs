@@ -1,9 +1,13 @@
-﻿using Quan_Ly_Ban_Hang.Model;
+﻿using OfficeOpenXml;
+using Quan_Ly_Ban_Hang.Model;
+using Quan_Ly_Ban_Hang.View.Quản_lý_đơn_đặt_hàng;
+using Quan_Ly_Ban_Hang.ViewModel.Nhập_hàng;
 using Quan_Ly_Ban_Hang.ViewModel.Xử_lý;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -73,6 +77,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand SelectedProductCommand { get; set; }
         public ICommand SaveToDatabaseCommand { get; set; }
         public ICommand HinhThucThanhToanCommand { get; set; }
+        public ICommand SendCommand { get; set; }
         #endregion
         public DataContextDDH()
         {
@@ -157,12 +162,15 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             SaveToDatabaseCommand = new RelayCommand<object>((p) => true, (p) =>
             {
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn đặt hàng không ?","", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn đặt hàng không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                if ( result == MessageBoxResult.Yes)
+                if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
+                        // tạo 1 file excel để lưu thông tin
+                        CreateExcelFile();
+
                         // thêm đơn đặt hàng
                         DONDATHANG dondathang = new DONDATHANG();
                         dondathang.MADONDATHANG = sodonhang;
@@ -194,8 +202,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         thongkedonhang.MADONDATHANG = dondathang.MADONDATHANG;
                         thongkedonhang.TIENDATHANG = tongtien;
                         Insert.Instance.ThemThongKeDonHang(thongkedonhang);
-
-                        MessageBox.Show("Lưu vào dữ liệu thành công");
                     }
                     catch (Exception e) { MessageBox.Show(e.ToString()); }
                 }
@@ -204,6 +210,92 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     return;
                 }
             });
+            SendCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                try
+                {
+                    DONDATHANG dondathang = new DONDATHANG();
+                    dondathang.MADONDATHANG = sodonhang;
+                    dondathang.MANHACUNGCAP = Manhacungcap.Trim();
+                    dondathang.MACUAHANG = MaCuaHang.Trim();
+                    dondathang.NGAYDATHANG = NgayDatHang;
+                    dondathang.NGAYGIAOHANG = NgayGiaoHang;
+                    dondathang.MAHINHTHUCTHANHTOAN = HinhThucThanhToan;
+
+                    Gui_Mail mail = new Gui_Mail();
+                    mail.DataContext = new GuiEmailDataContext(dondathang);
+                    mail.ShowDialog();
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            });
+        }
+        public void CreateExcelFile()
+        {
+            string filepath = "";
+            System.Windows.Forms.SaveFileDialog dialog = new System.Windows.Forms.SaveFileDialog();
+            dialog.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {       
+                    filepath = dialog.FileName;
+                    using (ExcelPackage package = new ExcelPackage())
+                    {
+                        package.Workbook.Worksheets.Add("Sheet 1");
+
+                        ExcelWorksheet ws = package.Workbook.Worksheets[1];
+                        ws.Cells.Style.Font.Size = 12;
+
+                        string[] ColumnHeader = { "Mã hàng", "Tên hàng", "Số lượng nhập", "Đơn giá", "Tổng tiền" };
+
+                        // tạo title
+                        int ColumnCount = ColumnHeader.Length;
+                        ws.Cells[1, 1].Value = "Thông tin chi tiết đơn đặt hàng";
+                        ws.Cells[1, 1, 1, ColumnCount].Merge = true;
+                        ws.Cells[1, 1, 1, ColumnCount].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+
+                        // thêm column header
+                        int ColumnIndex = 1;
+                        int RowIndex = 1;
+                        foreach (var item in ColumnHeader)
+                        {
+                            var cell = ws.Cells[RowIndex, ColumnIndex];
+
+                            var fill = cell.Style.Fill;
+                            fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                            fill.BackgroundColor.SetColor(System.Drawing.Color.Azure);
+                            // gán giá trị
+                            cell.Value = item;
+                            ColumnIndex++;
+                        }
+
+                        // thêm giá trị vào Excel
+                        foreach (var item in ListHang)
+                        {
+                            ColumnIndex = 1;
+                            RowIndex++;
+                            ws.Cells[RowIndex, ColumnIndex++].Value = item.MAHANG;
+                            ws.Cells[RowIndex, ColumnIndex++].Value = item.TENHANG;
+                            ws.Cells[RowIndex, ColumnIndex++].Value = item.SOLUONGNHAP;
+                            ws.Cells[RowIndex, ColumnIndex++].Value = item.DONGIA;
+                            ws.Cells[RowIndex, ColumnIndex++].Value = item.TONGITEN;
+                        }
+                        // lưu file
+                        Byte[] ByteArray = package.GetAsByteArray();
+                        File.WriteAllBytes(filepath, ByteArray);
+
+                        MessageBox.Show("Lưu thành công");
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+
+            }
         }
         void LoadInfo()
         {
@@ -218,9 +310,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
             var cuahang = Load.Instance.Load_Cua_Hang();
             DiaChi = cuahang.DIACHI;
-            MaCuaHang = cuahang.MACUAHANG;
-
-            
+            MaCuaHang = cuahang.MACUAHANG;  
         }
     }
 }

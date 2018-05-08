@@ -99,8 +99,14 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 try
                 {
                     int selectedindex = (p as ListView).SelectedIndex;
-                    Delete.Instance.XoaThongTinNhanVien(ListNhanVien[selectedindex]);
-                    ListNhanVien.RemoveAt(selectedindex);
+                    if (Delete.Instance.XoaThongTinNhanVien(ListNhanVien[selectedindex]) == true)
+                    {
+                        ListNhanVien.RemoveAt(selectedindex);
+                    }   
+                    else
+                    {
+                        MessageBox.Show("NHÂN VIÊN ĐÃ CÓ TÀI KHOẢN " + "\n" + "XÓA TÀI KHOẢN TRƯỚC KHI XÓA NHÂN VIÊN", "CẢNH BÁO");
+                    }
                 }
                 catch (Exception e)
                 {
