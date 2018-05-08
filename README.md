@@ -3,7 +3,8 @@
 
 - cài đặt thêm các thư viện :
 
-- interaction
+- interaction : 
 Install-Package System.Windows.Interactivity.WPF
-- entity framework
+- entity framework : 
 Install-Package EntityFramework -Version 6.1.3
+- Thư viện EPPlus
