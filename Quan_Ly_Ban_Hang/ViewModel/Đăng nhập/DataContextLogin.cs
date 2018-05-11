@@ -19,7 +19,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public DataContextLogin()
         {
             loadInfo();
-            AddCommand();
+            new Task(() =>
+            {
+                AddCommand();
+            }).Start();
         }
 
         private void AddCommand()
@@ -48,15 +51,22 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     if (DataProvider.Instance.DB.TAIKHOANs.Where(t => t.TAIKHOAN1 == taikhoan && t.MATKHAU == encode).Count() > 0)
                     {
                         MainWindow main = new MainWindow();
-                        FrameworkElement parent = GetWindowParent(p);
-                        (parent as Window).Visibility = Visibility.Hidden;
-                        main.DataContext = new DataContext();
-                        main.Closing += (sender, e) =>
-                        {
-                            (parent as Window).Visibility = Visibility.Visible;
-                        };
+                        FrameworkElement parent = GetWindowParent(p);                  
+                        //main.Closing += (sender, e) =>
+                        //{
+                        //    try
+                        //    {
+                        //        (parent as Window).Visibility = Visibility.Visible;
+                        //    }
+                        //    catch(Exception ex)
+                        //    {
+                        //        MessageBox.Show(ex.Message);
+                        //    }
+                        //};
                         main.Show();
                         User.Instance.Setvalue(taikhoan,matkhau);
+                        main.DataContext = new DataContext((parent as Window));
+                        (parent as Window).Visibility = Visibility.Hidden;
                     }
                     else
                     {

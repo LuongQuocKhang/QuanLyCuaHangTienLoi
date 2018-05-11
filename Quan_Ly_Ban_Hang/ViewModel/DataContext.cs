@@ -1,4 +1,5 @@
-﻿using Quan_Ly_Ban_Hang.View;
+﻿using Quan_Ly_Ban_Hang.Model;
+using Quan_Ly_Ban_Hang.View;
 using Quan_Ly_Ban_Hang.View.Quản_lý_hóa_đơn_bán_hàng;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 {
     public class DataContext : BaseViewModel
     {
+        #region Properties
+        private string name;
+        public string Name { get => name; set { if (name != value) { name = value; OnPropertyChanged(); } } }
+
+        public Window win { get; set; }
+        #endregion
         public ICommand NhapHangCommand { get; set; }
         public ICommand BanHangCommand { get; set; }
         public ICommand QuanLiCommand { get; set; }
@@ -20,9 +27,27 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand MouseDownCommand { get; set; }
         public ICommand QuanLiTaiKhoanCommand { get; set; }
         public ICommand QuanLiNhanVienCommand { get; set; }
-        public DataContext()
+        public ICommand ExitCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
+        public ICommand ClosingCommand { get; set; }
+        public DataContext(Window window)
         {
-            NhapHangCommand = new RelayCommand<object>((p) => true,(p) => 
+            win = window;
+            LoadInfo();
+            new Task(() =>
+            {
+                Command();
+            }).Start();
+        }
+
+        private void LoadInfo()
+        {
+            Name = User.Instance.TenNhanVien;
+        }
+        private bool isLogOut = false;
+        public void Command()
+        {
+            NhapHangCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 Quan_Ly_DDH QuanlyDDH = new Quan_Ly_DDH();
                 QuanlyDDH.DataContext = new DataContextQuanLyDDH();
@@ -34,7 +59,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 quanlyhoadon.DataContext = new DataContextQuanLyHD();
                 quanlyhoadon.ShowDialog();
             });
-            QuanLiCommand=new RelayCommand<object>((p) => true, (p) =>
+            QuanLiCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 Quan_Li_Thong_Tin QuanLiThongTin = new Quan_Li_Thong_Tin();
                 QuanLiThongTin.DataContext = new DataContextQLTT();
@@ -58,7 +83,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 QuanLiNhanVien.DataContext = new DataContextQLNV();
                 QuanLiNhanVien.ShowDialog();
             });
-
             MouseDownCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {
                 FrameworkElement window = GetWindowParent(p);
@@ -66,6 +90,22 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 if (w != null)
                 {
                     w.DragMove();
+                }
+            });
+            LogOutCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                isLogOut = true;
+                (p as Window).Close();
+            });
+            ExitCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                Application.Current.Shutdown();
+            });
+            ClosingCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                if (isLogOut == true)
+                {
+                    win.Visibility = Visibility.Visible;
                 }
             });
         }

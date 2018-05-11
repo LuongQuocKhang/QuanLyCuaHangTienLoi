@@ -99,6 +99,7 @@
                     <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
                             Width="100"
                             Grid.Column="1"
+                            IsCancel="True"
                             Command="{Binding ExitCommand}"
                             ToolTip="Resource name: MaterialDesignRaisedLightButton">
                         Thoát

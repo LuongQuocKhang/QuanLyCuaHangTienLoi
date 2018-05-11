@@ -301,6 +301,10 @@
     <Resource Include="Images\management.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Employee.png" />
+    <Resource Include="Images\Exit.png" />
+    <Resource Include="Images\LogOut.png" />
+    <Resource Include="Images\User.png" />
     <Content Include="Model\database.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>database.edmx</DependentUpon>
