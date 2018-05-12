@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang.View"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="Ban_Hang" Height="700" Width="1000"
         x:Name="formBanHang">
@@ -23,7 +24,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                    <TextBlock FontFamily="Arial" FontSize="40" Padding="15"
+                    <TextBlock FontFamily="Arial" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"
                            TextAlignment="Center">Hóa đơn bán hàng</TextBlock>
                 </Border>
             </Grid>
@@ -33,10 +34,10 @@
                     <ColumnDefinition Width="7*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                    <TextBlock Grid.Column="0" FontSize="40" Padding="70 5 0 0">Địa chỉ</TextBlock>
+                    <TextBlock Grid.Column="0" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">Địa chỉ</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                    <TextBlock FontSize="30" Padding="15"
+                    <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"
                                Text="{Binding DiaChi}"></TextBlock>
                 </Border>
             </Grid>
@@ -48,17 +49,17 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                    <TextBlock FontSize="30" Padding="10 10 0 0">Số hóa đơn</TextBlock>
+                    <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center">Số hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                    <TextBlock FontSize="40" Padding="20 0 0 0"
-                               Text="{Binding sohoadon}"></TextBlock>
+                    <TextBlock FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Text="{Binding SoHoaDon}"></TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                    <TextBlock FontSize="30" Padding="10 10 0 0"> Ngày lập hóa đơn</TextBlock>
+                    <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
-                    <DatePicker VerticalAlignment="Center" FontSize="25"
+                    <DatePicker VerticalAlignment="Center" FontSize="25"        
                                  Text="{Binding NgayLapHoaDon , Mode=TwoWay}"></DatePicker>
                 </Border>
                 

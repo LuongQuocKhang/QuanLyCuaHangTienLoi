@@ -20,7 +20,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         #endregion
 
         #region properties
-        public string sohoadon { get; set; }
+        private string soHoaDon;
+        public string SoHoaDon { get => soHoaDon; set { if (soHoaDon != value) { soHoaDon = value; OnPropertyChanged(); } } }
         private string diachi;
         public string DiaChi { get => diachi; set { if (diachi != value) { diachi = value; OnPropertyChanged(); } } }
         private string maHang;
@@ -55,7 +56,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
             DiaChi = Load.Instance.Load_Cua_Hang().DIACHI;
             ListTenHang = Load.Instance.Load_Thong_Tin_Hang();
-            sohoadon = PrimaryKey.Instance.CreatePrimaryKey("HOADONBH", "HD", 1);
+            SoHoaDon = PrimaryKey.Instance.CreatePrimaryKey("HOADONBH", "HD", 1);
         }
         public void Command()
         {
@@ -127,7 +128,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 {
                     // thêm hóa đơn
                     HOADONBH hoadon = new HOADONBH();
-                    hoadon.MAHOADONBH = sohoadon;
+                    hoadon.MAHOADONBH = SoHoaDon;
                     hoadon.MACUAHANG = Load.Instance.Load_Cua_Hang().MACUAHANG;
                     hoadon.NGAYLAPHOADON = NgayLapHoaDon;
                     hoadon.MANHANVIEN = User.Instance.MaNhanVien;
@@ -153,6 +154,9 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     Insert.Instance.ThemThongKeHoaDon(thongke);
 
                     MessageBox.Show("Bán thành công");
+
+                    SoHoaDon = PrimaryKey.Instance.CreatePrimaryKey("HOADONBH", "HD", 1);
+                    ListHang.Clear();
                 }
                 catch (Exception e) { MessageBox.Show(e.ToString()); }
             });

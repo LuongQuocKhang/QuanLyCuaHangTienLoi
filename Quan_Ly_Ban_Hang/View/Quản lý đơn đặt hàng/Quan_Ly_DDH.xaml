@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         x:Name="Formnhaphang"
         Title="Đơn đặt hàng" Height="700" Width="1000">
     <Grid>
@@ -48,14 +49,15 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                        <TextBlock FontSize="20">Số đơn đặt hàng</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                            FontSize="20">Số đơn đặt hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <TextBlock FontSize="25" VerticalAlignment="Center" x:Name="txbSoDonDatHang"
                                    IsEnabled="False" Text="{Binding Sodonhang}"></TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                        <TextBlock FontSize="20" Padding="20 0 0 0">Ngày đặt hàng</TextBlock>
+                        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Ngày đặt hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayDatHang" VerticalAlignment="Center"
@@ -73,14 +75,15 @@
 
                     </Grid.ColumnDefinitions>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                        <TextBlock FontSize="20">Ngày giao hàng</TextBlock>
+                        <TextBlock FontSize="20"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center">Ngày giao hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayGiaoHang" VerticalAlignment="Center"
                                     Text="{Binding NgayGiaoHang , Mode=TwoWay}" FontSize="25"></DatePicker>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                        <TextBlock FontSize="20" Padding="5 0 0 0">Hình thức thanh toán</TextBlock>
+                        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Hình thức thanh toán</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <ComboBox x:Name="cbHinhThucThanhToan"
@@ -105,7 +108,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                        <TextBlock FontSize="20" VerticalAlignment="Center">Nhà cung cấp</TextBlock>
+                        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Nhà cung cấp</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <ComboBox x:Name="cbTenNhaCungCap" 
@@ -123,7 +126,7 @@
                         </ComboBox>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                        <TextBlock FontSize="20" Padding="12">Số nhà cung cấp</TextBlock>
+                        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Số nhà cung cấp</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <TextBlock FontSize="20" Padding="12" x:Name="txbMaNhaCungCap"
@@ -138,14 +141,14 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                        <TextBlock FontSize="20" VerticalAlignment="Center">Giao tới</TextBlock>
+                        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Giao tới</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <TextBlock FontSize="20" Padding="20 0 0 0" x:Name="txbDiaChi"
                                    Text="{Binding DiaChi}"></TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                        <TextBlock FontSize="20" Padding="12" Height="50">Số cửa hàng</TextBlock>
+                        <TextBlock FontSize="20" Padding="0 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50">Số cửa hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <TextBlock x:Name="cbSoCuaHang" FontSize="20" TextAlignment="Center" Padding="10"

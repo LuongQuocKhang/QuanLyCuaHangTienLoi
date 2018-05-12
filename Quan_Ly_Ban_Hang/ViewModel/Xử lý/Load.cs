@@ -115,6 +115,25 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
         }
 
     
-
+        public ObservableCollection<THONGKEDONHANG> LoadThongKeDonHang()
+        {
+            ObservableCollection<THONGKEDONHANG> donhang = new ObservableCollection<THONGKEDONHANG>();
+            var collection = DataProvider.Instance.DB.THONGKEDONHANGs;
+            foreach (var item in collection)
+            {
+                donhang.Add(item);
+            }
+            return donhang;
+        }
+        public ObservableCollection<THONGKEHOADON> LoadThongKeHoaDon()
+        {
+            ObservableCollection<THONGKEHOADON> donhang = new ObservableCollection<THONGKEHOADON>();
+            var collection = DataProvider.Instance.DB.THONGKEHOADONs;
+            foreach (var item in collection)
+            {
+                donhang.Add(item);
+            }
+            return donhang;
+        }
     }
 }

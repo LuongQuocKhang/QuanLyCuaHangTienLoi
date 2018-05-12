@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang.View.Quản_lý_hóa_đơn_bán_hàng"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="QuanLyHoaDonBH" Height="700" Width="1000">
     <Grid>
@@ -21,7 +22,7 @@
                     <ColumnDefinition Width="9*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Margin="20 5 0 0" Height="auto" FontFamily="Arial" FontSize="30" HorizontalAlignment="Left">Quản lý hóa đơn bán hàng</Label>
+                <Label Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="auto" FontFamily="Arial" FontSize="30" >Quản lý hóa đơn bán hàng</Label>
                 <!--<Image Grid.Column="1" Source="/Images/refresh.png">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
@@ -49,7 +50,7 @@
                                VerticalAlignment="Center"></TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                    <TextBlock FontSize="30" Padding="10 10 0 0"> Ngày lập hóa đơn</TextBlock>
+                    <TextBlock FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                     <DatePicker VerticalAlignment="Center" FontSize="25" IsEnabled="false"

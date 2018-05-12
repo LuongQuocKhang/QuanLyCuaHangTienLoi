@@ -1,6 +1,8 @@
 ﻿using Quan_Ly_Ban_Hang.Model;
 using Quan_Ly_Ban_Hang.View;
 using Quan_Ly_Ban_Hang.View.Quản_lý_hóa_đơn_bán_hàng;
+using Quan_Ly_Ban_Hang.View.Thống_kê_doanh_thu;
+using Quan_Ly_Ban_Hang.ViewModel.Thống_kê_doanh_thu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand ExitCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         public ICommand ClosingCommand { get; set; }
+        public ICommand ThongKeCommand { get; set; }
         public DataContext(Window window)
         {
             win = window;
@@ -107,6 +110,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 {
                     win.Visibility = Visibility.Visible;
                 }
+            });
+            ThongKeCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                ThongKeDoanhThu thongke = new ThongKeDoanhThu();
+                thongke.DataContext = new ThongKeDataContext();
+                thongke.ShowDialog();
             });
         }
         public FrameworkElement GetWindowParent(object p)

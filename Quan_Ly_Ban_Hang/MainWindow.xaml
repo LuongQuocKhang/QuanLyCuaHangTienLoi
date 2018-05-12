@@ -126,7 +126,8 @@
                     <ColumnDefinition Width="0.8*"></ColumnDefinition>
                     <ColumnDefinition Width="30"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Background="White"  Grid.Column="1" Height="Auto" >
+                <Button Background="White"  Grid.Column="1" Height="Auto" 
+                        Command="{Binding ThongKeCommand}">
                     <StackPanel Orientation="Vertical"  >
                         <Image Source="Images/report.png" Height="84" Width="130"/>
                         <TextBlock Text="Báo cáo thống kê" Width="auto" Foreground="Black" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>

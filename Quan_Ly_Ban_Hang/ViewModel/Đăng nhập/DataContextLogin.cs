@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,11 +14,16 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 {
     public class DataContextLogin : BaseViewModel
     {
+        List<TAIKHOAN> listtaikhoan { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand MouseDownCommand { get; set; }
         public ICommand ExitCommand { get; set; }
         public DataContextLogin()
         {
+            new Thread(() =>
+            {
+                listtaikhoan = DataProvider.Instance.DB.TAIKHOANs.ToList() ;
+            }).Start();
             loadInfo();
             new Task(() =>
             {
@@ -48,21 +54,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         }
                     }
                     string encode = Encryptor.EncryptData(matkhau);
-                    if (DataProvider.Instance.DB.TAIKHOANs.Where(t => t.TAIKHOAN1 == taikhoan && t.MATKHAU == encode).Count() > 0)
+                    if (listtaikhoan.Where(t => t.TAIKHOAN1 == taikhoan && t.MATKHAU == encode).Count() > 0)
                     {
                         MainWindow main = new MainWindow();
                         FrameworkElement parent = GetWindowParent(p);                  
-                        //main.Closing += (sender, e) =>
-                        //{
-                        //    try
-                        //    {
-                        //        (parent as Window).Visibility = Visibility.Visible;
-                        //    }
-                        //    catch(Exception ex)
-                        //    {
-                        //        MessageBox.Show(ex.Message);
-                        //    }
-                        //};
                         main.Show();
                         User.Instance.Setvalue(taikhoan,matkhau);
                         main.DataContext = new DataContext((parent as Window));

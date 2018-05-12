@@ -88,7 +88,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="100"
+                            Width="110"
                             Grid.Column="0"
                             Command="{Binding LoginCommand}"   
                             IsDefault="True"
@@ -96,8 +96,9 @@
                             ToolTip="Resource name: MaterialDesignRaisedLightButton">
                         Đăng nhập
                     </Button>
+                    
                     <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Width="100"
+                            Width="110"
                             Grid.Column="1"
                             IsCancel="True"
                             Command="{Binding ExitCommand}"

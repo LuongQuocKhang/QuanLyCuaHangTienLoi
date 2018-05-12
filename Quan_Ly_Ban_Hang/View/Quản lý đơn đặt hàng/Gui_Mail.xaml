@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang.View.Quản_lý_đơn_đặt_hàng"
         mc:Ignorable="d"
         x:Name="SenMailForm"
+        ResizeMode="NoResize"
         Title="Send email" Height="595" Width="630">
     <Grid>
         <Grid.RowDefinitions>

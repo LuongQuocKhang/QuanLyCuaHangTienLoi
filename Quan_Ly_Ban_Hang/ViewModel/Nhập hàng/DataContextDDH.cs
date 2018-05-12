@@ -28,7 +28,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         #endregion
 
         #region properties
-        public string sodonhang { get; set; }
+        private string soHoaDon;
+        public string SoHoaDon { get => soHoaDon; set { if (soHoaDon != value) { soHoaDon = value; OnPropertyChanged(); } } }
 
         private string manhacungcap;
         public string Manhacungcap
@@ -173,7 +174,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
                         // thêm đơn đặt hàng
                         DONDATHANG dondathang = new DONDATHANG();
-                        dondathang.MADONDATHANG = sodonhang;
+                        dondathang.MADONDATHANG = SoHoaDon;
                         dondathang.MANHACUNGCAP = Manhacungcap.Trim();
                         dondathang.MACUAHANG = MaCuaHang.Trim();
                         dondathang.NGAYDATHANG = NgayDatHang;
@@ -202,6 +203,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         thongkedonhang.MADONDATHANG = dondathang.MADONDATHANG;
                         thongkedonhang.TIENDATHANG = tongtien;
                         Insert.Instance.ThemThongKeDonHang(thongkedonhang);
+
+                        MessageBox.Show("Lưu thành công");
+
+                        SoHoaDon = PrimaryKey.Instance.CreatePrimaryKey("DONDATHANG", "DDH", 1);
+                        ListHang.Clear();
                     }
                     catch (Exception e) { MessageBox.Show(e.ToString()); }
                 }
@@ -215,7 +221,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 try
                 {
                     DONDATHANG dondathang = new DONDATHANG();
-                    dondathang.MADONDATHANG = sodonhang;
+                    dondathang.MADONDATHANG = SoHoaDon;
                     dondathang.MANHACUNGCAP = Manhacungcap.Trim();
                     dondathang.MACUAHANG = MaCuaHang.Trim();
                     dondathang.NGAYDATHANG = NgayDatHang;
@@ -286,8 +292,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         // lưu file
                         Byte[] ByteArray = package.GetAsByteArray();
                         File.WriteAllBytes(filepath, ByteArray);
-
-                        MessageBox.Show("Lưu thành công");
                     }
                 }
                 catch (Exception e)
@@ -304,7 +308,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
             ListHang = new ObservableCollection<NHAPHANG>();
             Listnhacungcap = DataProvider.Instance.DB.NHACUNGCAPs.ToList();
-            sodonhang = PrimaryKey.Instance.CreatePrimaryKey("DONDATHANG", "DDH", 1);
+            SoHoaDon = PrimaryKey.Instance.CreatePrimaryKey("DONDATHANG", "DDH", 1);
             ListTenHang = Load.Instance.Load_Thong_Tin_Hang();
             listHTTT = Load.Instance.Load_HTTT();
 

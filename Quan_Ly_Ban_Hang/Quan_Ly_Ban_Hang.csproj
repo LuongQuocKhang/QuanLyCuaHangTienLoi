@@ -134,6 +134,7 @@
     <Compile Include="Model\THAMSO.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ThongKe.cs" />
     <Compile Include="Model\THONGKEDONHANG.cs">
       <DependentUpon>database.tt</DependentUpon>
     </Compile>
@@ -150,6 +151,7 @@
     <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextQuanLyDDH.cs" />
     <Compile Include="ViewModel\Nhập hàng\GuiEmailDataContext.cs" />
+    <Compile Include="ViewModel\Thống kê doanh thu\ThongKeDataContext.cs" />
     <Compile Include="ViewModel\Xử lý\Encryptor.cs" />
     <Compile Include="ViewModel\Xử lý\PrimaryKey.cs" />
     <Compile Include="ViewModel\Quản lí sản phẩm\DataContextQLTT.cs" />
@@ -188,6 +190,9 @@
     </Compile>
     <Compile Include="View\Quản lý sản phẩm\Quan_Ly_Thong_Tin.xaml.cs">
       <DependentUpon>Quan_Ly_Thong_Tin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Thống kê doanh thu\ThongKeDoanhThu.xaml.cs">
+      <DependentUpon>ThongKeDoanhThu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Tìm kiếm\Tim_Kiem.xaml.cs">
       <DependentUpon>Tim_Kiem.xaml</DependentUpon>
@@ -243,6 +248,10 @@
     <Page Include="View\Quản lý sản phẩm\Quan_Ly_Thong_Tin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Thống kê doanh thu\ThongKeDoanhThu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Tìm kiếm\Tim_Kiem.xaml">
       <SubType>Designer</SubType>
