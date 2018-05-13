@@ -1,4 +1,5 @@
 ﻿using Quan_Ly_Ban_Hang.Model;
+using Quan_Ly_Ban_Hang.View;
 using Quan_Ly_Ban_Hang.ViewModel.Xử_lý;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,15 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 {
     public class DataContextLogin : BaseViewModel
     {
+        private bool ghiNho;
+        public bool GhiNho { get => ghiNho; set { if (ghiNho != value) { ghiNho = value; OnPropertyChanged(); } } }
+
         List<TAIKHOAN> listtaikhoan { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand MouseDownCommand { get; set; }
         public ICommand ExitCommand { get; set; }
+        public ICommand LoadCommand { get; set; }
+      
         public DataContextLogin()
         {
             new Thread(() =>
@@ -39,29 +45,45 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 {
                     string taikhoan = "";
                     string matkhau = "";
+
+                    // không xóa tài khoản , mật khẩu khi nhập sai
+                    TextBox textbox = null;
+                    PasswordBox passwordBox = null;
+
                     foreach (Grid grid in p.Children)
                     {
                         foreach (var item in grid.Children)
                         {
                             if (item is TextBox)
                             {
+                                textbox = (item as TextBox);
                                 taikhoan = (item as TextBox).Text;
                             }
                             else if (item is PasswordBox)
                             {
+                                passwordBox = (item as PasswordBox);
                                 matkhau = (item as PasswordBox).Password;
                             }
                         }
                     }
+                    // mã hóa
                     string encode = Encryptor.EncryptData(matkhau);
+
                     if (listtaikhoan.Where(t => t.TAIKHOAN1 == taikhoan && t.MATKHAU == encode).Count() > 0)
                     {
                         MainWindow main = new MainWindow();
-                        FrameworkElement parent = GetWindowParent(p);                  
+                        FrameworkElement parent = GetWindowParent(p);
                         main.Show();
-                        User.Instance.Setvalue(taikhoan,matkhau);
+
+                        // clear
+                        textbox.Text = "";
+                        passwordBox.Password = "";
+
+                        // lưu tài khoản , mật khầu 
+                        User.Instance.Setvalue(taikhoan,matkhau, GhiNho);
                         main.DataContext = new DataContext((parent as Window));
-                        (parent as Window).Visibility = Visibility.Hidden;
+                        (parent as Window).Close();
+
                     }
                     else
                     {
@@ -70,7 +92,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 }
                 catch(Exception e)
                 {
-                    MessageBox.Show(e.Message.ToString());
+                    MessageBox.Show("vui lòng nhập tài khoản và mật khảu");
                 }
             });
             ExitCommand = new RelayCommand<object>((p) => true, (p) =>
@@ -84,6 +106,26 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 if (w != null)
                 {
                     w.DragMove();
+                }
+            });
+            LoadCommand = new RelayCommand<Grid>((p) => true, (p) =>
+            {
+                if ( User.Instance.GhiNho == true )
+                {
+                    foreach (Grid grid in p.Children)
+                    {
+                        foreach (var item in grid.Children)
+                        {
+                            if (item is TextBox)
+                            {
+                                (item as TextBox).Text = User.Instance.TaiKhoan;
+                            }
+                            else if (item is PasswordBox)
+                            {
+                                (item as PasswordBox).Password = User.Instance.MatKhau;
+                            }
+                        }
+                    }
                 }
             });
         }

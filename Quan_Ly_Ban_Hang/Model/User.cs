@@ -25,12 +25,14 @@ namespace Quan_Ly_Ban_Hang.Model
         public string MatKhau { get; set; }
         public string MaNhanVien { get; set; }
         public string TenNhanVien { get; set; }
-        public void Setvalue(string taikhoan , string matkhau)
+        public bool GhiNho { get; set; } = false;
+        public void Setvalue(string taikhoan , string matkhau , bool ghinho)
         {
             TaiKhoan = taikhoan;
             MatKhau = matkhau;
             MaNhanVien = DataProvider.Instance.DB.TAIKHOANs.Where(tk => tk.TAIKHOAN1 == taikhoan).SingleOrDefault().MANHANVIEN;
             TenNhanVien = DataProvider.Instance.DB.NHANVIENs.Where(nv => nv.MANHANVIEN == MaNhanVien).SingleOrDefault().TENNHANVIEN;
+            GhiNho = ghinho;
         }
     }
 }

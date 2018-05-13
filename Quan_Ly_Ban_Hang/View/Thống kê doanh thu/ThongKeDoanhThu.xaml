@@ -178,7 +178,7 @@
                                     <ListView.View>
                                         <GridView x:Name="data">
                                             <GridViewColumn Header="Mã đơn đặt hàng" DisplayMemberBinding="{Binding MADONDATHANG}"></GridViewColumn>
-                                            <GridViewColumn Header="Mã nhà cung cấp" DisplayMemberBinding="{Binding TIENDATHANG}"></GridViewColumn>
+                                            <GridViewColumn Header="Tổng tiền" DisplayMemberBinding="{Binding TIENDATHANG}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -236,7 +236,7 @@
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="Mã đơn đặt hàng" DisplayMemberBinding="{Binding MAHOADONBH}"></GridViewColumn>
-                                            <GridViewColumn Header="Mã nhà cung cấp" DisplayMemberBinding="{Binding TIENBANHANG}"></GridViewColumn>
+                                            <GridViewColumn Header="Tổng tiền" DisplayMemberBinding="{Binding TIENBANHANG}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -245,9 +245,29 @@
                     </Grid>
                 </Border>
             </Grid>
-            <Button Grid.Row="1" Width="100" HorizontalAlignment="Right" Margin="0 0 20 0"
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Margin="3">
+                        <TextBlock Background="DeepSkyBlue" Width="20" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" Margin="10 0 0 0">Tổng tiền nhập hàng trong tháng</TextBlock>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Margin="3">
+                        <TextBlock Background="Red" Width="20" HorizontalAlignment="Left" Margin="20 0 0 0"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" Margin="10 0 0 0">Tổng tiền bán hàng trong tháng</TextBlock>
+                    </DockPanel>
+                </Grid>
+                <Button Grid.Column="1" Width="100" HorizontalAlignment="Right" Margin="0 0 20 0"
                     Command="{Binding ExitCommand}"
-                    CommandParameter="{Binding ElementName=formThongke}"> Thoát</Button>
+                    CommandParameter="{Binding ElementName=formThongke}">Thoát</Button>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

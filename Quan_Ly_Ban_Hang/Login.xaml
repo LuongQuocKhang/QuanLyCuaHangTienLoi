@@ -10,14 +10,20 @@
         Title="Login" Height="450" Width="800"
         WindowStyle="None" 
         ResizeMode="NoResize" 
+        x:Name="LoginForm"
         DataContext="{StaticResource DataContextLogin}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadCommand}"
+                                   CommandParameter="{Binding ElementName=GridThongtin}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
          </Grid.ColumnDefinitions>
         <Grid Grid.Column="1" x:Name="GridDrag" >
-
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown">
                     <i:InvokeCommandAction Command="{Binding MouseDownCommand}"
@@ -36,12 +42,13 @@
                        FontSize="40"></TextBlock>
             <materialDesign:Card Grid.Row="1" Width="330" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1">
-                    <Grid Grid.Row="1" x:Name="GridThongtin">
+                    <Grid Grid.Row="1" x:Name="GridThongtin" Margin='0 10 0 0'>
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid >
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="4*"></ColumnDefinition>
@@ -52,10 +59,10 @@
                                        FontSize="25"
                                        VerticalAlignment="Center"></TextBlock>
                             <TextBox materialDesign:HintAssist.Hint="Tài khoản" Grid.Column="1"
-                                         Margin="15"
                                          x:Name="txbTaiKhoan"
+                                         Height="40"
+                                        Margin="10 0 0 0"
                                          VerticalAlignment="Center"
-                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                                          FontSize="20"/>
                         </Grid>
                         <Grid Grid.Row="1">
@@ -64,7 +71,7 @@
                                 <ColumnDefinition Width="4*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0"
-                                       Text="Mật khẩu"
+                                       Text="Mật khẩu"                        
                                        TextAlignment="Center"
                                        FontSize="25"
                                        VerticalAlignment="Center"></TextBlock>
@@ -72,10 +79,19 @@
                                              Grid.Column="1"   
                                              materialDesign:HintAssist.Hint="Mật khẩu"
                                              FontSize="18"
-                                             Margin="15"
-                                             VerticalAlignment="Center"
-                                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-
+                                             Height="40"
+                                             Margin="10 0 0 0"
+                                             VerticalAlignment="Center"/>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <CheckBox
+                                FontSize="15"
+                                Margin="20 0 0 0"
+                                Content="Ghi nhớ đăng nhập"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding GhiNho,Mode=TwoWay}"
+                                Style="{StaticResource MaterialDesignCheckBox}">
+                            </CheckBox>
                         </Grid>
                     </Grid>
                 </Border>

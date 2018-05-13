@@ -108,7 +108,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                 if (isLogOut == true)
                 {
-                    win.Visibility = Visibility.Visible;
+                    Login login = new Login();
+                    login.Show();
                 }
             });
             ThongKeCommand = new RelayCommand<object>((p) => true, (p) =>
