@@ -151,6 +151,7 @@
     <Compile Include="ViewModel\Nhập hàng\DataContextDDH.cs" />
     <Compile Include="ViewModel\Nhập hàng\DataContextQuanLyDDH.cs" />
     <Compile Include="ViewModel\Nhập hàng\GuiEmailDataContext.cs" />
+    <Compile Include="ViewModel\Thay đổi quy định\DataContextTDQD.cs" />
     <Compile Include="ViewModel\Thống kê doanh thu\ThongKeDataContext.cs" />
     <Compile Include="ViewModel\Xử lý\Encryptor.cs" />
     <Compile Include="ViewModel\Xử lý\PrimaryKey.cs" />
@@ -190,6 +191,9 @@
     </Compile>
     <Compile Include="View\Quản lý sản phẩm\Quan_Ly_Thong_Tin.xaml.cs">
       <DependentUpon>Quan_Ly_Thong_Tin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Thay đổi quy định\Thay_Doi_Quy_DInh.xaml.cs">
+      <DependentUpon>Thay_Doi_Quy_DInh.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Thống kê doanh thu\ThongKeDoanhThu.xaml.cs">
       <DependentUpon>ThongKeDoanhThu.xaml</DependentUpon>
@@ -248,6 +252,10 @@
     <Page Include="View\Quản lý sản phẩm\Quan_Ly_Thong_Tin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Thay đổi quy định\Thay_Doi_Quy_DInh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Thống kê doanh thu\ThongKeDoanhThu.xaml">
       <SubType>Designer</SubType>

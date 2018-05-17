@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="16fc22b5a76a422caea17ff5c8e34e18" Name="Diagram1">
-        <EntityTypeShape EntityType="QLBHModel.CHITIETDONDATHANG" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.CHITIETHOADON" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+      <Diagram DiagramId="16fc22b5a76a422caea17ff5c8e34e18" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="QLBHModel.CHITIETDONDATHANG" Width="2.25" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.CHITIETHOADON" Width="2.25" PointX="11.375" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.CUAHANG" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.DONDATHANG" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.HANG" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.DONDATHANG" Width="2.125" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.HANG" Width="1.5" PointX="7.625" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.HINHTHUCTHANHTOAN" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.HOADONBH" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.HOADONBH" Width="2" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.LOAINHANVIEN" Width="1.5" PointX="1.5" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLBHModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.NHANVIEN" Width="1.5" PointX="3.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.TAIKHOAN" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.THAMSO" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.THONGKEDONHANG" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLBHModel.THONGKEHOADON" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.NHANVIEN" Width="1.5" PointX="3.875" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.TAIKHOAN" Width="1.5" PointX="4.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.THAMSO" Width="3.125" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.THONGKEDONHANG" Width="1.875" PointX="6.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBHModel.THONGKEHOADON" Width="2" PointX="11.375" PointY="9" IsExpanded="true" />
         <AssociationConnector Association="QLBHModel.fk01_CTDDH" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHModel.fk02_CTDDH" ManuallyRouted="false" />
         <AssociationConnector Association="QLBHModel.fk01_CTHD" ManuallyRouted="false" />

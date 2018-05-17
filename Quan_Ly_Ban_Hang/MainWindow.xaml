@@ -141,7 +141,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Background="White" Grid.Column="5" Height="auto"  >
+                <Button Background="White" Grid.Column="5" Height="auto" Command="{Binding ThayDoiQuyDinhCommand}" >
                     <StackPanel Orientation="Vertical"  >
                         <Image Source="Images/edit.png" Height="84" Width="130"/>
                         <TextBlock Text="Quy định" Foreground="Black" FontSize="20" HorizontalAlignment="Center"/>

@@ -75,5 +75,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
             DataProvider.Instance.DB.SaveChanges();
         }
+        public void UpdateThamSo(THAMSO ts)
+        {
+            THAMSO thamso = DataProvider.Instance.DB.THAMSOes.Where(h => h.MATHAMSO == 1).SingleOrDefault();
+            thamso.SOLUONGNHAPTOITHIEU =ts.SOLUONGNHAPTOITHIEU ;
+            thamso.SOLUONGTONTOIDADUOCNHAP = ts.SOLUONGTONTOIDADUOCNHAP;
+            thamso.SOLUONGTONTOITHIEUDUOCBAN = ts.SOLUONGTONTOITHIEUDUOCBAN;
+            DataProvider.Instance.DB.SaveChanges();
+        }
     }
 }

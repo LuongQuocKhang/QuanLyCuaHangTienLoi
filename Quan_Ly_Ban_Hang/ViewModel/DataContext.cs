@@ -33,6 +33,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand LogOutCommand { get; set; }
         public ICommand ClosingCommand { get; set; }
         public ICommand ThongKeCommand { get; set; }
+        public ICommand ThayDoiQuyDinhCommand { get; set; }
         public DataContext(Window window)
         {
             win = window;
@@ -117,6 +118,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 ThongKeDoanhThu thongke = new ThongKeDoanhThu();
                 thongke.DataContext = new ThongKeDataContext();
                 thongke.ShowDialog();
+            });
+            ThayDoiQuyDinhCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                 Thay_Doi_Quy_DInh ThayDoiQuyDinh = new Thay_Doi_Quy_DInh();
+                ThayDoiQuyDinh.DataContext = new DataContextTDQD();
+                ThayDoiQuyDinh.ShowDialog();
             });
         }
         public FrameworkElement GetWindowParent(object p)
