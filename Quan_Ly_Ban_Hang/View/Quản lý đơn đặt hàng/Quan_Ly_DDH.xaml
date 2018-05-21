@@ -53,14 +53,15 @@
                             FontSize="20">Số đơn đặt hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                        <TextBlock FontSize="25" VerticalAlignment="Center" x:Name="txbSoDonDatHang"
+                        <TextBlock FontSize="25" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" x:Name="txbSoDonDatHang"
                                    IsEnabled="False" Text="{Binding Sodonhang}"></TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
                         <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Ngày đặt hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
-                        <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayDatHang" VerticalAlignment="Center"
+                        <DatePicker HorizontalAlignment="Center" x:Name="DtpkNgayDatHang" VerticalAlignment="Center"
                                     Text="{Binding NgayDatHang , Mode=TwoWay}" FontSize="25"
                                     IsEnabled="false">
                         </DatePicker>
@@ -79,7 +80,7 @@
                                    HorizontalAlignment="Center" VerticalAlignment="Center">Ngày giao hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                        <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayGiaoHang" VerticalAlignment="Center"
+                        <DatePicker HorizontalAlignment="Center" x:Name="DtpkNgayGiaoHang" VerticalAlignment="Center"
                                     Text="{Binding NgayGiaoHang , Mode=TwoWay}" FontSize="25"></DatePicker>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
@@ -87,6 +88,7 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <ComboBox x:Name="cbHinhThucThanhToan"
+                                  HorizontalContentAlignment="Center"
                                   ItemsSource="{Binding listHTTT}"
                                   IsEditable="true"  IsReadOnly="true"
                                   Text="{Binding TenHinhThucThanhToan}"
@@ -112,6 +114,7 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <ComboBox x:Name="cbTenNhaCungCap" 
+                                  HorizontalContentAlignment="Center"
                                   ItemsSource="{Binding Listnhacungcap}" 
                                   DisplayMemberPath="TENNHACUNGCAP"
                                   IsEditable="true"  IsReadOnly="true" 
@@ -145,6 +148,8 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <TextBlock FontSize="20" Padding="20 0 0 0" x:Name="txbDiaChi"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
                                    Text="{Binding DiaChi}"></TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">

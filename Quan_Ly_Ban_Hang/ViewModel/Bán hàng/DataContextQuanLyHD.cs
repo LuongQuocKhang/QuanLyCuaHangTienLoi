@@ -79,26 +79,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 Ban_Hang HoaDonBanHang = new Ban_Hang();
                 HoaDonBanHang.DataContext = new DataContextHDBH();
                 HoaDonBanHang.ShowDialog();
-            });
-            XoaHoaDon = new RelayCommand<object>((p) => true, (p) =>
-            {
-                MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa hóa đơn không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
-                {
-                    try
-                    {
-                        int index = (p as ListView).SelectedIndex;
-                        Delete.Instance.XoaHoaDonBanHang(ListHoaDon[index]);
-                        (p as ListView).SelectedIndex = 0;
-                        ListHoaDon.RemoveAt(index);
-                        MessageBox.Show("Xóa thành công");
-                    }
-                    catch(Exception e)
-                    {
-                        MessageBox.Show(e.Message.ToString());
-                    }
-                }
-            });
+            });           
             Chitiet_SelectedItemListViewChangedCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 if ((p as ListView).SelectedIndex >= 0)
@@ -112,76 +93,100 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                 MaHang = ((p as ComboBox).SelectedItem as HANG).MAHANG;
                 TenHang = ((p as ComboBox).SelectedItem as HANG).TENHANG;
-            });
-            ThemChiTietHD = new RelayCommand<object>((p) => true, (p) =>
-            {
-                if (ListChiTiet.Where(h => h.MAHANG == MaHang).ToList().Count > 0)
-                {
-                    MessageBox.Show("Mặt hàng đã tồn tại trong đơn đặt hàng");
-                    return;
-                }
-                else
-                {
-                    try
-                    {
-                        CHITIETHOADON chitiet = new CHITIETHOADON();
-                        chitiet.MAHOADONBH = SoHoaDon;
-                        chitiet.MAHANG = MaHang;
-                        chitiet.SOLUONGBAN = SoLuong;
-                        chitiet.TONGTIEN = SoLuong * (int)ListTenHang.Where(sp => sp.MAHANG == chitiet.MAHANG).SingleOrDefault().DONGIA.Value;
-
-                        Insert.Instance.ThemChiTietHD(chitiet);
-                        MessageBox.Show("Thêm thành công");
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.Message.ToString());
-                    }
-                }
-            });
-            XoaChiTietHD = new RelayCommand<object>((p) => true, (p) =>
-            {
-                int index = (p as ListView).SelectedIndex;
-                if (index >= 0)
-                {
-                    MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        try
-                        {
-                            CHITIETHOADON chitiet = ((p as ListView).SelectedItem as CHITIETHOADON);
-                            Delete.Instance.XoaChiTietHoaDon(chitiet);
-                            (p as ListView).SelectedIndex = 0;
-                            ListChiTiet.RemoveAt(index);
-                            MessageBox.Show("Xóa thành công");
-                        }
-                        catch (Exception e)
-                        {
-                            MessageBox.Show(e.ToString());
-                        }
-                    }
-                }
-            });
-            SuaChiTietHD = new RelayCommand<object>((p) => true, (p) =>
-            {
-                int index = (p as ListView).SelectedIndex;
-                if (index < 0) return;
-                try
-                {
-                    ListChiTiet[index].SOLUONGBAN = SoLuong;
-                    ListChiTiet[index].TONGTIEN = ListChiTiet[index].SOLUONGBAN * (int)ListTenHang.Where(sp => sp.MAHANG == ListChiTiet[index].MAHANG).SingleOrDefault().DONGIA.Value;
-                    Update.Instance.Update_ChiTietHD(ListChiTiet[index].MACHITIETHOADON, SoLuong.Value);
-                    MessageBox.Show("Cập nhật thành công");
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString());
-                }
-            });
+            });     
             RefreshCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 ListHoaDon = Load.Instance.LoadHoaDonBanHang();
             });
+
+            int loaiNV = DataProvider.Instance.DB.NHANVIENs.Where(x => x.MANHANVIEN == User.Instance.MaNhanVien).Single().MALOAINV.Value;
+            if ( loaiNV == 1)
+            {
+                ThemChiTietHD = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    if (ListChiTiet.Where(h => h.MAHANG == MaHang).ToList().Count > 0)
+                    {
+                        MessageBox.Show("Mặt hàng đã tồn tại trong đơn đặt hàng");
+                        return;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            CHITIETHOADON chitiet = new CHITIETHOADON();
+                            chitiet.MAHOADONBH = SoHoaDon;
+                            chitiet.MAHANG = MaHang;
+                            chitiet.SOLUONGBAN = SoLuong;
+                            chitiet.TONGTIEN = SoLuong * (int)ListTenHang.Where(sp => sp.MAHANG == chitiet.MAHANG).SingleOrDefault().DONGIA.Value;
+
+                            Insert.Instance.ThemChiTietHD(chitiet);
+                            MessageBox.Show("Thêm thành công");
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message.ToString());
+                        }
+                    }
+                });
+                XoaChiTietHD = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    int index = (p as ListView).SelectedIndex;
+                    if (index >= 0)
+                    {
+                        MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            try
+                            {
+                                CHITIETHOADON chitiet = ((p as ListView).SelectedItem as CHITIETHOADON);
+                                Delete.Instance.XoaChiTietHoaDon(chitiet);
+                                (p as ListView).SelectedIndex = 0;
+                                ListChiTiet.RemoveAt(index);
+                                MessageBox.Show("Xóa thành công");
+                            }
+                            catch (Exception e)
+                            {
+                                MessageBox.Show(e.ToString());
+                            }
+                        }
+                    }
+                });
+                SuaChiTietHD = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    int index = (p as ListView).SelectedIndex;
+                    if (index < 0) return;
+                    try
+                    {
+                        ListChiTiet[index].SOLUONGBAN = SoLuong;
+                        ListChiTiet[index].TONGTIEN = ListChiTiet[index].SOLUONGBAN * (int)ListTenHang.Where(sp => sp.MAHANG == ListChiTiet[index].MAHANG).SingleOrDefault().DONGIA.Value;
+                        Update.Instance.Update_ChiTietHD(ListChiTiet[index].MACHITIETHOADON, SoLuong.Value);
+                        MessageBox.Show("Cập nhật thành công");
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+                });
+                XoaHoaDon = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa hóa đơn không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        try
+                        {
+                            int index = (p as ListView).SelectedIndex;
+                            Delete.Instance.XoaHoaDonBanHang(ListHoaDon[index]);
+                            (p as ListView).SelectedIndex = 0;
+                            ListHoaDon.RemoveAt(index);
+                            MessageBox.Show("Xóa thành công");
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message.ToString());
+                        }
+                    }
+                });
+            }
         }
 
         private void LoadInfo()

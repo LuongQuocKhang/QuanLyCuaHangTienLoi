@@ -135,38 +135,9 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             }
             return donhang;
         }
-
-        public string LoadSoLuongNhapToiThieu()
+        public THAMSO LoadQuiDinh()
         {
-            string sl=null;
-            var collection = DataProvider.Instance.DB.THAMSOes.Select(x => x.SOLUONGNHAPTOITHIEU).ToList();
-            foreach(var item in collection)
-            {
-               sl = item.ToString();
-            }
-            return sl;
-        }
-
-        public string LoadSoLuongTonToiDaDuocNhap()
-        {
-            string sl = null;
-            var collection = DataProvider.Instance.DB.THAMSOes.Select(x => x.SOLUONGTONTOIDADUOCNHAP).ToList();
-            foreach (var item in collection)
-            {
-                sl = item.ToString();
-            }
-            return sl;
-        }
-
-        public string LoadSoLuongTonToiThieuDuocBan()
-        {
-            string sl = null;
-            var collection = DataProvider.Instance.DB.THAMSOes.Select(x => x.SOLUONGTONTOITHIEUDUOCBAN).ToList();
-            foreach (var item in collection)
-            {
-                sl = item.ToString();
-            }
-            return sl;
+            return DataProvider.Instance.DB.THAMSOes.Single();
         }
     }
 }

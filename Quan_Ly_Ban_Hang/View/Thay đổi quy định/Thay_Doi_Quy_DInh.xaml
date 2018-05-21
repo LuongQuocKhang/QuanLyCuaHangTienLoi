@@ -24,22 +24,21 @@
 
         </Grid.RowDefinitions>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" >
-            <Label Content="THAY ĐỔI QUY ĐỊNH" VerticalAlignment="Center" FontSize="30" FontFamily="Arial" ></Label>
+            <Label Content="THAY ĐỔI QUY ĐỊNH" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Arial" ></Label>
         </Border>
         <TextBlock Grid.Row="1" Text="SỐ LƯỢNG NHẬP TỐI THIỂU" FontSize="30" VerticalAlignment="Center" Margin="10,4,9.6,0"  HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="2" Text="GIÁ TRỊ CŨ" FontSize="20" VerticalAlignment="Center" Margin="10,4,9.6,0"  HorizontalAlignment="Left"/>
-        <TextBox Grid.Row="2"   x:Name="txbSLNTTcu" IsEnabled="False" VerticalAlignment="Center"   Margin="149,9.6,613.6,10.6" Height="31" Text="{Binding giatricuSLNTT}"/>
+        <TextBox Grid.Row="2"   x:Name="txbSLNTTcu" IsEnabled="False" VerticalAlignment="Center"   Margin="149,9.6,613.6,10.6" Height="31" Text="{Binding GiatricuSLNTT,Mode=TwoWay}"/>
         <TextBlock Grid.Row="3" Text="GIÁ TRỊ MỚI" FontSize="20" VerticalAlignment="Center" Margin="10,4,9.6,0"  HorizontalAlignment="Left"/>
         <TextBox Grid.Row="3"   x:Name="txbSLNTTmoi" VerticalAlignment="Center"   Margin="149,10.4,613.6,10.6" Height="31" />
         <TextBlock Grid.Row="4" Text="SỐ LƯỢNG TỒN TỐI ĐA ĐƯỢC NHẬP" FontSize="30" VerticalAlignment="Center" Margin="10,4,9.6,0"/>
         <TextBlock Grid.Row="5" Text="GIÁ TRỊ CŨ" FontSize="20" VerticalAlignment="Center" Margin="10,4,9.6,0"  HorizontalAlignment="Left"/>
-        <TextBox Grid.Row="5"   x:Name="txbSLTTDDNcu" IsEnabled="False" VerticalAlignment="Center"   Margin="149,10.2,613.6,10.8" Height="31" Text="{Binding giatricuSLTTDDN}"/>
+        <TextBox Grid.Row="5"   x:Name="txbSLTTDDNcu" IsEnabled="False" VerticalAlignment="Center"   Margin="149,10.2,613.6,10.8" Height="31" Text="{Binding GiatricuSLTTDDN,Mode=TwoWay}"/>
         <TextBlock Grid.Row="6" Text="GIÁ TRỊ MỚI" FontSize="20" VerticalAlignment="Center" Margin="10,4,9.6,0"  HorizontalAlignment="Left"/>
         <TextBox Grid.Row="6"   x:Name="txbSLTTDDNmoi" VerticalAlignment="Center"   Margin="149,10.2,613.6,11" Height="30" />
-        <TextBox  x:Name="txbSLTTDDN" VerticalAlignment="Center" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="32" Margin="10,64,9.6,71.2" Width="378"></TextBox>
         <TextBlock Grid.Row="7"  Text="SỐ LƯỢNG TỒN TỐI THIỂU ĐƯỢC BÁN" FontSize="30" VerticalAlignment="Center" Margin="10,4,9.6,0" />
         <TextBlock Grid.Row="8" Text="GIÁ TRỊ CŨ" FontSize="20" VerticalAlignment="Center" Margin="10,4,9.6,0"  HorizontalAlignment="Left"/>
-        <TextBox Grid.Row="8"   x:Name="txbSLTTTDBcu" IsEnabled="False" VerticalAlignment="Center"   Margin="149,10,613.6,10.2" Height="31" Text="{Binding giatricuSLTTTDB}" />
+        <TextBox Grid.Row="8"   x:Name="txbSLTTTDBcu" IsEnabled="False" VerticalAlignment="Center"   Margin="149,10,613.6,10.2" Height="31" Text="{Binding GiatricuSLTTTDB,Mode=TwoWay}" />
         <TextBlock Grid.Row="9" Text="GIÁ TRỊ MỚI" FontSize="20" VerticalAlignment="Center" Margin="10,4,9.6,0"  HorizontalAlignment="Left"/>
         <TextBox Grid.Row="9"   x:Name="txbSLTTTDBmoi" VerticalAlignment="Center"   Margin="149,9.8,613.6,11.2" Height="31" />
         <Grid Grid.Row="10">

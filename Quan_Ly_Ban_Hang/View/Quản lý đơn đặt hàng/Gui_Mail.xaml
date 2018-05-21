@@ -25,7 +25,7 @@
             <TextBox FontSize="15" VerticalAlignment="Center"
                      Text="{Binding FilePath}" Margin="10"></TextBox>
             <Button Grid.Column="1" Margin="10"
-                    Command="{Binding AttachFileCommand}"> Attach file</Button>
+                    Command="{Binding AttachFileCommand}">Đính kèm</Button>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -40,7 +40,7 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">From : </TextBlock>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">Từ :</TextBlock>
                 <TextBox Grid.Column="1" FontSize="15" VerticalAlignment="Center"
                          Text="{Binding From}"></TextBox>
             </Grid>
@@ -49,7 +49,7 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">To :</TextBlock>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">Đến :</TextBlock>
                 <TextBox Grid.Column="1" FontSize="15" VerticalAlignment="Center"
                          Text="{Binding To}"></TextBox>
             </Grid>
@@ -58,7 +58,7 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">Subject :</TextBlock>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">Chủ đề :</TextBlock>
                 <TextBox Grid.Column="1" FontSize="15" VerticalAlignment="Center"
                          Text="{Binding Subject}"></TextBox>
             </Grid>
@@ -67,7 +67,7 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">UserName :</TextBlock>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">Tài khoản :</TextBlock>
                 <TextBox Grid.Column="1" FontSize="15" VerticalAlignment="Center"
                          Text="{Binding UserName}"></TextBox>
             </Grid>
@@ -76,22 +76,24 @@
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">Password :</TextBlock>
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" FontSize="20" TextAlignment="Center">Mật khẩu :</TextBlock>
                 <PasswordBox Grid.Column="1" FontSize="15" VerticalAlignment="Center" x:Name="PasswordBox"></PasswordBox>
             </Grid>
         </Grid>
+
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <TextBox Name="tbMultiLine"
-                 Height="180"
+                 Height="192"
                  TextWrapping="Wrap"
                  AcceptsReturn="True"
+                 VerticalAlignment="Top"
                  VerticalScrollBarVisibility="Visible"
-                 Text="{Binding ConTent,Mode=TwoWay}"></TextBox>
+                 Text="{Binding ConTent,Mode=TwoWay}" Margin="0.2,0.2,0.2,-1.8"></TextBox>
         </Border>
         <Grid Grid.Row="5">
             <Button Width="100" Margin="70,23,454,25"
                     Command="{Binding SendCommand}"
-                    CommandParameter="{Binding ElementName=PasswordBox}"> Send</Button>
+                    CommandParameter="{Binding ElementName=PasswordBox}">Gửi</Button>
             <Button Width="100" Margin="446,23,78,25"
                     Command="{Binding ExitCommand }"
                     CommandParameter="{Binding ElementName=SenMailForm}">Thoát</Button>

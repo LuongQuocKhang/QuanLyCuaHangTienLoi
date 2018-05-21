@@ -15,15 +15,21 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 {
     class DataContextTDQD : BaseViewModel
     {
-        public string giatricuSLNTT { get; set; }
-        public string giatricuSLTTDDN{get; set ;}
-        public string giatricuSLTTTDB { get; set; }
+        public THAMSO QuiDinh { get; set; }
+        private string giatricuSLNTT;
+        private string giatricuSLTTDDN;
+        private string giatricuSLTTTDB;
+
+        public string GiatricuSLNTT { get => giatricuSLNTT; set { if (giatricuSLNTT != value) { giatricuSLNTT = value; OnPropertyChanged(); } } }
+        public string GiatricuSLTTDDN { get => giatricuSLTTDDN; set { if (giatricuSLTTDDN != value) { giatricuSLTTDDN = value; OnPropertyChanged(); } } }
+        public string GiatricuSLTTTDB { get => giatricuSLTTTDB; set { if (giatricuSLTTTDB != value) { giatricuSLTTTDB = value; OnPropertyChanged(); } } }
+
         #region command
 
         public ICommand UpdateCommand { get; set; }
         public ICommand ExitCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
-      
+
 
         #endregion
 
@@ -34,10 +40,15 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         }
         public void LoadInfo()
         {
-            giatricuSLNTT = Load.Instance.LoadSoLuongNhapToiThieu();
-            giatricuSLTTDDN = Load.Instance.LoadSoLuongTonToiDaDuocNhap();
-            giatricuSLTTTDB = Load.Instance.LoadSoLuongTonToiThieuDuocBan();
-         }
+            QuiDinh = Load.Instance.LoadQuiDinh();
+            LoadQuiDinh();
+        }
+        public void LoadQuiDinh()
+        {
+            GiatricuSLNTT = QuiDinh.SOLUONGNHAPTOITHIEU.Value.ToString();
+            GiatricuSLTTDDN = QuiDinh.SOLUONGTONTOIDADUOCNHAP.Value.ToString();
+            GiatricuSLTTTDB = QuiDinh.SOLUONGTONTOITHIEUDUOCBAN.Value.ToString();
+        }
         public void Command()
         {
             ExitCommand = new RelayCommand<object>((p) => true, (p) =>
@@ -46,54 +57,66 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             UpdateCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {
-                int slNTT =Int32.Parse(giatricuSLNTT) ;
-                int slTTDDN = Int32.Parse(giatricuSLTTDDN);
-                int slTTTDB = Int32.Parse(giatricuSLTTTDB);
-                foreach (var item in p.Children)
+                try
                 {
-
-                    if (item is TextBox)
+                    int slNTT = Int32.Parse(GiatricuSLNTT);
+                    int slTTDDN = Int32.Parse(GiatricuSLTTDDN);
+                    int slTTTDB = Int32.Parse(GiatricuSLTTTDB);
+                    foreach (var item in p.Children)
                     {
-                        TextBox tb = item as TextBox;
-                        switch (tb.Name)
+
+                        if (item is TextBox)
                         {
-                            case "txbSLNTTmoi":
-                                {
-                                    if (!string.IsNullOrEmpty(tb.Text.ToString()))
+                            TextBox tb = item as TextBox;
+                            switch (tb.Name)
+                            {
+                                case "txbSLNTTmoi":
                                     {
-                                        slNTT = Int32.Parse(tb.Text.ToString());
+                                        if (!string.IsNullOrEmpty(tb.Text.ToString()))
+                                        {
+                                            slNTT = Int32.Parse(tb.Text.ToString());
+                                        }
                                     }
-                                }
-                                break;
-                            case "txbSLTTDDNmoi":
-                                {
-                                    if (!string.IsNullOrEmpty(tb.Text.ToString()))
+                                    break;
+                                case "txbSLTTDDNmoi":
                                     {
-                                        slTTDDN = Int32.Parse(tb.Text.ToString());
+                                        if (!string.IsNullOrEmpty(tb.Text.ToString()))
+                                        {
+                                            slTTDDN = Int32.Parse(tb.Text.ToString());
+                                        }
                                     }
-                                }
-                                break;
-                            case "txbSLTTTDBmoi":
-                                {
-                                    if (!string.IsNullOrEmpty(tb.Text.ToString()))
+                                    break;
+                                case "txbSLTTTDBmoi":
                                     {
-                                        slTTTDB = Int32.Parse(tb.Text.ToString());
+                                        if (!string.IsNullOrEmpty(tb.Text.ToString()))
+                                        {
+                                            slTTTDB = Int32.Parse(tb.Text.ToString());
+                                        }
                                     }
-                                }
-                                break;
+                                    break;
+                            }
                         }
+
                     }
-                  
+
+                    THAMSO thamso = new THAMSO()
+                    {
+                        SOLUONGNHAPTOITHIEU = slNTT,
+                        SOLUONGTONTOIDADUOCNHAP = slTTDDN,
+                        SOLUONGTONTOITHIEUDUOCBAN = slTTTDB,
+                    };
+
+                    Update.Instance.UpdateThamSo(thamso);
+
+                    MessageBox.Show("Cập nhật thành công");
+
+                    LoadQuiDinh();
                 }
- 
-                THAMSO thamso = new THAMSO()
+                catch(Exception e)
                 {
-                    SOLUONGNHAPTOITHIEU =  slNTT,
-                    SOLUONGTONTOIDADUOCNHAP =slTTDDN,
-                    SOLUONGTONTOITHIEUDUOCBAN = slTTTDB,
-                };
-               
-                Update.Instance.UpdateThamSo(thamso);
+                    MessageBox.Show(e.Message);
+                }
+
             });
             RefreshCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {
@@ -114,24 +137,22 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                                 break;
                             case "txbSLNTTcu":
                                 {
-                                    tb.Text = Load.Instance.LoadSoLuongNhapToiThieu();
+                                    tb.Text = QuiDinh.SOLUONGNHAPTOITHIEU.Value.ToString();
                                 }
                                 break;
                             case "txbSLTTDDNcu":
                                 {
-                                    tb.Text = Load.Instance.LoadSoLuongTonToiDaDuocNhap();
+                                    tb.Text = QuiDinh.SOLUONGTONTOIDADUOCNHAP.Value.ToString();
                                 }
                                 break;
                             case "txbSLTTTDBcu":
                                 {
-                                    tb.Text = Load.Instance.LoadSoLuongTonToiThieuDuocBan();
+                                    tb.Text = QuiDinh.SOLUONGTONTOITHIEUDUOCBAN.Value.ToString();
                                 }
                                 break;
                         }
                     }
                 }
-
-
             });
         }
     }

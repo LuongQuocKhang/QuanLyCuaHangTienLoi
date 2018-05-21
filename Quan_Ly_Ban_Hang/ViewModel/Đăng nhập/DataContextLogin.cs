@@ -1,10 +1,8 @@
 ﻿using Quan_Ly_Ban_Hang.Model;
-using Quan_Ly_Ban_Hang.View;
 using Quan_Ly_Ban_Hang.ViewModel.Xử_lý;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,10 +24,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
       
         public DataContextLogin()
         {
-            new Thread(() =>
-            {
-                listtaikhoan = DataProvider.Instance.DB.TAIKHOANs.ToList() ;
-            }).Start();
             loadInfo();
             new Task(() =>
             {
@@ -127,6 +121,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         }
                     }
                 }
+                new Thread(() =>
+                {
+                    listtaikhoan = DataProvider.Instance.DB.TAIKHOANs.ToList();
+                }).Start();
             });
         }
         public FrameworkElement GetWindowParent(object p)
@@ -142,7 +140,29 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         }
         private void loadInfo()
         {
-            
+            new Thread(() =>
+            {
+                listtaikhoan = DataProvider.Instance.DB.TAIKHOANs.ToList();
+            }).Start();
+
+            var win = Application.Current.MainWindow;
+            if (Properties.Settings.Default.GhiNho == true)
+            {
+                User.Instance.Setvalue(Properties.Settings.Default.TaiKhoan, Properties.Settings.Default.MatKhau, true);
+                string taikhoan = Properties.Settings.Default.TaiKhoan;
+                string matkhau = Properties.Settings.Default.MatKhau;
+
+                string encode = Encryptor.EncryptData(matkhau);
+
+                if (listtaikhoan.Where(t => t.TAIKHOAN1 == taikhoan && t.MATKHAU == encode).Count() > 0)
+                {
+                    MainWindow main = new MainWindow();
+                    main.DataContext = new DataContext(win);
+                    main.Show();
+
+                    win.Close();
+                }
+            }
         }
     }
 }

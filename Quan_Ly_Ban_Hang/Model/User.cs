@@ -33,6 +33,13 @@ namespace Quan_Ly_Ban_Hang.Model
             MaNhanVien = DataProvider.Instance.DB.TAIKHOANs.Where(tk => tk.TAIKHOAN1 == taikhoan).SingleOrDefault().MANHANVIEN;
             TenNhanVien = DataProvider.Instance.DB.NHANVIENs.Where(nv => nv.MANHANVIEN == MaNhanVien).SingleOrDefault().TENNHANVIEN;
             GhiNho = ghinho;
+
+            Properties.Settings.Default.TaiKhoan = taikhoan;
+            Properties.Settings.Default.MatKhau = matkhau;
+            Properties.Settings.Default.MaNhanVien = MaNhanVien;
+            Properties.Settings.Default.GhiNho = ghinho;
+
+            Properties.Settings.Default.Save();
         }
     }
 }

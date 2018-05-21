@@ -40,13 +40,14 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <TextBlock FontSize="25" VerticalAlignment="Center" x:Name="txbSoDonDatHang"
+                                   HorizontalAlignment="Center"
                                    IsEnabled="False" Text="{Binding SoHoaDon}"></TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
                         <TextBlock FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center">Ngày đặt hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
-                        <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayDatHang" VerticalAlignment="Center"
+                        <DatePicker HorizontalAlignment="Center" x:Name="DtpkNgayDatHang" VerticalAlignment="Center"
                                     Text="{Binding NgayDatHang , Mode=TwoWay}" FontSize="25">
                         </DatePicker>
                     </Border>
@@ -63,7 +64,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Ngày giao hàng</TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                        <DatePicker HorizontalAlignment="Stretch" x:Name="DtpkNgayGiaoHang" VerticalAlignment="Center"
+                        <DatePicker HorizontalContentAlignment="Center" x:Name="DtpkNgayGiaoHang" VerticalAlignment="Center"
                                     Text="{Binding NgayGiaoHang , Mode=TwoWay}" FontSize="25"></DatePicker>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
@@ -72,6 +73,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <ComboBox x:Name="cbHinhThucThanhToan"
                                   ItemsSource="{Binding listHTTT}"
+                                  HorizontalContentAlignment="Center"
                                   DisplayMemberPath="TENHINHTHUCTHANHTOAN" FontSize="16">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
@@ -96,6 +98,7 @@
                         <ComboBox x:Name="cbTenNhaCungCap" 
                                   ItemsSource="{Binding Listnhacungcap}" 
                                   DisplayMemberPath="TENNHACUNGCAP"
+                                  HorizontalContentAlignment="Center"
                                   SelectedItem="{Binding SelectedItem}"
                                   >
                             <i:Interaction.Triggers>
@@ -126,7 +129,9 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <TextBlock FontSize="20" Padding="20 0 0 0" x:Name="txbDiaChi"
-                                   Text="{Binding DiaChi}"></TextBlock>
+                                   Text="{Binding DiaChi}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"></TextBlock>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
                         <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0 10 0 0" Height="50">Số cửa hàng</TextBlock>

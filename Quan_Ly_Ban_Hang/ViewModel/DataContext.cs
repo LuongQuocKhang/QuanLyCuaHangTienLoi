@@ -51,41 +51,20 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         private bool isLogOut = false;
         public void Command()
         {
-            NhapHangCommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                Quan_Ly_DDH QuanlyDDH = new Quan_Ly_DDH();
-                QuanlyDDH.DataContext = new DataContextQuanLyDDH();
-                QuanlyDDH.ShowDialog();
-            });
+            int loaiNV = DataProvider.Instance.DB.NHANVIENs.Where(x => x.MANHANVIEN == User.Instance.MaNhanVien).Single().MALOAINV.Value;
+
+            // command dùng chung
             BanHangCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 QuanLyHoaDonBH quanlyhoadon = new QuanLyHoaDonBH();
                 quanlyhoadon.DataContext = new DataContextQuanLyHD();
                 quanlyhoadon.ShowDialog();
             });
-            QuanLiCommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                Quan_Li_Thong_Tin QuanLiThongTin = new Quan_Li_Thong_Tin();
-                QuanLiThongTin.DataContext = new DataContextQLTT();
-                QuanLiThongTin.ShowDialog();
-            });
             TimKiemCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 Tim_Kiem TimKiem = new Tim_Kiem();
                 TimKiem.DataContext = new DataContextTK();
                 TimKiem.ShowDialog();
-            });
-            QuanLiTaiKhoanCommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                Quan_Li_Tai_Khoan QuanLiTaiKhoan = new Quan_Li_Tai_Khoan();
-                QuanLiTaiKhoan.DataContext = new DataContextQLTK();
-                QuanLiTaiKhoan.ShowDialog();
-            });
-            QuanLiNhanVienCommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                Quan_Li_Nhan_Vien QuanLiNhanVien = new Quan_Li_Nhan_Vien();
-                QuanLiNhanVien.DataContext = new DataContextQLNV();
-                QuanLiNhanVien.ShowDialog();
             });
             MouseDownCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {
@@ -113,18 +92,47 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     login.Show();
                 }
             });
-            ThongKeCommand = new RelayCommand<object>((p) => true, (p) =>
+
+            // command dùng cho quản lý
+            if (loaiNV == 1)
             {
-                ThongKeDoanhThu thongke = new ThongKeDoanhThu();
-                thongke.DataContext = new ThongKeDataContext();
-                thongke.ShowDialog();
-            });
-            ThayDoiQuyDinhCommand = new RelayCommand<object>((p) => true, (p) =>
+                NhapHangCommand = new RelayCommand<object>((p) => true, (p) =>
             {
-                 Thay_Doi_Quy_DInh ThayDoiQuyDinh = new Thay_Doi_Quy_DInh();
-                ThayDoiQuyDinh.DataContext = new DataContextTDQD();
-                ThayDoiQuyDinh.ShowDialog();
+                Quan_Ly_DDH QuanlyDDH = new Quan_Ly_DDH();
+                QuanlyDDH.DataContext = new DataContextQuanLyDDH();
+                QuanlyDDH.ShowDialog();
             });
+                QuanLiCommand = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    Quan_Li_Thong_Tin QuanLiThongTin = new Quan_Li_Thong_Tin();
+                    QuanLiThongTin.DataContext = new DataContextQLTT();
+                    QuanLiThongTin.ShowDialog();
+                });
+                QuanLiTaiKhoanCommand = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    Quan_Li_Tai_Khoan QuanLiTaiKhoan = new Quan_Li_Tai_Khoan();
+                    QuanLiTaiKhoan.DataContext = new DataContextQLTK();
+                    QuanLiTaiKhoan.ShowDialog();
+                });
+                QuanLiNhanVienCommand = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    Quan_Li_Nhan_Vien QuanLiNhanVien = new Quan_Li_Nhan_Vien();
+                    QuanLiNhanVien.DataContext = new DataContextQLNV();
+                    QuanLiNhanVien.ShowDialog();
+                });   
+                ThongKeCommand = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    ThongKeDoanhThu thongke = new ThongKeDoanhThu();
+                    thongke.DataContext = new ThongKeDataContext();
+                    thongke.ShowDialog();
+                });
+                ThayDoiQuyDinhCommand = new RelayCommand<object>((p) => true, (p) =>
+                {
+                    Thay_Doi_Quy_DInh ThayDoiQuyDinh = new Thay_Doi_Quy_DInh();
+                    ThayDoiQuyDinh.DataContext = new DataContextTDQD();
+                    ThayDoiQuyDinh.ShowDialog();
+                });
+            }
         }
         public FrameworkElement GetWindowParent(object p)
         {

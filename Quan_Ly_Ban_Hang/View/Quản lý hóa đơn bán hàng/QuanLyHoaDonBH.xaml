@@ -45,15 +45,17 @@
                        VerticalAlignment="Center">Số hóa đơn</Label>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                    <TextBlock Grid.Column="1" Text="{Binding SoHoaDon}"
-                               FontSize="20"
+                    <TextBlock Grid.Column="1" 
+                               Text="{Binding SoHoaDon}"
+                               FontSize="25"  
+                               HorizontalAlignment="Center"
                                VerticalAlignment="Center"></TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
                     <TextBlock FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
-                    <DatePicker VerticalAlignment="Center" FontSize="25" IsEnabled="false"
+                    <DatePicker VerticalAlignment="Center" FontSize="25" IsEnabled="false" HorizontalAlignment="Center"
                                  Text="{Binding NgayLapHoaDon}"></DatePicker>
                 </Border>
             </Grid>

@@ -265,7 +265,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
                         // thêm column header
                         int ColumnIndex = 1;
-                        int RowIndex = 1;
+                        int RowIndex = 2;
                         foreach (var item in ColumnHeader)
                         {
                             var cell = ws.Cells[RowIndex, ColumnIndex];

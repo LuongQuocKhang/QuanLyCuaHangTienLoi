@@ -99,13 +99,21 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 try
                 {
                     int selectedindex = (p as ListView).SelectedIndex;
-                    if (Delete.Instance.XoaThongTinNhanVien(ListNhanVien[selectedindex]) == true)
+                    string manv = ListNhanVien[selectedindex].MANHANVIEN;
+                    if (DataProvider.Instance.DB.HOADONBHs.Where(x => x.MANHANVIEN == manv).ToList().Count == 0 )
                     {
-                        ListNhanVien.RemoveAt(selectedindex);
+                        if (Delete.Instance.XoaThongTinNhanVien(ListNhanVien[selectedindex]) == true)
+                        {
+                            ListNhanVien.RemoveAt(selectedindex);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa tài khoản trước khi xóa nhân viên");
+                        }
                     }   
                     else
                     {
-                        MessageBox.Show("NHÂN VIÊN ĐÃ CÓ TÀI KHOẢN " + "\n" + "XÓA TÀI KHOẢN TRƯỚC KHI XÓA NHÂN VIÊN", "CẢNH BÁO");
+                        MessageBox.Show("Không thể xóa nhân viên", "CẢNH BÁO");
                     }
                 }
                 catch (Exception e)

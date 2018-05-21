@@ -44,7 +44,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
                                Padding="0 5 0 0"
-                               Text="QUẢN LÍ CỬA HÀNG TIỆN LỢI" 
+                               Text="QUẢN LÝ CỬA HÀNG TIỆN LỢI" 
                                FontSize="24" FontFamily="Arial" 
                                TextAlignment="Center" 
                                Height="40"
@@ -130,7 +130,7 @@
                         Command="{Binding ThongKeCommand}">
                     <StackPanel Orientation="Vertical"  >
                         <Image Source="Images/report.png" Height="84" Width="130"/>
-                        <TextBlock Text="Báo cáo thống kê" Width="auto" Foreground="Black" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Text="thống kê doanh thu" Width="auto" Foreground="Black" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
                     </StackPanel>
                 </Button>
 
