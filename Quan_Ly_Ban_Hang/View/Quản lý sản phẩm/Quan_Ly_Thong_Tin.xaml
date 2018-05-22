@@ -69,13 +69,13 @@
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding DeleteCommand}" 
                         CommandParameter="{Binding ElementName=listsanpham}">Xóa</Button>
-              
-            </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-        
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding UpdateCommand}"
                          CommandParameter="{Binding ElementName=GridThongtin}">Sửa</Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        
+                
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding ExitCommand}"
                         CommandParameter="{Binding ElementName=FormQLTT}">Thoát</Button>
