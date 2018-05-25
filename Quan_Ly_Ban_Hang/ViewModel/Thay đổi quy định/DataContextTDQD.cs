@@ -19,10 +19,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         private string giatricuSLNTT;
         private string giatricuSLTTDDN;
         private string giatricuSLTTTDB;
+        private string giatricuNgayXoa;
 
         public string GiatricuSLNTT { get => giatricuSLNTT; set { if (giatricuSLNTT != value) { giatricuSLNTT = value; OnPropertyChanged(); } } }
         public string GiatricuSLTTDDN { get => giatricuSLTTDDN; set { if (giatricuSLTTDDN != value) { giatricuSLTTDDN = value; OnPropertyChanged(); } } }
         public string GiatricuSLTTTDB { get => giatricuSLTTTDB; set { if (giatricuSLTTTDB != value) { giatricuSLTTTDB = value; OnPropertyChanged(); } } }
+        public string GiatricuNgayXoa { get => giatricuNgayXoa; set { if (giatricuNgayXoa != value) { giatricuNgayXoa = value; OnPropertyChanged(); } } }
 
         #region command
 
@@ -48,6 +50,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             GiatricuSLNTT = QuiDinh.SOLUONGNHAPTOITHIEU.Value.ToString();
             GiatricuSLTTDDN = QuiDinh.SOLUONGTONTOIDADUOCNHAP.Value.ToString();
             GiatricuSLTTTDB = QuiDinh.SOLUONGTONTOITHIEUDUOCBAN.Value.ToString();
+            GiatricuNgayXoa = QuiDinh.THOIGIANXOADULIEU.Value.ToString();
         }
         public void Command()
         {
@@ -62,6 +65,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     int slNTT = Int32.Parse(GiatricuSLNTT);
                     int slTTDDN = Int32.Parse(GiatricuSLTTDDN);
                     int slTTTDB = Int32.Parse(GiatricuSLTTTDB);
+                    int Thoigianxoa = Int32.Parse(GiatricuNgayXoa);
+
                     foreach (var item in p.Children)
                     {
 
@@ -94,9 +99,16 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                                         }
                                     }
                                     break;
+                                case "txbThoiGianXoaMoi":
+                                    {
+                                        if (!string.IsNullOrEmpty(tb.Text.ToString()))
+                                        {
+                                            Thoigianxoa = Int32.Parse(tb.Text.ToString());
+                                        }
+                                    }
+                                    break;
                             }
                         }
-
                     }
 
                     THAMSO thamso = new THAMSO()
@@ -104,6 +116,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         SOLUONGNHAPTOITHIEU = slNTT,
                         SOLUONGTONTOIDADUOCNHAP = slTTDDN,
                         SOLUONGTONTOITHIEUDUOCBAN = slTTTDB,
+                        THOIGIANXOADULIEU = Thoigianxoa
                     };
 
                     Update.Instance.UpdateThamSo(thamso);
@@ -150,11 +163,16 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                                     tb.Text = QuiDinh.SOLUONGTONTOITHIEUDUOCBAN.Value.ToString();
                                 }
                                 break;
+                            case "txbThoiGianXoaMoi":
+                                {
+                                    tb.Text = QuiDinh.THOIGIANXOADULIEU.Value.ToString();
+                                }
+                                break;
                         }
                     }
                 }
             });
         }
     }
-    }
+}
 

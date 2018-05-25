@@ -18,5 +18,6 @@ namespace Quan_Ly_Ban_Hang.Model
         public Nullable<int> SOLUONGNHAPTOITHIEU { get; set; }
         public Nullable<int> SOLUONGTONTOIDADUOCNHAP { get; set; }
         public Nullable<int> SOLUONGTONTOITHIEUDUOCBAN { get; set; }
+        public Nullable<int> THOIGIANXOADULIEU { get; set; }
     }
 }

@@ -155,6 +155,8 @@
                 <Button Width="135" Margin="20 0 0 0"
                         Command="{Binding XoaHoaDon}" 
                         CommandParameter="{Binding ElementName=listhoadon}">Xóa hóa đơn</Button>
+                <Button Width="135" Margin="20 0 0 0"
+                        Command="{Binding TimKiemCommand}">Tìm kiếm</Button>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Width="125" Margin="20 0 0 0"

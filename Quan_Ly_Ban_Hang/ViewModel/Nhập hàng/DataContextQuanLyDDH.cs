@@ -1,4 +1,7 @@
 ﻿using Quan_Ly_Ban_Hang.Model;
+using Quan_Ly_Ban_Hang.View;
+using Quan_Ly_Ban_Hang.View.Quản_lý_đơn_đặt_hàng;
+using Quan_Ly_Ban_Hang.ViewModel.Nhập_hàng;
 using Quan_Ly_Ban_Hang.ViewModel.Xử_lý;
 using System;
 using System.Collections.Generic;
@@ -76,6 +79,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand XoaChiTietDDH { get; set; }
         public ICommand SuaChiTietDDH { get; set; }
         public ICommand RefreshCommand { get; set; }
+        public ICommand TimKiemCommand { get; set; }
         #endregion
 
         public DataContextQuanLyDDH()
@@ -133,6 +137,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             XoaDonDatHang = new RelayCommand<object>((p) => true, (p) =>
             {
+                double ngay = (DateTime.Now - NgayDatHang.Value).TotalDays;
+                int ngayquidinh = DataProvider.Instance.DB.THAMSOes.Single().THOIGIANXOADULIEU.Value * 365;
+                if (ngay < ngayquidinh)
+                {
+                    MessageBox.Show("Chưa đủ số ngày qui định " + ngayquidinh + " ngày");
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa đơn đặt hàng không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -154,6 +165,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             CapNhatDonHang = new RelayCommand<object> ((p) => true, (p) =>
             {
+                if (NgayGiaoHang < NgayDatHang)
+                {
+                    MessageBox.Show("Ngày giao hàng không được trước ngày đặt hàng");
+                    return;
+                }
                 int index = (p as ListView).SelectedIndex;
                 if ( index >= 0 )
                 {
@@ -258,7 +274,18 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             RefreshCommand = new RelayCommand<object>((p) => true, (p) =>
             {
-                ListDonDatHang = Load.Instance.LoadDonDatHang();
+                ListDonDatHang.Clear();
+                var collection = Load.Instance.LoadDonDatHang();
+                foreach (var item in collection)
+                {
+                    ListDonDatHang.Add(item);
+                }
+            });
+            TimKiemCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                Tim_Kiem_DDH timkiem = new Tim_Kiem_DDH();
+                timkiem.DataContext = new DataContextTimKiem();
+                timkiem.ShowDialog();
             });
         }
         private void Loadinfo()

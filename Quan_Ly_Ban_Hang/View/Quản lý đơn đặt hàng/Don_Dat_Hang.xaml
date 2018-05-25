@@ -210,7 +210,7 @@
                            Text="{Binding TongTien}" VerticalAlignment="Center" FontSize="20"></TextBlock>
                 <Button Width="100" Margin="20 0 0 0"
                         Command="{Binding SaveToDatabaseCommand}">Lưu</Button>
-                <Button Width="100" Margin="20 0 0 0"
+                <Button Width="100" Margin="20 0 20 0"
                         Command="{Binding ExitCommand}"
                         CommandParameter="{Binding ElementName=Formnhaphang}">Thoát</Button>
             </StackPanel>

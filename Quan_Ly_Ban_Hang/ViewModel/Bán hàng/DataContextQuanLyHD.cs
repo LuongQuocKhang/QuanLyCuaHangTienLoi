@@ -1,5 +1,7 @@
 ﻿using Quan_Ly_Ban_Hang.Model;
 using Quan_Ly_Ban_Hang.View;
+using Quan_Ly_Ban_Hang.View.Quản_lý_hóa_đơn_bán_hàng;
+using Quan_Ly_Ban_Hang.ViewModel.Bán_hàng;
 using Quan_Ly_Ban_Hang.ViewModel.Xử_lý;
 using System;
 using System.Collections.Generic;
@@ -45,6 +47,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public ICommand SuaChiTietHD { get; set; }
         public ICommand SelectedProductCommand { get; set; }
         public ICommand Chitiet_SelectedItemListViewChangedCommand { get; set; }
+        public ICommand TimKiemCommand { get; set; }
         #endregion
 
         public DataContextQuanLyHD()
@@ -96,7 +99,18 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });     
             RefreshCommand = new RelayCommand<object>((p) => true, (p) =>
             {
-                ListHoaDon = Load.Instance.LoadHoaDonBanHang();
+                var collection = Load.Instance.LoadHoaDonBanHang();
+                ListHoaDon.Clear();
+                foreach (var item in collection)
+                {
+                    ListHoaDon.Add(item);
+                }
+            });
+            TimKiemCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                Tim_Kiem_Hoa_Don timkiem = new Tim_Kiem_Hoa_Don();
+                timkiem.DataContext = new DataContextTimKiemHD();
+                timkiem.ShowDialog();
             });
 
             int loaiNV = DataProvider.Instance.DB.NHANVIENs.Where(x => x.MANHANVIEN == User.Instance.MaNhanVien).Single().MALOAINV.Value;
@@ -169,6 +183,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 });
                 XoaHoaDon = new RelayCommand<object>((p) => true, (p) =>
                 {
+                    double ngay = (DateTime.Now - NgayLapHoaDon.Value).TotalDays;
+                    int ngayquidinh = DataProvider.Instance.DB.THAMSOes.Single().THOIGIANXOADULIEU.Value * 365;
+                    if (ngay < ngayquidinh)
+                    {
+                        MessageBox.Show("Chưa đủ số ngày qui định " + ngayquidinh + " ngày");
+                        return;
+                    }
                     MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xóa hóa đơn không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {

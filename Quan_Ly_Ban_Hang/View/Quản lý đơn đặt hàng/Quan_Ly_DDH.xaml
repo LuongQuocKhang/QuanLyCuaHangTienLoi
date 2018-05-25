@@ -249,27 +249,30 @@
         </Border>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <Button Width="135" Margin="20 0 0 0"
+                <Button Width="135" Margin="5 0 0 0"
                         Command="{Binding OpenCommand}">Thêm đơn hàng</Button>
-                <Button Width="135" Margin="20 0 0 0"
+                <Button Width="135" Margin="5 0 0 0"
                         Command="{Binding XoaDonDatHang}" 
                         CommandParameter="{Binding ElementName=listDonHang}">Xóa đơn hàng</Button>
-                <Button Width="135" Margin="20 0 0 0"
+                <Button Width="135" Margin="5 0 0 0"
                         Command="{Binding CapNhatDonHang}" 
                         CommandParameter="{Binding ElementName=listDonHang}">Sửa đơn hàng</Button>
+                <Button Width="110" Margin="5 0 0 0"
+                        Command="{Binding TimKiemCommand}">Tìm kiếm</Button>
+            
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Width="125" Margin="20 0 0 0"
+                <Button Width="125" Margin="5 0 0 0"
                         Command="{Binding ThemChiTietDDH}"
                         CommandParameter="{Binding ElementName=listChiTiet}">Thêm chi tiết</Button>
-                <Button Width="125" Margin="20 0 0 0"
+                <Button Width="125" Margin="5 0 0 0"
                         Command="{Binding XoaChiTietDDH}"
                         CommandParameter="{Binding ElementName=listChiTiet}">Xóa chi tiết</Button>
-                <Button Width="125" Margin="20 0 5 0"
+                <Button Width="125" Margin="5 0 5 0"
                         Command="{Binding SuaChiTietDDH}"
                         CommandParameter="{Binding ElementName=listChiTiet}">Sửa chi tiết</Button>
             </StackPanel>

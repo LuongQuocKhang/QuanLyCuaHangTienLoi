@@ -59,7 +59,7 @@
                     <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
-                    <DatePicker VerticalAlignment="Center" FontSize="25"        
+                    <DatePicker VerticalAlignment="Center" FontSize="25" HorizontalAlignment="Center"        
                                  Text="{Binding NgayLapHoaDon , Mode=TwoWay}"></DatePicker>
                 </Border>
                 

@@ -107,6 +107,7 @@
           <Property Name="SOLUONGNHAPTOITHIEU" Type="int" />
           <Property Name="SOLUONGTONTOIDADUOCNHAP" Type="int" />
           <Property Name="SOLUONGTONTOITHIEUDUOCBAN" Type="int" />
+          <Property Name="THOIGIANXOADULIEU" Type="int" />
         </EntityType>
         <EntityType Name="THONGKEDONHANG">
           <Key>
@@ -478,6 +479,7 @@
           <Property Name="SOLUONGNHAPTOITHIEU" Type="Int32" />
           <Property Name="SOLUONGTONTOIDADUOCNHAP" Type="Int32" />
           <Property Name="SOLUONGTONTOITHIEUDUOCBAN" Type="Int32" />
+          <Property Name="THOIGIANXOADULIEU" Type="Int32" />
         </EntityType>
         <EntityType Name="THONGKEDONHANG">
           <Key>
@@ -835,6 +837,7 @@
           <EntitySetMapping Name="THAMSOes">
             <EntityTypeMapping TypeName="QLBHModel.THAMSO">
               <MappingFragment StoreEntitySet="THAMSO">
+                <ScalarProperty Name="THOIGIANXOADULIEU" ColumnName="THOIGIANXOADULIEU" />
                 <ScalarProperty Name="MATHAMSO" ColumnName="MATHAMSO" />
                 <ScalarProperty Name="SOLUONGNHAPTOITHIEU" ColumnName="SOLUONGNHAPTOITHIEU" />
                 <ScalarProperty Name="SOLUONGTONTOIDADUOCNHAP" ColumnName="SOLUONGTONTOIDADUOCNHAP" />

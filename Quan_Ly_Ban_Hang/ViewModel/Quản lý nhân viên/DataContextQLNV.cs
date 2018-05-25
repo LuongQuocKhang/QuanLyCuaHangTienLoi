@@ -39,7 +39,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         public void LoadInfo()
         {
             ListLoaiNV = Load.Instance.Load_Thong_Tin_LoaiNV();
-            ListNhanVien = Load.Instance.Load_Thong_Tin_MaNV();
+            ListNhanVien = Load.Instance.Load_Thong_Tin_Nhan_Vien();
             manv = PrimaryKey.Instance.CreatePrimaryKey("NHANVIEN", "NV", 1);
         }
         public void Command()

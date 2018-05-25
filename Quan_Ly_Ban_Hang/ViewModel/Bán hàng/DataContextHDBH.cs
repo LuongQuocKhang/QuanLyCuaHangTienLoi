@@ -96,10 +96,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     }
                     dongia = Convert.ToInt32(DataProvider.Instance.DB.HANGs.ToList().Where((h) => h.MAHANG == mahang).Select((h) => h.DONGIA).SingleOrDefault());
                 }
-                int? sln = DataProvider.Instance.DB.THAMSOes.SingleOrDefault().SOLUONGNHAPTOITHIEU;
-                if (soluongban > sln)
+                if (soluongban < 0) soluongban = soluongban * (-1);
+                int? soluongton = DataProvider.Instance.DB.HANGs.Where(x => x.MAHANG == mahang).Single().SOLUONGTON;
+                if (soluongban > soluongton)
                 {
-                    MessageBox.Show("Số lượng bán vượt quá số lượng tồn hiện tại của sản phẩm " + sln);
+                    MessageBox.Show("Số lượng bán vượt quá số lượng tồn hiện tại của sản phẩm " + soluongton);
                     return;
                 }
                 if (string.IsNullOrEmpty(mahang) || string.IsNullOrEmpty(tenhang) || ListHang.Where((a) => a.MAHANG == mahang).ToList().Count > 0) return;
@@ -124,6 +125,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             SaveToDatabaseCommand = new RelayCommand<object>((p) => true, (p) =>
             {
+                if (ListHang.Count == 0) return;
                 try
                 {
                     // thêm hóa đơn

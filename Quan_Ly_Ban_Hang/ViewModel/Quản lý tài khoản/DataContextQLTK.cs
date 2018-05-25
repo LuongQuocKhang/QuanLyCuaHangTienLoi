@@ -36,7 +36,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         }
         public void LoadInfo()
         {
-            ListMaNV = Load.Instance.Load_Thong_Tin_MaNV();
+            ListMaNV = Load.Instance.Load_Thong_Tin_Nhan_Vien();
             ListTaiKhoan = Load.Instance.Load_Thong_Tin_Tai_Khoan();
         }
         public void Command()

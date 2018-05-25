@@ -121,10 +121,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         }
                     }
                 }
-                new Thread(() =>
-                {
-                    listtaikhoan = DataProvider.Instance.DB.TAIKHOANs.ToList();
-                }).Start();
+                listtaikhoan = DataProvider.Instance.DB.TAIKHOANs.ToList();
             });
         }
         public FrameworkElement GetWindowParent(object p)

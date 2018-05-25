@@ -48,6 +48,14 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             }
             return lists;
         }
+        public List<DONDATHANG> LoadDonDatHangTheoNhaCungCap(string manhacungcap)
+        {
+            return DataProvider.Instance.DB.DONDATHANGs.Where(x => x.MANHACUNGCAP == manhacungcap).ToList();
+        }
+        public List<DONDATHANG> LoadDonDatHangTheoHinhThucTT(int mahinhthucthanhtoan)
+        {
+            return DataProvider.Instance.DB.DONDATHANGs.Where(x => x.MAHINHTHUCTHANHTOAN == mahinhthucthanhtoan).ToList();
+        }
         public ObservableCollection<CHITIETDONDATHANG> LoadChiTietDonHang()
         {
             ObservableCollection<CHITIETDONDATHANG> lists = new ObservableCollection<CHITIETDONDATHANG>();
@@ -79,7 +87,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             return lists;
         }
 
-        public ObservableCollection<NHANVIEN> Load_Thong_Tin_MaNV()
+        public ObservableCollection<NHANVIEN> Load_Thong_Tin_Nhan_Vien()
         {
 
             ObservableCollection<NHANVIEN> lists = new ObservableCollection<NHANVIEN>();
@@ -114,7 +122,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel.Xử_lý
             return lists;
         }
 
-    
         public ObservableCollection<THONGKEDONHANG> LoadThongKeDonHang()
         {
             ObservableCollection<THONGKEDONHANG> donhang = new ObservableCollection<THONGKEDONHANG>();

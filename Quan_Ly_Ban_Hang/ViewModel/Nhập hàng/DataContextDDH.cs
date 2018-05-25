@@ -133,6 +133,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     }
                     dongia = Convert.ToInt32(DataProvider.Instance.DB.HANGs.ToList().Where((h) => h.MAHANG == mahang).Select((h) => h.DONGIA).SingleOrDefault());
                 }
+                if (soluongnhap < 0) soluongnhap = soluongnhap * (-1);
                 int? sln = DataProvider.Instance.DB.THAMSOes.SingleOrDefault().SOLUONGNHAPTOITHIEU;
                 if (soluongnhap < sln)
                 {
@@ -163,8 +164,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             SaveToDatabaseCommand = new RelayCommand<object>((p) => true, (p) =>
             {
+                if (ListHang.Count == 0) return;
+                if ( NgayGiaoHang < NgayDatHang)
+                {
+                    MessageBox.Show("Ngày giao hàng không được trước ngày đặt hàng");
+                    return;
+                }
                 MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn đặt hàng không ?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
                 if (result == MessageBoxResult.Yes)
                 {
                     try

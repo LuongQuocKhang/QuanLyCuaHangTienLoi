@@ -81,6 +81,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             thamso.SOLUONGNHAPTOITHIEU =ts.SOLUONGNHAPTOITHIEU ;
             thamso.SOLUONGTONTOIDADUOCNHAP = ts.SOLUONGTONTOIDADUOCNHAP;
             thamso.SOLUONGTONTOITHIEUDUOCBAN = ts.SOLUONGTONTOITHIEUDUOCBAN;
+            thamso.THOIGIANXOADULIEU = ts.THOIGIANXOADULIEU;
             DataProvider.Instance.DB.SaveChanges();
         }
     }
