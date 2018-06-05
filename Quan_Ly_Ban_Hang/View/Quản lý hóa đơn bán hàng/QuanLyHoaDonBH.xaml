@@ -41,21 +41,21 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                    <Label FontSize="25" HorizontalAlignment="Center"
+                    <Label FontSize="20" HorizontalAlignment="Center"
                        VerticalAlignment="Center">Số hóa đơn</Label>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                     <TextBlock Grid.Column="1" 
                                Text="{Binding SoHoaDon}"
-                               FontSize="25"  
+                               FontSize="20"  
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"></TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                    <TextBlock FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
+                    <TextBlock FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
-                    <DatePicker VerticalAlignment="Center" FontSize="25" IsEnabled="false" HorizontalAlignment="Center"
+                    <DatePicker VerticalAlignment="Center" FontSize="20" IsEnabled="false" HorizontalAlignment="Center"
                                  Text="{Binding NgayLapHoaDon}"></DatePicker>
                 </Border>
             </Grid>
@@ -78,6 +78,7 @@
                       ItemsSource="{Binding ListTenHang}"
                       IsEditable="true"  IsReadOnly="true" 
                       Text="{Binding TenHang}"
+                       FontSize="20"
                       DisplayMemberPath="TENHANG">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -87,7 +88,7 @@
                 </i:Interaction.Triggers>
             </ComboBox>
             <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Số lượng</TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" Height="auto" VerticalAlignment="Center"
+            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="20" Height="auto" VerticalAlignment="Center"
                      Text="{Binding SoLuong,Mode=TwoWay}"/>
         </Grid>
 
@@ -101,7 +102,7 @@
 
                 <Grid Grid.Column="0">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView Height="auto" ItemsSource="{Binding ListHoaDon}" x:Name="listhoadon" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListHoaDon}" x:Name="listhoadon" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                             <ListView.View>
                                 <GridView x:Name="data">
                                     <GridViewColumn Header="Mã hóa đơn" DisplayMemberBinding="{Binding MAHOADONBH}"></GridViewColumn>
@@ -123,7 +124,7 @@
                 <GridSplitter Grid.Column="1" Background="Black" HorizontalAlignment="Stretch"></GridSplitter>
                 <Grid Grid.Column="2" Margin="0 0 5 0">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView Height="auto" ItemsSource="{Binding ListChiTiet}" x:Name="listChiTiet" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListChiTiet}" x:Name="listChiTiet" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                             <ListView.View>
                                 <GridView x:Name="datachitietDDH">
                                     <GridViewColumn Header="Mã Chi tiết" DisplayMemberBinding="{Binding MACHITIETHOADON}"></GridViewColumn>

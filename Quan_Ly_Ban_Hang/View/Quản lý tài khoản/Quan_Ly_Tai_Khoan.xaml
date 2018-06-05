@@ -29,13 +29,14 @@
                 <ColumnDefinition Width="199*"></ColumnDefinition>
                 <ColumnDefinition Width="132*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Tài khoản:" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="1,22,198.2,21.2"></TextBlock>
-            <TextBox Grid.Column="1" x:Name="txbTaiKhoan" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.2,29,79.176,29.2"  ></TextBox>
-            <TextBlock Grid.Column="2" Text="Mật khẩu:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.8,22,0,21.2"></TextBlock>
-            <TextBox Grid.Column="4" x:Name="txbMatKhau" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,29,198.6,29.2"   ></TextBox>
-            <TextBlock Grid.Column="5" Text="Mã nhân viên:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center" Margin="6.6,22,6.6,21.2"></TextBlock>
+            <TextBlock Grid.Column="0" Text="Tài khoản:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="1,22,198.2,21.2"></TextBlock>
+            <TextBox FontSize="20" Grid.Column="1" x:Name="txbTaiKhoan" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.2,29,79.176,29.2"  ></TextBox>
+            <TextBlock Grid.Column="2" Text="Mật khẩu:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.8,22,0,21.2"></TextBlock>
+            <TextBox FontSize="20" Grid.Column="4" x:Name="txbMatKhau" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,29,198.6,29.2"   ></TextBox>
+            <TextBlock Grid.Column="5" Text="Mã nhân viên:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Margin="6.6,22,6.6,21.2"></TextBlock>
             <ComboBox Grid.Column="6" x:Name="cbMaNV"
                       ItemsSource="{Binding ListMaNV}"
+                       FontSize="20"
                       IsEditable="true"  IsReadOnly="true" 
                       DisplayMemberPath="MANHANVIEN" Margin="0.4,28,-0.4,27.2">
             </ComboBox>
@@ -43,7 +44,7 @@
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView Height="auto" ItemsSource="{Binding ListTaiKhoan}" x:Name="listtaikhoan" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListTaiKhoan}" x:Name="listtaikhoan" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã TK" DisplayMemberBinding="{Binding MATAIKHOAN}"></GridViewColumn>

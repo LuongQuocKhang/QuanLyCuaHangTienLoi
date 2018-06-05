@@ -74,7 +74,7 @@
                         <ComboBox x:Name="cbHinhThucThanhToan"
                                   ItemsSource="{Binding listHTTT}"
                                   HorizontalContentAlignment="Center"
-                                  DisplayMemberPath="TENHINHTHUCTHANHTOAN" FontSize="16">
+                                  DisplayMemberPath="TENHINHTHUCTHANHTOAN" FontSize="20">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding HinhThucThanhToanCommand}"
@@ -98,6 +98,7 @@
                         <ComboBox x:Name="cbTenNhaCungCap" 
                                   ItemsSource="{Binding Listnhacungcap}" 
                                   DisplayMemberPath="TENNHACUNGCAP"
+                                  FontSize="20"
                                   HorizontalContentAlignment="Center"
                                   SelectedItem="{Binding SelectedItem}"
                                   >
@@ -155,10 +156,11 @@
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" >Mã hàng</TextBlock>
            
             <TextBlock Grid.Column="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" >Tên hàng</TextBlock>
-            <TextBox Grid.Column="1" x:Name="txbMaHang" FontSize="30" VerticalAlignment="Center" Height="55" 
+            <TextBox Grid.Column="1" x:Name="txbMaHang" FontSize="20" VerticalAlignment="Center" Height="55" 
                      Text="{Binding MaHang}" IsEnabled="false"></TextBox>
             <ComboBox Grid.Column="3" x:Name="cbTenHang"
                       ItemsSource="{Binding ListTenHang}"
+                      FontSize="20"
                       DisplayMemberPath="TENHANG">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -168,13 +170,13 @@
                 </i:Interaction.Triggers>
             </ComboBox>
             <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Số lượng</TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" Height="auto" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="20" Height="auto" VerticalAlignment="Center"/>
         </Grid>
         
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView Height="auto" ItemsSource="{Binding ListHang}" x:Name="listNhapHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView Height="auto" FontSize="20" ItemsSource="{Binding ListHang}" x:Name="listNhapHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>

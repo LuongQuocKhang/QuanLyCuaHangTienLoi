@@ -29,12 +29,12 @@
                 <ColumnDefinition></ColumnDefinition>
                
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Mã hàng:" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-            <TextBox Grid.Column="1" x:Name="txbMaHang" VerticalAlignment="Center"  Text="{Binding FilterText_MH, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBlock Grid.Column="2" Text="Tên hàng:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
-            <TextBox Grid.Column="3" x:Name="txbTenHang" VerticalAlignment="Center"  Text="{Binding FilterText_TH, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-            <TextBlock Grid.Column="4" Text="Đơn giá:" HorizontalAlignment="Center" FontSize="30" VerticalAlignment="Center"></TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbDonGia" VerticalAlignment="Center" 
+            <TextBlock Grid.Column="0" Text="Mã hàng:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBox FontSize="20" Grid.Column="1" x:Name="txbMaHang" VerticalAlignment="Center"  Text="{Binding FilterText_MH, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Grid.Column="2" Text="Tên hàng:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            <TextBox FontSize="20" Grid.Column="3" x:Name="txbTenHang" VerticalAlignment="Center"  Text="{Binding FilterText_TH, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+            <TextBlock Grid.Column="4" Text="Đơn giá:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            <TextBox FontSize="20" Grid.Column="5" x:Name="txbDonGia" VerticalAlignment="Center" 
                      Text="{Binding FilterText_DG, UpdateSourceTrigger=PropertyChanged,TargetNullValue='0'}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="TextChanged">
@@ -47,7 +47,7 @@
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView Height="auto" ItemsSource="{Binding SourceCollection}" x:Name="listsanpham" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
+                    <ListView FontSize="20" Height="auto" ItemsSource="{Binding SourceCollection}" x:Name="listsanpham" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}" >
                         <ListView.View>
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>

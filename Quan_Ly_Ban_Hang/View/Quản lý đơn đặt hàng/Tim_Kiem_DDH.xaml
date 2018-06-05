@@ -90,7 +90,7 @@
                                   DisplayMemberPath="TENNHACUNGCAP"
                                   HorizontalContentAlignment="Center"
                                   SelectedItem="{Binding SelectedItem}"
-                                  FontSize="16">
+                                  FontSize="20">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding CB_NCC_SelectedItemhangedCommand}"
@@ -104,9 +104,10 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <ComboBox x:Name="cbHinhThucThanhToan"
+                                  FontSize="20"
                                   ItemsSource="{Binding listHTTT}"
                                   HorizontalContentAlignment="Center"
-                                  DisplayMemberPath="TENHINHTHUCTHANHTOAN" FontSize="16">
+                                  DisplayMemberPath="TENHINHTHUCTHANHTOAN">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding CB_HTTT_SelectedItemChangedCommand}"
@@ -121,7 +122,7 @@
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Grid.RowSpan="2">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView Height="auto" ItemsSource="{Binding ListDonDatHang}" x:Name="listDonHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListDonDatHang}" x:Name="listDonHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã đơn đặt hàng" DisplayMemberBinding="{Binding MADONDATHANG}"></GridViewColumn>

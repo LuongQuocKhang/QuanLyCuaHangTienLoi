@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         x:Name="SenMailForm"
         ResizeMode="NoResize"
-        Title="Send email" Height="595" Width="630">
+        Title="Gui email" Height="595" Width="630">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -83,12 +83,12 @@
 
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
             <TextBox Name="tbMultiLine"
-                 Height="192"
+                 Height="auto"
                  TextWrapping="Wrap"
                  AcceptsReturn="True"
-                 VerticalAlignment="Top"
+                 VerticalAlignment="Center"
                  VerticalScrollBarVisibility="Visible"
-                 Text="{Binding ConTent,Mode=TwoWay}" Margin="0.2,0.2,0.2,-1.8"></TextBox>
+                 Text="{Binding ConTent,Mode=TwoWay}"></TextBox>
         </Border>
         <Grid Grid.Row="5">
             <Button Width="100" Margin="70,23,454,25"

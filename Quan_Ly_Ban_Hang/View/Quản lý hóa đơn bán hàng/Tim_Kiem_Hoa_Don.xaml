@@ -53,7 +53,7 @@
                                   DisplayMemberPath="TENNHANVIEN"
                                   HorizontalContentAlignment="Center"
                                   SelectedItem="{Binding SelectedItem}"
-                                  FontSize="16">
+                                  FontSize="20">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding CB_TenNV_SelectedItemhangedCommand}"
@@ -67,7 +67,7 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                         <DatePicker HorizontalContentAlignment="Center" x:Name="dtpkNgayLapHD" VerticalAlignment="Center"
-                                    Text="{Binding NgayLapHoaDon , Mode=TwoWay}" FontSize="25">
+                                    Text="{Binding NgayLapHoaDon , Mode=TwoWay}" FontSize="20">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectedDateChanged">
                                     <i:InvokeCommandAction Command="{Binding NLHD_SelectedDateChanged}"/>
@@ -81,7 +81,7 @@
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView Height="auto" ItemsSource="{Binding ListHoaDon}" x:Name="listhoadon" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListHoaDon}" x:Name="listhoadon" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã hóa đơn" DisplayMemberBinding="{Binding MAHOADONBH}"></GridViewColumn>

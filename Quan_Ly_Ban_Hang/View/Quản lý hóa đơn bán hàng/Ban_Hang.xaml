@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="7*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                    <TextBlock Grid.Column="0" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center">Địa chỉ</TextBlock>
+                    <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Địa chỉ</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                     <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -49,14 +49,14 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-                    <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center">Số hóa đơn</TextBlock>
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Số hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
-                    <TextBlock FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    <TextBlock FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"
                                Text="{Binding SoHoaDon}"></TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2">
-                    <TextBlock FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Ngày lập hóa đơn</TextBlock>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Column="3">
                     <DatePicker VerticalAlignment="Center" FontSize="25" HorizontalAlignment="Center"        
@@ -82,6 +82,7 @@
                      Text="{Binding MaHang}" IsEnabled="false"></TextBox>
                 <ComboBox Grid.Column="3" x:Name="cbTenHang"
                       ItemsSource="{Binding ListTenHang}"
+                          FontSize="20"
                       DisplayMemberPath="TENHANG">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
@@ -91,13 +92,13 @@
                     </i:Interaction.Triggers>
                 </ComboBox>
                 <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,16,10.4,16.2" Width="122"> Số lượng bán</TextBlock>
-                <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" VerticalAlignment="Center" Height="55"/>
+                <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="20" VerticalAlignment="Center" Height="55"/>
             </Grid>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
             <Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView Height="auto" ItemsSource="{Binding ListHang}" x:Name="listBanHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListHang}" x:Name="listBanHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView x:Name="data">
                                 <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>

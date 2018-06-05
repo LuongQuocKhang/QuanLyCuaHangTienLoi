@@ -92,7 +92,7 @@
                                   ItemsSource="{Binding listHTTT}"
                                   IsEditable="true"  IsReadOnly="true"
                                   Text="{Binding TenHinhThucThanhToan}"
-                                  DisplayMemberPath="TENHINHTHUCTHANHTOAN" FontSize="16">
+                                  DisplayMemberPath="TENHINHTHUCTHANHTOAN" FontSize="20">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding CB_HTTT_SelectedItemChangedCommand}"
@@ -114,6 +114,7 @@
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
                         <ComboBox x:Name="cbTenNhaCungCap" 
+                                  FontSize="20"
                                   HorizontalContentAlignment="Center"
                                   ItemsSource="{Binding Listnhacungcap}" 
                                   DisplayMemberPath="TENNHACUNGCAP"
@@ -174,10 +175,11 @@
             <TextBlock Grid.Column="0" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" >Mã hàng</TextBlock>
 
             <TextBlock Grid.Column="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" >Tên hàng</TextBlock>
-            <TextBox Grid.Column="1" x:Name="txbMaHang" FontSize="30" VerticalAlignment="Center" Height="55" 
+            <TextBox Grid.Column="1" x:Name="txbMaHang" FontSize="20" VerticalAlignment="Center" Height="55" 
                      Text="{Binding MaHang}" IsEnabled="false"></TextBox>
             <ComboBox Grid.Column="3" x:Name="cbTenHang"
                       ItemsSource="{Binding ListTenHang}"
+                      FontSize="20"
                       IsEditable="true"  IsReadOnly="true" 
                       Text="{Binding TenHang}"
                       DisplayMemberPath="TENHANG">
@@ -189,7 +191,7 @@
                 </i:Interaction.Triggers>
             </ComboBox>
             <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Số lượng</TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="25" Height="auto" VerticalAlignment="Center"
+            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="20" Height="auto" VerticalAlignment="Center"
                      Text="{Binding SoLuong,Mode=TwoWay}"/>
         </Grid>
 
@@ -203,7 +205,7 @@
 
                 <Grid Grid.Column="0">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView Height="auto" ItemsSource="{Binding ListDonDatHang}" x:Name="listDonHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListDonDatHang}" x:Name="listDonHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                             <ListView.View>
                                 <GridView x:Name="data">
                                     <GridViewColumn Header="Mã đơn đặt hàng" DisplayMemberBinding="{Binding MADONDATHANG}"></GridViewColumn>
@@ -226,7 +228,7 @@
                 <GridSplitter Grid.Column="1" Background="Black" HorizontalAlignment="Stretch"></GridSplitter>
                 <Grid Grid.Column="2" Margin="0 0 5 0">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView Height="auto" ItemsSource="{Binding ListChiTiet}" x:Name="listChiTiet" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListChiTiet}" x:Name="listChiTiet" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                             <ListView.View>
                                 <GridView x:Name="datachitietDDH">
                                     <GridViewColumn Header="Mã Chi tiết" DisplayMemberBinding="{Binding MACHITIETDONDATHANG}"></GridViewColumn>

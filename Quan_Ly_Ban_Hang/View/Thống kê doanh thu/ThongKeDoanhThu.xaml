@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang.View.Thống_kê_doanh_thu"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        WindowStyle="None"
         x:Name="formThongke"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="ThongKeDoanhThu" Height="650" Width="770">
@@ -174,7 +173,7 @@
                         </Border>
                         <Grid Grid.Row="1">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <ListView Height="auto" ItemsSource="{Binding ListDonDatHang}" x:Name="listDonHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                                <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListDonDatHang}" x:Name="listDonHang" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                                     <ListView.View>
                                         <GridView x:Name="data">
                                             <GridViewColumn Header="Mã đơn đặt hàng" DisplayMemberBinding="{Binding MADONDATHANG}"></GridViewColumn>
@@ -232,7 +231,7 @@
                         </Border>
                         <Grid Grid.Row="1">
                             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <ListView Height="auto" ItemsSource="{Binding ListHoaDon}" x:Name="listHoaDon" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                                <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListHoaDon}" x:Name="listHoaDon" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="Mã đơn đặt hàng" DisplayMemberBinding="{Binding MAHOADONBH}"></GridViewColumn>
@@ -264,9 +263,6 @@
                         <TextBlock HorizontalAlignment="Left" Margin="10 0 0 0">Tổng tiền bán hàng trong tháng</TextBlock>
                     </DockPanel>
                 </Grid>
-                <Button Grid.Column="1" Width="100" HorizontalAlignment="Right" Margin="0 0 20 0"
-                    Command="{Binding ExitCommand}"
-                    CommandParameter="{Binding ElementName=formThongke}">Thoát</Button>
             </Grid>
         </Grid>
     </Grid>
