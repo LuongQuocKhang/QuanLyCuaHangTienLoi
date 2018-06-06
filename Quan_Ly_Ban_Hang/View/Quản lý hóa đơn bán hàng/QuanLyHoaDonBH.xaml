@@ -88,7 +88,8 @@
                 </i:Interaction.Triggers>
             </ComboBox>
             <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Số lượng</TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="20" Height="auto" VerticalAlignment="Center"
+            <TextBox Grid.Column="5" PreviewTextInput="txbSoluong_PreviewTextInput"
+                     x:Name="txbSoluong" FontSize="20" Height="auto" VerticalAlignment="Center"
                      Text="{Binding SoLuong,Mode=TwoWay}"/>
         </Grid>
 

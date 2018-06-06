@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Quan_Ly_Ban_Hang"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
         x:Name="Formnhaphang"
         Title="Đơn đặt hàng" Height="700" Width="1000">
     <Grid>
@@ -170,7 +169,7 @@
                 </i:Interaction.Triggers>
             </ComboBox>
             <TextBlock Grid.Column="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"> Số lượng</TextBlock>
-            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="20" Height="auto" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="5" x:Name="txbSoluong" FontSize="20" Height="auto" VerticalAlignment="Center" PreviewTextInput="txbSoluong_PreviewTextInput"/>
         </Grid>
         
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3">
@@ -182,7 +181,7 @@
                                 <GridViewColumn Header="Mã hàng" DisplayMemberBinding="{Binding MAHANG}"></GridViewColumn>
                                 <GridViewColumn Header="Tên hàng" DisplayMemberBinding="{Binding TENHANG}"></GridViewColumn>
                                 <GridViewColumn Header="Số lượng nhập" DisplayMemberBinding="{Binding SOLUONGNHAP}"></GridViewColumn>
-                                <GridViewColumn Header="đơn giá" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn giá" DisplayMemberBinding="{Binding DONGIA}"></GridViewColumn>
                                 <GridViewColumn Header="Tổng tiền" DisplayMemberBinding="{Binding TONGITEN}"></GridViewColumn>
                             </GridView>
                         </ListView.View>

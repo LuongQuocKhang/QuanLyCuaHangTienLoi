@@ -7,7 +7,6 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         x:Name="FormTK"
-        ResizeMode="NoResize"
         Title="Tim Kiem" Height="700" Width="1000">
     <Grid>
         <Grid.RowDefinitions>

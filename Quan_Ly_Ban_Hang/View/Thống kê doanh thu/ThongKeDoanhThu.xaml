@@ -234,7 +234,7 @@
                                 <ListView FontSize="20" Height="auto" ItemsSource="{Binding ListHoaDon}" x:Name="listHoaDon" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="Mã đơn đặt hàng" DisplayMemberBinding="{Binding MAHOADONBH}"></GridViewColumn>
+                                            <GridViewColumn Header="Mã hóa đơn" DisplayMemberBinding="{Binding MAHOADONBH}"></GridViewColumn>
                                             <GridViewColumn Header="Tổng tiền" DisplayMemberBinding="{Binding TIENBANHANG}"></GridViewColumn>
                                         </GridView>
                                     </ListView.View>

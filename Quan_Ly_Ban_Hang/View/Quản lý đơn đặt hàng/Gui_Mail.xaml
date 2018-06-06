@@ -85,8 +85,7 @@
             <TextBox Name="tbMultiLine"
                  Height="auto"
                  TextWrapping="Wrap"
-                 AcceptsReturn="True"
-                 VerticalAlignment="Center"
+                 AcceptsReturn="True" 
                  VerticalScrollBarVisibility="Visible"
                  Text="{Binding ConTent,Mode=TwoWay}"></TextBox>
         </Border>

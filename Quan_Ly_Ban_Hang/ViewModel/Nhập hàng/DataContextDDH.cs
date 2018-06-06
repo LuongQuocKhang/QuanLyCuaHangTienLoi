@@ -240,7 +240,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 }
                 catch(Exception e)
                 {
-                    MessageBox.Show(e.Message);
+                    MessageBox.Show("Nhập đầy đủ thông tin");
                 }
             });
         }

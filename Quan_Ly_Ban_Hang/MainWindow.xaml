@@ -130,7 +130,7 @@
                         Command="{Binding ThongKeCommand}">
                     <StackPanel Orientation="Vertical"  >
                         <Image Source="Images/report.png" Height="84" Width="130"/>
-                        <TextBlock Text="thống kê doanh thu" Width="auto" Foreground="Black" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Text="Thống kê doanh thu" Width="auto" Foreground="Black" FontSize="20" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
                     </StackPanel>
                 </Button>
 

@@ -64,7 +64,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                 Tim_Kiem TimKiem = new Tim_Kiem();
                 TimKiem.DataContext = new DataContextTK();
-                TimKiem.ShowDialog();
+                TimKiem.Show();
             });
             MouseDownCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {
@@ -100,13 +100,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             {
                 Quan_Ly_DDH QuanlyDDH = new Quan_Ly_DDH();
                 QuanlyDDH.DataContext = new DataContextQuanLyDDH();
-                QuanlyDDH.ShowDialog();
+                QuanlyDDH.Show();
             });
                 QuanLiCommand = new RelayCommand<object>((p) => true, (p) =>
                 {
                     Quan_Li_Thong_Tin QuanLiThongTin = new Quan_Li_Thong_Tin();
                     QuanLiThongTin.DataContext = new DataContextQLTT();
-                    QuanLiThongTin.ShowDialog();
+                    QuanLiThongTin.Show();
                 });
                 QuanLiTaiKhoanCommand = new RelayCommand<object>((p) => true, (p) =>
                 {
