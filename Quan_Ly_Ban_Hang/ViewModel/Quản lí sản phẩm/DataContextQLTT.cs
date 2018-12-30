@@ -39,106 +39,141 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             AddCommand = new RelayCommand<Grid>((p) => true, (p) =>
               {
-                  string mahang = "";
-                  string tenhang = "";
-                  decimal dongia = 0;
-               
-                  foreach (var item in p.Children)
+                  try
                   {
-                 
-                      if(item is TextBox)
-                      {
-                          TextBox tb = item as TextBox;
-                          switch (tb.Name)
-                          {
-                              case "txbMaHang":
-                                  {
-                                      mahang = tb.Text;
-                                  }
-                                  break;
-                              case "txbTenHang":
-                                  {
-                                      tenhang = tb.Text;
-                                  }
-                                  break;
-                              case "txbDonGia":
-                                  {
-                                  
-                                      dongia = decimal.Parse(tb.Text.ToString());
-                                  }
-                                  break;
-                          }
-                      }
-                     
-                  }
-                  if (string.IsNullOrEmpty(mahang) || string.IsNullOrEmpty(tenhang) || ListHang.Where((a) => a.MAHANG == mahang).ToList().Count > 0) return;
+                      string mahang = "";
+                      string tenhang = "";
+                      decimal dongia = 0;
 
-                  HANG hang = new HANG()
-                  {
-                      MAHANG = mahang,
-                      TENHANG = tenhang,
-                      DONGIA = dongia,
-                      SOLUONGTON = 0
-                  };
-                  ListHang.Add(hang);
-                  Insert.Instance.ThemThongTinSanPham(hang);
+                      foreach (var item in p.Children)
+                      {
+
+                          if (item is TextBox)
+                          {
+                              TextBox tb = item as TextBox;
+                              if (!string.IsNullOrEmpty(tb.Text))
+                              {
+                                  switch (tb.Name)
+                                  {
+                                      case "txbMaHang":
+                                          {
+                                              mahang = tb.Text;
+                                          }
+                                          break;
+                                      case "txbTenHang":
+                                          {
+                                              tenhang = tb.Text;
+                                          }
+                                          break;
+                                      case "txbDonGia":
+                                          {
+
+                                              dongia = decimal.Parse(tb.Text.ToString());
+                                          }
+                                          break;
+                                  }
+                              }
+                              else
+                              {
+                                  MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                                  break;
+                              }
+                          }
+
+                      }
+                      if (string.IsNullOrEmpty(mahang) || string.IsNullOrEmpty(tenhang) || ListHang.Where((a) => a.MAHANG == mahang).ToList().Count > 0) return;
+
+                      HANG hang = new HANG()
+                      {
+                          MAHANG = mahang,
+                          TENHANG = tenhang,
+                          DONGIA = dongia,
+                          SOLUONGTON = 0
+                      };
+                      ListHang.Add(hang);
+                      Insert.Instance.ThemThongTinSanPham(hang);
+                  }
+                  catch (Exception e) { }
               });
             DeleteCommand = new RelayCommand<ListView>((p) => true, (p) =>
             {
-                int selectedindex = (p as ListView).SelectedIndex;
-                Delete.Instance.XoaThongTinSanPham(ListHang[selectedindex]);
-                ListHang.RemoveAt(selectedindex);
+                try
+                {
+                    int selectedindex = (p as ListView).SelectedIndex;
+                    if (selectedindex >= 0)
+                    {
+                        Delete.Instance.XoaThongTinSanPham(ListHang[selectedindex]);
+                        ListHang.RemoveAt(selectedindex);
+                    }
+                    else
+                    {
+                        MessageBox.Show("vui lòng chọn sản phẩm cần xóa");
+                    }
+                }
+                catch (Exception e) { }
             });
             UpdateCommand = new RelayCommand<Grid>((p) => true, (p) =>
             {
-                string mahang = "";
-                string tenhang = "";
-                decimal dongia = 0;
-                foreach (var item in p.Children)
+                try
                 {
-
-                    if (item is TextBox)
+                    string mahang = "";
+                    string tenhang = "";
+                    decimal dongia = 0;
+                    foreach (var item in p.Children)
                     {
-                        TextBox tb = item as TextBox;
-                        switch (tb.Name)
-                        {
-                            case "txbMaHang":
-                                {
-                                    mahang = tb.Text;
-                                }
-                                break;
-                            case "txbTenHang":
-                                {
-                                    tenhang = tb.Text;
-                                }
-                                break;
-                            case "txbDonGia":
-                                {
 
-                                    dongia = decimal.Parse(tb.Text.ToString());
+                        if (item is TextBox)
+                        {
+                            TextBox tb = item as TextBox;
+                            if (!string.IsNullOrEmpty(tb.Text))
+                            {
+                                switch (tb.Name)
+                                {
+                                    case "txbMaHang":
+                                        {
+                                            mahang = tb.Text;
+                                        }
+                                        break;
+                                    case "txbTenHang":
+                                        {
+                                            tenhang = tb.Text;
+                                        }
+                                        break;
+                                    case "txbDonGia":
+                                        {
+
+                                            dongia = decimal.Parse(tb.Text.ToString());
+                                        }
+                                        break;
                                 }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
                                 break;
+                            }
                         }
+
+                    }
+                    if (string.IsNullOrEmpty(tenhang) || string.IsNullOrEmpty(dongia.ToString())) return;
+
+                    if (DataProvider.Instance.DB.HANGs.Where(h => h.MAHANG == mahang).ToList().Count == 0)
+                    {
+                        return;
                     }
 
+                    HANG hang = new HANG()
+                    {
+                        MAHANG = mahang,
+                        TENHANG = tenhang,
+                        DONGIA = dongia,
+                        SOLUONGTON = 0
+                    };
+                    ListHang.Remove(ListHang.Where(a => a.MAHANG == hang.MAHANG).Single());
+                    ListHang.Add(hang);
+                    Update.Instance.Update_ThongTinSanPham(hang);
                 }
-                if ( string.IsNullOrEmpty(tenhang) || string.IsNullOrEmpty(dongia.ToString())) return;
-
-               if(DataProvider.Instance.DB.HANGs.Where(h=> h.MAHANG == mahang).ToList().Count == 0 )
-                {
-                    return;
-                }
-
-                HANG hang = new HANG()
-                {
-                    MAHANG = mahang,
-                    TENHANG = tenhang,
-                    DONGIA = dongia,
-                    SOLUONGTON = 0
-                };
-                ListHang.Remove(ListHang.Where(a => a.MAHANG == hang.MAHANG).Single());
-                ListHang.Add(hang);
-                Update.Instance.Update_ThongTinSanPham(hang);
+                catch (Exception e) { }
             });
         
         }
