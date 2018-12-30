@@ -110,9 +110,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 });
                 QuanLiTaiKhoanCommand = new RelayCommand<object>((p) => true, (p) =>
                 {
-                    Quan_Li_Tai_Khoan QuanLiTaiKhoan = new Quan_Li_Tai_Khoan();
-                    QuanLiTaiKhoan.DataContext = new DataContextQLTK();
-                    QuanLiTaiKhoan.ShowDialog();
+                    try
+                    {
+                        Quan_Li_Tai_Khoan QuanLiTaiKhoan = new Quan_Li_Tai_Khoan();
+                        QuanLiTaiKhoan.DataContext = new DataContextQLTK();
+                        QuanLiTaiKhoan.ShowDialog();
+                    }
+                    catch (Exception e) { }
                 });
                 QuanLiNhanVienCommand = new RelayCommand<object>((p) => true, (p) =>
                 {

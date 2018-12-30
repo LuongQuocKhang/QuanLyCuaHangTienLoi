@@ -107,22 +107,36 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             DeleteCommand = new RelayCommand<ListView>((p) => true, (p) =>
             {
                 int selectedindex = (p as ListView).SelectedIndex;
-                string manv = ListTaiKhoan[selectedindex].MANHANVIEN;
-                if (DataProvider.Instance.DB.HOADONBHs.Where(x => x.MANHANVIEN == manv).ToList().Count == 0)
+                if ( selectedindex >= 0)
                 {
-                    Delete.Instance.XoaThongTinTaiKhoan(ListTaiKhoan[selectedindex]);
-                    ListTaiKhoan.RemoveAt(selectedindex);
+                    string manv = ListTaiKhoan[selectedindex].MANHANVIEN;
+                    if (DataProvider.Instance.DB.HOADONBHs.Where(x => x.MANHANVIEN == manv).ToList().Count == 0)
+                    {
+                        Delete.Instance.XoaThongTinTaiKhoan(ListTaiKhoan[selectedindex]);
+                        ListTaiKhoan.RemoveAt(selectedindex);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa tài khoản");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Không thể xóa tài khoản");
+                    MessageBox.Show("Vui lòng chọn nhân viên");
                 }
             });
             ShowPasswordCommand = new RelayCommand<ListView>((p) => true, (p) =>
             {
                 int index = (p as ListView).SelectedIndex;
-                string matkhau = ListTaiKhoan[index].MATKHAU;
-                MatKhau = Encryptor.DecryptString(matkhau);
+                if(index >= 0)
+                {
+                    string matkhau = ListTaiKhoan[index].MATKHAU;
+                    MatKhau = Encryptor.DecryptString(matkhau);
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn tài khoản");
+                }
             });
         }
     }
