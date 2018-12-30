@@ -73,15 +73,19 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                                           break;
                                   }
                               }
-                              else
-                              {
-                                  MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
-                                  break;
-                              }
                           }
 
                       }
-                      if (string.IsNullOrEmpty(mahang) || string.IsNullOrEmpty(tenhang) || ListHang.Where((a) => a.MAHANG == mahang).ToList().Count > 0) return;
+                      if (string.IsNullOrEmpty(mahang) || string.IsNullOrEmpty(dongia.ToString()) || string.IsNullOrEmpty(tenhang))
+                      {
+                          MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                          return;
+                      }
+                      if (ListHang.Where((a) => a.MAHANG == mahang).ToList().Count > 0)
+                      {
+                          MessageBox.Show("Sản phẩm đã tồn tại");
+                          return;
+                      }
 
                       HANG hang = new HANG()
                       {
@@ -147,31 +151,26 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                                         break;
                                 }
                             }
-                            else
-                            {
-                                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
-                                break;
-                            }
                         }
 
                     }
-                    if (string.IsNullOrEmpty(tenhang) || string.IsNullOrEmpty(dongia.ToString())) return;
+                    if (string.IsNullOrEmpty(mahang) || string.IsNullOrEmpty(dongia.ToString()) || string.IsNullOrEmpty(tenhang))
+                    {
+                        MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                        return;
+                    }
 
                     if (DataProvider.Instance.DB.HANGs.Where(h => h.MAHANG == mahang).ToList().Count == 0)
                     {
                         return;
                     }
+                    var update = ListHang.FirstOrDefault(x => x.MAHANG == mahang);
+                    update.TENHANG = tenhang;
+                    update.DONGIA = dongia;
 
-                    HANG hang = new HANG()
-                    {
-                        MAHANG = mahang,
-                        TENHANG = tenhang,
-                        DONGIA = dongia,
-                        SOLUONGTON = 0
-                    };
-                    ListHang.Remove(ListHang.Where(a => a.MAHANG == hang.MAHANG).Single());
-                    ListHang.Add(hang);
-                    Update.Instance.Update_ThongTinSanPham(hang);
+                    ListHang.Remove(ListHang.Where(a => a.MAHANG == update.MAHANG).Single());
+                    ListHang.Add(update);
+                    Update.Instance.Update_ThongTinSanPham(update);
                 }
                 catch (Exception e) { }
             });
