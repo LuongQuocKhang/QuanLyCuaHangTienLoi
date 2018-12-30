@@ -137,6 +137,16 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             });
             XoaDonDatHang = new RelayCommand<object>((p) => true, (p) =>
             {
+                if (p == null)
+                {
+                    MessageBox.Show("Vui lòng chọn đơn đặt hàng");
+                    return;
+                }
+                if (NgayDatHang == null)
+                {
+                    MessageBox.Show("Vui lòng chọn đơn đặt hàng cần xóa");
+                    return;
+                }
                 double ngay = (DateTime.Now - NgayDatHang.Value).TotalDays;
                 int ngayquidinh = DataProvider.Instance.DB.THAMSOes.Single().THOIGIANXOADULIEU.Value * 365;
                 if (ngay < ngayquidinh)

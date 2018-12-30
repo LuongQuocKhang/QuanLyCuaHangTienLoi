@@ -97,11 +97,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             if (loaiNV == 1)
             {
                 NhapHangCommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                Quan_Ly_DDH QuanlyDDH = new Quan_Ly_DDH();
-                QuanlyDDH.DataContext = new DataContextQuanLyDDH();
-                QuanlyDDH.ShowDialog();
-            });
+                 {
+                    Quan_Ly_DDH QuanlyDDH = new Quan_Ly_DDH();
+                    QuanlyDDH.DataContext = new DataContextQuanLyDDH();
+                    QuanlyDDH.ShowDialog();
+                 });
                 QuanLiCommand = new RelayCommand<object>((p) => true, (p) =>
                 {
                     Quan_Li_Thong_Tin QuanLiThongTin = new Quan_Li_Thong_Tin();
