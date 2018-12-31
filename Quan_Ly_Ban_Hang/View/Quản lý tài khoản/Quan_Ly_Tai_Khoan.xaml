@@ -21,24 +21,25 @@
         </Border>
         <Grid Grid.Row="1" x:Name="GridThongtin">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="133*"></ColumnDefinition>
                 <ColumnDefinition Width="198*"></ColumnDefinition>
-                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="140*"></ColumnDefinition>
+                <ColumnDefinition Width="198*"></ColumnDefinition>
                 <ColumnDefinition Width="53*"/>
                 <ColumnDefinition Width="198*"></ColumnDefinition>
-                <ColumnDefinition Width="199*"></ColumnDefinition>
+                <ColumnDefinition Width="100*"></ColumnDefinition>
+                <ColumnDefinition Width="120*"></ColumnDefinition>
                 <ColumnDefinition Width="132*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Tài khoản:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="1,22,198.2,21.2"></TextBlock>
-            <TextBox FontSize="20" Grid.Column="1" x:Name="txbTaiKhoan" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.2,29,79.176,29.2"  ></TextBox>
-            <TextBlock Grid.Column="2" Text="Mật khẩu:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0.8,22,0,21.2"></TextBlock>
-            <TextBox FontSize="20" Grid.Column="4" x:Name="txbMatKhau" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,29,198.6,29.2"   ></TextBox>
-            <TextBlock Grid.Column="5" Text="Mã nhân viên:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Margin="6.6,22,6.6,21.2"></TextBlock>
+            <TextBlock Grid.Column="0" Text="Tài khoản:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,24,3.8,21.2"/>
+            <TextBox Grid.Column="1" FontSize="20" x:Name="txbTaiKhoan" VerticalAlignment="Center" Text="{Binding manv}"/>
+            <TextBlock Grid.Column="2" Text="Mật khẩu:" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="10.2,24,32.8,19.2"></TextBlock>
+            <TextBox Grid.Column="3" FontSize="20" x:Name="txbMatKhau" VerticalAlignment="Center" Grid.ColumnSpan="2" ></TextBox>
+            <TextBlock Grid.Column="5" Text="Mã NV:" FontSize="20" VerticalAlignment="Center" Margin="6.6,22,6.6,21.2"></TextBlock>
             <ComboBox Grid.Column="6" x:Name="cbMaNV"
                       ItemsSource="{Binding ListMaNV}"
-                       FontSize="20"
                       IsEditable="true"  IsReadOnly="true" 
-                      DisplayMemberPath="MANHANVIEN" Margin="0.4,28,-0.4,27.2">
+                      FontSize="20" 
+                      DisplayMemberPath="MANHANVIEN">
             </ComboBox>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">

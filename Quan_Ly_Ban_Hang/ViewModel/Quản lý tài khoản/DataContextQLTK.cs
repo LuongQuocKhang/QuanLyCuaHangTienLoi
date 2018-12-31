@@ -56,6 +56,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     if (item is TextBox)
                     {
                         TextBox tb = item as TextBox;
+                        if(tb.Text.Length == 0 )
+                        {
+                            MessageBox.Show("Nhập đầy đủ thông tin tài khoản");
+                            return;
+                        }
                         switch (tb.Name)
                         {
                             case "txbTaiKhoan":
@@ -114,6 +119,8 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     {
                         Delete.Instance.XoaThongTinTaiKhoan(ListTaiKhoan[selectedindex]);
                         ListTaiKhoan.RemoveAt(selectedindex);
+
+                        MessageBox.Show("Xóa tài khoản thành công");
                     }
                     else
                     {
@@ -122,7 +129,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng chọn nhân viên");
+                    MessageBox.Show("Vui lòng chọn tài khoản cần xóa");
                 }
             });
             ShowPasswordCommand = new RelayCommand<ListView>((p) => true, (p) =>

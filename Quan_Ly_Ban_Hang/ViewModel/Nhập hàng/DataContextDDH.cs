@@ -97,6 +97,7 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             DeleteCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 int selectedindex = (p as ListView).SelectedIndex;
+                if (selectedindex < 0) return;
                 TongTien -= ListHang[selectedindex].DONGIA * ListHang[selectedindex].SOLUONGNHAP;
                 ListHang.RemoveAt(selectedindex);
             });
@@ -175,9 +176,6 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 {
                     try
                     {
-                        // tạo 1 file excel để lưu thông tin
-                        CreateExcelFile();
-
                         // thêm đơn đặt hàng
                         DONDATHANG dondathang = new DONDATHANG();
                         dondathang.MADONDATHANG = SoHoaDon;
@@ -209,10 +207,12 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                         thongkedonhang.MADONDATHANG = dondathang.MADONDATHANG;
                         thongkedonhang.TIENDATHANG = tongtien;
                         Insert.Instance.ThemThongKeDonHang(thongkedonhang);
+                        CreateExcelFile();
 
                         MessageBox.Show("Lưu thành công");
 
                         SoHoaDon = PrimaryKey.Instance.CreatePrimaryKey("DONDATHANG", "DDH", 1);
+                        // tạo 1 file excel để lưu thông tin
                         ListHang.Clear();
                     }
                     catch (Exception e) { MessageBox.Show(e.ToString()); }

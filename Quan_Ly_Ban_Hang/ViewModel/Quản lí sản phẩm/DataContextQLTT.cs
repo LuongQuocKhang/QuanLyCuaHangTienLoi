@@ -86,7 +86,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                           MessageBox.Show("Sản phẩm đã tồn tại");
                           return;
                       }
-
+                      if (dongia == 0)
+                      {
+                          {
+                              MessageBox.Show("Đon giá phải lớn hơn 0");
+                              return;
+                          }
+                      }
                       HANG hang = new HANG()
                       {
                           MAHANG = mahang,
@@ -163,6 +169,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     if (DataProvider.Instance.DB.HANGs.Where(h => h.MAHANG == mahang).ToList().Count == 0)
                     {
                         return;
+                    }
+                    if (dongia == 0)
+                    {
+                        {
+                            MessageBox.Show("Đon giá phải lớn hơn 0");
+                            return;
+                        }
                     }
                     var update = ListHang.FirstOrDefault(x => x.MAHANG == mahang);
                     update.TENHANG = tenhang;

@@ -82,7 +82,11 @@ namespace Quan_Ly_Ban_Hang.ViewModel
 
                     }
                 }
-                if (string.IsNullOrEmpty(tennv) || string.IsNullOrEmpty(loainv)) return;
+                if (string.IsNullOrEmpty(tennv) || string.IsNullOrEmpty(loainv))
+                {
+                    MessageBox.Show("Nhâp đầy đủ thông tin nhân viên");
+                    return;
+                }
                 int MaloaiNV = DataProvider.Instance.DB.LOAINHANVIENs.Where(x => x.TENLOAINV == loainv).SingleOrDefault().MALOAINV;
                 NHANVIEN nhanvien = new NHANVIEN()
                 {
@@ -99,21 +103,31 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 try
                 {
                     int selectedindex = (p as ListView).SelectedIndex;
-                    string manv = ListNhanVien[selectedindex].MANHANVIEN;
-                    if (DataProvider.Instance.DB.HOADONBHs.Where(x => x.MANHANVIEN == manv).ToList().Count == 0 )
+                    if ( selectedindex >= 0 )
                     {
-                        if (Delete.Instance.XoaThongTinNhanVien(ListNhanVien[selectedindex]) == true)
+                        string manv = ListNhanVien[selectedindex].MANHANVIEN;
+                        if (DataProvider.Instance.DB.HOADONBHs.Where(x => x.MANHANVIEN == manv).ToList().Count == 0)
                         {
-                            ListNhanVien.RemoveAt(selectedindex);
+                            if (Delete.Instance.XoaThongTinNhanVien(ListNhanVien[selectedindex]) == true)
+                            {
+                                ListNhanVien.RemoveAt(selectedindex);
+                                MessageBox.Show("Xóa nhân viên thành công");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Xóa tài khoản trước khi xóa nhân viên");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Xóa tài khoản trước khi xóa nhân viên");
+                            MessageBox.Show("Không thể xóa nhân viên", "CẢNH BÁO");
+                            return;
                         }
-                    }   
+                    }
                     else
                     {
-                        MessageBox.Show("Không thể xóa nhân viên", "CẢNH BÁO");
+                        MessageBox.Show("Vui lòng chọn nhân viên cần xóa;");
+                        return;
                     }
                 }
                 catch (Exception e)

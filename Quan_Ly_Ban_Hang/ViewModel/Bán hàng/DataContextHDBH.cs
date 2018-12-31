@@ -74,7 +74,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                 string tenhang = "";
                 int dongia = 0;
                 int soluongban = 0;
+                if ( p == null )
+                {
 
+                }
                 foreach (var item in p.Children)
                 {
                     if (item is ComboBox)
@@ -84,8 +87,13 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     if (item is TextBox)
                     {
                         TextBox textbox = item as TextBox;
-                        switch (textbox.Name)
+                        if (textbox.Text.Length == 0)
                         {
+                            MessageBox.Show("Nhập đầy đủ tên hàng và số lượng bán");
+                            return;
+                        }
+                        switch (textbox.Name)
+                        {     
                             case "txbMaHang":
                                 mahang = textbox.Text;
                                 break;
@@ -120,8 +128,16 @@ namespace Quan_Ly_Ban_Hang.ViewModel
             DeleteCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 int selectedindex = (p as ListView).SelectedIndex;
-                TongTien -= ListHang[selectedindex].DONGIA* ListHang[selectedindex].SOLUONGBAN;
-                ListHang.RemoveAt(selectedindex);
+                if ( selectedindex >= 0)
+                {
+                    TongTien -= ListHang[selectedindex].DONGIA * ListHang[selectedindex].SOLUONGBAN;
+                    ListHang.RemoveAt(selectedindex);
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn sản phầm cần xóa");
+                    return;
+                }
             });
             SaveToDatabaseCommand = new RelayCommand<object>((p) => true, (p) =>
             {
