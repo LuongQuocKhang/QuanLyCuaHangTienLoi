@@ -31,7 +31,19 @@ namespace Quan_Ly_Ban_Hang.ViewModel
         }
 
         private ICommand textChangedCommand;
-
+        private ICommand exitCommand;
+        public ICommand ExitCommand
+        {
+            get => exitCommand;
+            set
+            {
+                if (exitCommand != value)
+                {
+                    exitCommand = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public string FilterText_MH
         {
             get
@@ -96,7 +108,10 @@ namespace Quan_Ly_Ban_Hang.ViewModel
                     dongia.Text = "0";
                 }
             });
-
+            ExitCommand = new RelayCommand<object>((p) => true, (p) =>
+            {
+                (p as Window).Close();
+            });
             usersCollection = new CollectionViewSource();
             usersCollection.Source = ListHang;
             usersCollection.Filter += usersCollection_Filter;
